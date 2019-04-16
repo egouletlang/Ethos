@@ -17,6 +17,11 @@ public extension UIColor {
     /**
      This constructor lets you to create a UIColor using an 0xAARRGGBB integer
      
+     - parameters:
+        - argb: 0xAARRGGBB UInt64
+        - defaultAlpha: The value for the alpha channel that should be used should that information be missing from the
+                        hex string
+     
      eg. UIColor(rgb: 0x88FFFFFF)
      */
     convenience init(argb: UInt64, defaultAlpha: CGFloat = 1) {
@@ -35,6 +40,11 @@ public extension UIColor {
      eg.
      - UIColor(rgb: "0x88FFFFFF")
      - UIColor(rgb: "#FFFFFF")
+     
+     - parameters:
+        - hexString: #AARRGGBB hex string
+        - defaultAlpha: The value for the alpha channel that should be used should that information be missing from the
+                        hex string
      */
     convenience init?(hexString: String, defaultAlpha: CGFloat = 1) {
         let scanner = Scanner(string: hexString

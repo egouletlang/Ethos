@@ -69,6 +69,14 @@ open class DeviceHelper {
     
     
     // MARK: - Device
+    /**
+     This property returns the locale configured in the EthosUtilCongig class
+     */
+    public static var locale: Locale {
+        get {
+            return EthosUtilConfig.shared.locale
+        }
+    }
     
     /**
      This property returns device name

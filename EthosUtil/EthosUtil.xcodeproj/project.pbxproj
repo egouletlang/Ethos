@@ -34,6 +34,9 @@
 		6B9ADC0C2266674300BEF3DC /* ModuleConfigDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC0B2266674300BEF3DC /* ModuleConfigDelegate.swift */; };
 		6B9ADC0E226668D000BEF3DC /* EthosUtilConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC0D226668D000BEF3DC /* EthosUtilConfig.swift */; };
 		6B9ADC10226668E700BEF3DC /* EthosUtilConfigDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC0F226668E700BEF3DC /* EthosUtilConfigDelegate.swift */; };
+		6B9ADC12226669C600BEF3DC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC11226669C600BEF3DC /* DateHelper.swift */; };
+		6B9ADC1422666A0200BEF3DC /* Date_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */; };
+		6B9ADC1622666A1500BEF3DC /* Formatter_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		6B9ADC0B2266674300BEF3DC /* ModuleConfigDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleConfigDelegate.swift; sourceTree = "<group>"; };
 		6B9ADC0D226668D000BEF3DC /* EthosUtilConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosUtilConfig.swift; sourceTree = "<group>"; };
 		6B9ADC0F226668E700BEF3DC /* EthosUtilConfigDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosUtilConfigDelegate.swift; sourceTree = "<group>"; };
+		6B9ADC11226669C600BEF3DC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_EXT.swift; sourceTree = "<group>"; };
+		6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter_EXT.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 				6B9ADBE32266309000BEF3DC /* Extension */,
 				6B9ADBDE22662B1200BEF3DC /* FileSystem */,
 				6B9ADBF02266380600BEF3DC /* Log */,
+				6B9ADC11226669C600BEF3DC /* DateHelper.swift */,
 			);
 			path = EthosUtil;
 			sourceTree = "<group>";
@@ -173,11 +180,13 @@
 		6B9ADBE32266309000BEF3DC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADBE4226630A900BEF3DC /* String_EXT.swift */,
-				6B9ADBE82266344D00BEF3DC /* Dictionary_EXT.swift */,
 				6B9ADBFE22665AD100BEF3DC /* Array_EXT.swift */,
 				6B9ADC0022665BFB00BEF3DC /* CGColor_EXT.swift */,
 				6B9ADC02226661BB00BEF3DC /* CGImage_EXT.swift */,
+				6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */,
+				6B9ADBE82266344D00BEF3DC /* Dictionary_EXT.swift */,
+				6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */,
+				6B9ADBE4226630A900BEF3DC /* String_EXT.swift */,
 				6B9ADC042266620A00BEF3DC /* UIColor_EXT.swift */,
 				6B9ADC062266663500BEF3DC /* UIImage_EXT.swift */,
 			);
@@ -331,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B9ADC12226669C600BEF3DC /* DateHelper.swift in Sources */,
 				6B9ADBF62266556E00BEF3DC /* LRUCache.swift in Sources */,
 				6B9ADC072266663500BEF3DC /* UIImage_EXT.swift in Sources */,
 				6B9ADC10226668E700BEF3DC /* EthosUtilConfigDelegate.swift in Sources */,
@@ -344,6 +354,7 @@
 				6B9ADBE72266340800BEF3DC /* DeviceHelper.swift in Sources */,
 				6B9ADBF22266381400BEF3DC /* LogHelperDelegate.swift in Sources */,
 				6B9ADBFB226655E400BEF3DC /* LinkedList.swift in Sources */,
+				6B9ADC1622666A1500BEF3DC /* Formatter_EXT.swift in Sources */,
 				6B9ADBE022662B2000BEF3DC /* FileHandle.swift in Sources */,
 				6B9ADBFF22665AD100BEF3DC /* Array_EXT.swift in Sources */,
 				6B9ADBE5226630A900BEF3DC /* String_EXT.swift in Sources */,
@@ -353,6 +364,7 @@
 				6B9ADC0E226668D000BEF3DC /* EthosUtilConfig.swift in Sources */,
 				6B9ADBEC2266368300BEF3DC /* Lock.swift in Sources */,
 				6B9ADBF9226655C900BEF3DC /* LinkedListNode.swift in Sources */,
+				6B9ADC1422666A0200BEF3DC /* Date_EXT.swift in Sources */,
 				6B9ADC0C2266674300BEF3DC /* ModuleConfigDelegate.swift in Sources */,
 				6B9ADBDB2266299E00BEF3DC /* CacheEntry.swift in Sources */,
 			);

@@ -15,6 +15,33 @@ public extension String {
         return self[index(startIndex, offsetBy: i)]
     }
     
+    // MARK: - Data conversion
+    /**
+     This method converts a string to a date
+     
+     - parameters:
+        - format: The desired string format. If the parameter is set to `nil`, the iso8601 format is used. This
+                  parameter defaults to `nil`
+     
+     - returns: a Date
+     */
+    func toDate(format: String? = nil) -> Date? {
+        return DateHelper.shared.getDate(format: format ?? DateFormatter.iso8601.dateFormat, str: self)
+    }
+    
+    /**
+     This method converts a string to a uicolor
+     
+     - parameters:
+        - defaultAlpha: The value for the alpha channel that should be used should that information be missing from the
+                        hex string
+     
+     - returns: a UIColor
+     */
+    func toUIColor(defaultAlpha: CGFloat = 1) -> UIColor? {
+        return UIColor(hexString: self, defaultAlpha: defaultAlpha)
+    }
+    
     // MARK: - Base64
     /**
      This method creates a base64 encoded string
@@ -58,7 +85,7 @@ public extension String {
      This method checks if the string starts with a particular substring
      
      - parameters:
-     -  text: target substring
+        -  text: target substring
      
      - returns: true if the string starts with the `text` parameter
      */
@@ -70,7 +97,7 @@ public extension String {
      This method checks if the string ends with a particular substring
      
      - parameters:
-     -  text: target substring
+        -  text: target substring
      
      - returns: true if the string ends with the `text` parameter
      */
