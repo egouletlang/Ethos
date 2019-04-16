@@ -30,6 +30,10 @@
 		6B9ADC03226661BB00BEF3DC /* CGImage_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC02226661BB00BEF3DC /* CGImage_EXT.swift */; };
 		6B9ADC052266620A00BEF3DC /* UIColor_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC042266620A00BEF3DC /* UIColor_EXT.swift */; };
 		6B9ADC072266663500BEF3DC /* UIImage_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC062266663500BEF3DC /* UIImage_EXT.swift */; };
+		6B9ADC0A2266672500BEF3DC /* ModuleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC092266672500BEF3DC /* ModuleConfig.swift */; };
+		6B9ADC0C2266674300BEF3DC /* ModuleConfigDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC0B2266674300BEF3DC /* ModuleConfigDelegate.swift */; };
+		6B9ADC0E226668D000BEF3DC /* EthosUtilConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC0D226668D000BEF3DC /* EthosUtilConfig.swift */; };
+		6B9ADC10226668E700BEF3DC /* EthosUtilConfigDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC0F226668E700BEF3DC /* EthosUtilConfigDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		6B9ADC02226661BB00BEF3DC /* CGImage_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImage_EXT.swift; sourceTree = "<group>"; };
 		6B9ADC042266620A00BEF3DC /* UIColor_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_EXT.swift; sourceTree = "<group>"; };
 		6B9ADC062266663500BEF3DC /* UIImage_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage_EXT.swift; sourceTree = "<group>"; };
+		6B9ADC092266672500BEF3DC /* ModuleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleConfig.swift; sourceTree = "<group>"; };
+		6B9ADC0B2266674300BEF3DC /* ModuleConfigDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleConfigDelegate.swift; sourceTree = "<group>"; };
+		6B9ADC0D226668D000BEF3DC /* EthosUtilConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosUtilConfig.swift; sourceTree = "<group>"; };
+		6B9ADC0F226668E700BEF3DC /* EthosUtilConfigDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosUtilConfigDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,7 @@
 		6B9ADBC02266294900BEF3DC /* EthosUtil */ = {
 			isa = PBXGroup;
 			children = (
+				6B9ADC082266670B00BEF3DC /* Config */,
 				6B9ADBC12266294900BEF3DC /* EthosUtil.h */,
 				6B9ADBC22266294900BEF3DC /* Info.plist */,
 				6B9ADBE62266340800BEF3DC /* DeviceHelper.swift */,
@@ -200,6 +209,17 @@
 				6B9ADBFC2266564F00BEF3DC /* LRULinkedList.swift */,
 			);
 			path = LinkedList;
+			sourceTree = "<group>";
+		};
+		6B9ADC082266670B00BEF3DC /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6B9ADC092266672500BEF3DC /* ModuleConfig.swift */,
+				6B9ADC0B2266674300BEF3DC /* ModuleConfigDelegate.swift */,
+				6B9ADC0D226668D000BEF3DC /* EthosUtilConfig.swift */,
+				6B9ADC0F226668E700BEF3DC /* EthosUtilConfigDelegate.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +333,7 @@
 			files = (
 				6B9ADBF62266556E00BEF3DC /* LRUCache.swift in Sources */,
 				6B9ADC072266663500BEF3DC /* UIImage_EXT.swift in Sources */,
+				6B9ADC10226668E700BEF3DC /* EthosUtilConfigDelegate.swift in Sources */,
 				6B9ADC052266620A00BEF3DC /* UIColor_EXT.swift in Sources */,
 				6B9ADC03226661BB00BEF3DC /* CGImage_EXT.swift in Sources */,
 				6B9ADBF422663A0F00BEF3DC /* ThreadHelper.swift in Sources */,
@@ -326,10 +347,13 @@
 				6B9ADBE022662B2000BEF3DC /* FileHandle.swift in Sources */,
 				6B9ADBFF22665AD100BEF3DC /* Array_EXT.swift in Sources */,
 				6B9ADBE5226630A900BEF3DC /* String_EXT.swift in Sources */,
+				6B9ADC0A2266672500BEF3DC /* ModuleConfig.swift in Sources */,
 				6B9ADBE92266344D00BEF3DC /* Dictionary_EXT.swift in Sources */,
 				6B9ADBE222662C1800BEF3DC /* FileSystemHelper.swift in Sources */,
+				6B9ADC0E226668D000BEF3DC /* EthosUtilConfig.swift in Sources */,
 				6B9ADBEC2266368300BEF3DC /* Lock.swift in Sources */,
 				6B9ADBF9226655C900BEF3DC /* LinkedListNode.swift in Sources */,
+				6B9ADC0C2266674300BEF3DC /* ModuleConfigDelegate.swift in Sources */,
 				6B9ADBDB2266299E00BEF3DC /* CacheEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
