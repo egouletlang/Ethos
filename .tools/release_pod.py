@@ -133,7 +133,7 @@ for pod in pods:
 #   421  pod repo push EthosUtilSpec EthosUtil.podspec 
 
 run_command('git add .')
-run_command(parts=['git', 'commit', '-m', '\'%s\'' % message, '.'])
+run_command(parts=['git', 'commit', '-m', '"%s"' % message, '.'])
 run_command('git tag %s' % version)
 run_command('git push')
 run_command('git push --tags')
