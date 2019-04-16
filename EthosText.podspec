@@ -2,15 +2,13 @@ Pod::Spec.new do |spec|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  spec.name         = "EthosUtil"
-  spec.version      = "0.1.12"
+  spec.name         = "EthosText"
+  spec.version      = "0.1.1"
   spec.summary      = "A collection of useful building blocks to help rapidly develop iOS apps using Swift"
   spec.description  = <<-DESC
   A collection of useful building blocks to help rapidly develop iOS apps using Swift and more
                    DESC
-
-  spec.homepage     = "https://github.com/egouletlang/ethos"
-
+  spec.homepage     = "https://github.com/egouletlang/Ethos"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -24,14 +22,17 @@ Pod::Spec.new do |spec|
   # spec.social_media_url   = "https://twitter.com/egouletlang"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  
+
   spec.swift_version              = '4.2'
   spec.platform                   = :ios, '11.0'
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  spec.source       = { :git => "https://github.com/egouletlang/Ethos.git", :tag => "v0.5.12" }
-  spec.source_files = 'EthosUtil/EthosUtil/**/*.{h,m,swift}'
+  spec.source       = { :git => "https://github.com/egouletlang/Ethos.git", :tag => "v0.5.13" }
+  spec.source_files = 'EthosText/EthosText/**/*.{h,m,swift}'
 
+  # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  spec.dependency 'EthosUtil'
+  
 end
