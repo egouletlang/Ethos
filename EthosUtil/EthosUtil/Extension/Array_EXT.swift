@@ -11,18 +11,6 @@ import Foundation
 public extension Array {
     
     /**
-     This method will run a closure for each element in the array
-     
-     - parameters:
-        - block: A closure representing the transformation you want to run
-     */
-    func forEach(_ block: (Element) -> Void) {
-        for item in self {
-            block(item)
-        }
-    }
-    
-    /**
      This method provides a safe access to the array.
      
      The method returns the target element if the index is within the bounds, otherwise it returns nil

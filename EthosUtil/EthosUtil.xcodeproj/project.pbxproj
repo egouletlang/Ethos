@@ -37,6 +37,7 @@
 		6B9ADC12226669C600BEF3DC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC11226669C600BEF3DC /* DateHelper.swift */; };
 		6B9ADC1422666A0200BEF3DC /* Date_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */; };
 		6B9ADC1622666A1500BEF3DC /* Formatter_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */; };
+		6B9ADC1922666C8A00BEF3DC /* ModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1822666C8A00BEF3DC /* ModuleState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		6B9ADC11226669C600BEF3DC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_EXT.swift; sourceTree = "<group>"; };
 		6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter_EXT.swift; sourceTree = "<group>"; };
+		6B9ADC1822666C8A00BEF3DC /* ModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		6B9ADBC02266294900BEF3DC /* EthosUtil */ = {
 			isa = PBXGroup;
 			children = (
+				6B9ADC1722666C7C00BEF3DC /* State */,
 				6B9ADC082266670B00BEF3DC /* Config */,
 				6B9ADBC12266294900BEF3DC /* EthosUtil.h */,
 				6B9ADBC22266294900BEF3DC /* Info.plist */,
@@ -229,6 +232,14 @@
 				6B9ADC0F226668E700BEF3DC /* EthosUtilConfigDelegate.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		6B9ADC1722666C7C00BEF3DC /* State */ = {
+			isa = PBXGroup;
+			children = (
+				6B9ADC1822666C8A00BEF3DC /* ModuleState.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +372,7 @@
 				6B9ADC0A2266672500BEF3DC /* ModuleConfig.swift in Sources */,
 				6B9ADBE92266344D00BEF3DC /* Dictionary_EXT.swift in Sources */,
 				6B9ADBE222662C1800BEF3DC /* FileSystemHelper.swift in Sources */,
+				6B9ADC1922666C8A00BEF3DC /* ModuleState.swift in Sources */,
 				6B9ADC0E226668D000BEF3DC /* EthosUtilConfig.swift in Sources */,
 				6B9ADBEC2266368300BEF3DC /* Lock.swift in Sources */,
 				6B9ADBF9226655C900BEF3DC /* LinkedListNode.swift in Sources */,
