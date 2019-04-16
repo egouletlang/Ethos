@@ -38,6 +38,9 @@
 		6B9ADC1422666A0200BEF3DC /* Date_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */; };
 		6B9ADC1622666A1500BEF3DC /* Formatter_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */; };
 		6B9ADC1922666C8A00BEF3DC /* ModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1822666C8A00BEF3DC /* ModuleState.swift */; };
+		6B9ADC1B226672C900BEF3DC /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1A226672C900BEF3DC /* Promise.swift */; };
+		6B9ADC1D226677A100BEF3DC /* Delayed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1C226677A100BEF3DC /* Delayed.swift */; };
+		6B9ADC1F22667C0800BEF3DC /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1E22667C0800BEF3DC /* TaskManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,9 @@
 		6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_EXT.swift; sourceTree = "<group>"; };
 		6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter_EXT.swift; sourceTree = "<group>"; };
 		6B9ADC1822666C8A00BEF3DC /* ModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleState.swift; sourceTree = "<group>"; };
+		6B9ADC1A226672C900BEF3DC /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		6B9ADC1C226677A100BEF3DC /* Delayed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delayed.swift; sourceTree = "<group>"; };
+		6B9ADC1E22667C0800BEF3DC /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,17 +133,17 @@
 		6B9ADBC02266294900BEF3DC /* EthosUtil */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADC1722666C7C00BEF3DC /* State */,
-				6B9ADC082266670B00BEF3DC /* Config */,
 				6B9ADBC12266294900BEF3DC /* EthosUtil.h */,
 				6B9ADBC22266294900BEF3DC /* Info.plist */,
+				6B9ADC11226669C600BEF3DC /* DateHelper.swift */,
 				6B9ADBE62266340800BEF3DC /* DeviceHelper.swift */,
 				6B9ADBF322663A0F00BEF3DC /* ThreadHelper.swift */,
+				6B9ADC082266670B00BEF3DC /* Config */,
 				6B9ADBD82266296B00BEF3DC /* DataStructure */,
 				6B9ADBE32266309000BEF3DC /* Extension */,
 				6B9ADBDE22662B1200BEF3DC /* FileSystem */,
 				6B9ADBF02266380600BEF3DC /* Log */,
-				6B9ADC11226669C600BEF3DC /* DateHelper.swift */,
+				6B9ADC1722666C7C00BEF3DC /* State */,
 			);
 			path = EthosUtil;
 			sourceTree = "<group>";
@@ -200,6 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				6B9ADBEB2266368300BEF3DC /* Lock.swift */,
+				6B9ADC1A226672C900BEF3DC /* Promise.swift */,
+				6B9ADC1C226677A100BEF3DC /* Delayed.swift */,
+				6B9ADC1E22667C0800BEF3DC /* TaskManager.swift */,
 			);
 			path = Thread;
 			sourceTree = "<group>";
@@ -368,14 +377,17 @@
 				6B9ADC1622666A1500BEF3DC /* Formatter_EXT.swift in Sources */,
 				6B9ADBE022662B2000BEF3DC /* FileHandle.swift in Sources */,
 				6B9ADBFF22665AD100BEF3DC /* Array_EXT.swift in Sources */,
+				6B9ADC1F22667C0800BEF3DC /* TaskManager.swift in Sources */,
 				6B9ADBE5226630A900BEF3DC /* String_EXT.swift in Sources */,
 				6B9ADC0A2266672500BEF3DC /* ModuleConfig.swift in Sources */,
+				6B9ADC1B226672C900BEF3DC /* Promise.swift in Sources */,
 				6B9ADBE92266344D00BEF3DC /* Dictionary_EXT.swift in Sources */,
 				6B9ADBE222662C1800BEF3DC /* FileSystemHelper.swift in Sources */,
 				6B9ADC1922666C8A00BEF3DC /* ModuleState.swift in Sources */,
 				6B9ADC0E226668D000BEF3DC /* EthosUtilConfig.swift in Sources */,
 				6B9ADBEC2266368300BEF3DC /* Lock.swift in Sources */,
 				6B9ADBF9226655C900BEF3DC /* LinkedListNode.swift in Sources */,
+				6B9ADC1D226677A100BEF3DC /* Delayed.swift in Sources */,
 				6B9ADC1422666A0200BEF3DC /* Date_EXT.swift in Sources */,
 				6B9ADC0C2266674300BEF3DC /* ModuleConfigDelegate.swift in Sources */,
 				6B9ADBDB2266299E00BEF3DC /* CacheEntry.swift in Sources */,

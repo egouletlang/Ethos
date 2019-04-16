@@ -80,7 +80,7 @@ open class LogHelper {
     
     open func log(msg: String, tag: String) {
         if !self.shouldShowLog(tag: tag) { return }
-        ThreadHelper.executeOnApplicationQueue(name: LogHelper.BACKGROUND_THREAD_NAME) {
+        ThreadHelper.app(LogHelper.BACKGROUND_THREAD_NAME) {
             // Only handle the message once, either with the logDelegate or with the default handler
             
             var handler: ((String) -> Void)?

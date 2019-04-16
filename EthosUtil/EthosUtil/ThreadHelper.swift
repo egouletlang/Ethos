@@ -65,7 +65,7 @@ open class ThreadHelper {
         self.applicationQueues.removeValue(forKey: name)
     }
     
-    open class func executeOnApplicationQueue(name: String?, block: @escaping () -> Void) {
+    open class func app(_ name: String?, block: @escaping () -> Void) {
         getOrCreateApplicationQueue(name: name ?? ANONYMOUS_THREAD_NAME)?.async(execute: block)
     }
     
