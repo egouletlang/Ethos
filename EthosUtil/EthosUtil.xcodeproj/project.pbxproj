@@ -21,6 +21,10 @@
 		6B9ADBEF2266372D00BEF3DC /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBEE2266372D00BEF3DC /* LogHelper.swift */; };
 		6B9ADBF22266381400BEF3DC /* LogHelperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBF12266381400BEF3DC /* LogHelperDelegate.swift */; };
 		6B9ADBF422663A0F00BEF3DC /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBF322663A0F00BEF3DC /* ThreadHelper.swift */; };
+		6B9ADBF62266556E00BEF3DC /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBF52266556E00BEF3DC /* LRUCache.swift */; };
+		6B9ADBF9226655C900BEF3DC /* LinkedListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBF8226655C900BEF3DC /* LinkedListNode.swift */; };
+		6B9ADBFB226655E400BEF3DC /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBFA226655E400BEF3DC /* LinkedList.swift */; };
+		6B9ADBFD2266564F00BEF3DC /* LRULinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBFC2266564F00BEF3DC /* LRULinkedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		6B9ADBEE2266372D00BEF3DC /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		6B9ADBF12266381400BEF3DC /* LogHelperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelperDelegate.swift; sourceTree = "<group>"; };
 		6B9ADBF322663A0F00BEF3DC /* ThreadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHelper.swift; sourceTree = "<group>"; };
+		6B9ADBF52266556E00BEF3DC /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
+		6B9ADBF8226655C900BEF3DC /* LinkedListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListNode.swift; sourceTree = "<group>"; };
+		6B9ADBFA226655E400BEF3DC /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		6B9ADBFC2266564F00BEF3DC /* LRULinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRULinkedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,7 @@
 		6B9ADBD82266296B00BEF3DC /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				6B9ADBF7226655B400BEF3DC /* LinkedList */,
 				6B9ADBEA2266366C00BEF3DC /* Thread */,
 				6B9ADBD92266299200BEF3DC /* Cache */,
 			);
@@ -128,6 +137,7 @@
 			children = (
 				6B9ADBDA2266299E00BEF3DC /* CacheEntry.swift */,
 				6B9ADBDC22662AA800BEF3DC /* Cache.swift */,
+				6B9ADBF52266556E00BEF3DC /* LRUCache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -165,6 +175,16 @@
 				6B9ADBF12266381400BEF3DC /* LogHelperDelegate.swift */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		6B9ADBF7226655B400BEF3DC /* LinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				6B9ADBF8226655C900BEF3DC /* LinkedListNode.swift */,
+				6B9ADBFA226655E400BEF3DC /* LinkedList.swift */,
+				6B9ADBFC2266564F00BEF3DC /* LRULinkedList.swift */,
+			);
+			path = LinkedList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,16 +296,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B9ADBF62266556E00BEF3DC /* LRUCache.swift in Sources */,
 				6B9ADBF422663A0F00BEF3DC /* ThreadHelper.swift in Sources */,
 				6B9ADBDD22662AA800BEF3DC /* Cache.swift in Sources */,
+				6B9ADBFD2266564F00BEF3DC /* LRULinkedList.swift in Sources */,
 				6B9ADBEF2266372D00BEF3DC /* LogHelper.swift in Sources */,
 				6B9ADBE72266340800BEF3DC /* DeviceHelper.swift in Sources */,
 				6B9ADBF22266381400BEF3DC /* LogHelperDelegate.swift in Sources */,
+				6B9ADBFB226655E400BEF3DC /* LinkedList.swift in Sources */,
 				6B9ADBE022662B2000BEF3DC /* FileHandle.swift in Sources */,
 				6B9ADBE5226630A900BEF3DC /* String_EXT.swift in Sources */,
 				6B9ADBE92266344D00BEF3DC /* Dictionary_EXT.swift in Sources */,
 				6B9ADBE222662C1800BEF3DC /* FileSystemHelper.swift in Sources */,
 				6B9ADBEC2266368300BEF3DC /* Lock.swift in Sources */,
+				6B9ADBF9226655C900BEF3DC /* LinkedListNode.swift in Sources */,
 				6B9ADBDB2266299E00BEF3DC /* CacheEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

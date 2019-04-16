@@ -10,7 +10,6 @@ def get_next_version(version):
 
 
 # os helpers
-
 def run_command(cmd=None, parts=None, show_output=True):
     if show_output:
         if parts:
@@ -94,6 +93,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Create Cocoapod Releases for the Ethos Project')
     parser.add_argument('--pods', nargs='+', default="all", help='Pod that should be updated, defaults to all')
     parser.add_argument('--version', help='Target verision')
+    parser.add_argument('--message', help='Commit Message')
 
     args = parser.parse_args()
     target_pods = args.pods
@@ -105,12 +105,16 @@ def parse_args():
     target_version = args.version
     if not target_version:
         target_version = get_next_git_version()
-    
-    return target_pods, target_version
+
+    release_message = args.message
+    if not release_message:
+        release_message = "new pod release version %s" % target_version
+
+    return target_pods, target_version, release_message
 
 
 current_version = get_latest_git_tag() 
-pods, version = parse_args()
+pods, version, message = parse_args()
 
 print(pods)
 print('%-30s %s -> %s' % ('Ethos:', current_version, version))

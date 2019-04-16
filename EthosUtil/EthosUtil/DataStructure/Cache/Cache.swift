@@ -63,7 +63,7 @@ open class Cache<T: Comparable & Hashable, K> {
     /**
      This member is the "in-memory" cache
      */
-    private (set) var cache = [T: CacheEntry<K>]()
+    var cache = [T: CacheEntry<K>]()
     
     /**
      This property returns a list of the cache keys
