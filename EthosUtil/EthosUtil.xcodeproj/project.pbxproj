@@ -178,9 +178,9 @@
 		6B9ADBD82266296B00BEF3DC /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				6B9ADBD92266299200BEF3DC /* Cache */,
 				6B9ADBF7226655B400BEF3DC /* LinkedList */,
 				6B9ADBEA2266366C00BEF3DC /* Thread */,
-				6B9ADBD92266299200BEF3DC /* Cache */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -188,8 +188,8 @@
 		6B9ADBD92266299200BEF3DC /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADBDA2266299E00BEF3DC /* CacheEntry.swift */,
 				6B9ADBDC22662AA800BEF3DC /* Cache.swift */,
+				6B9ADBDA2266299E00BEF3DC /* CacheEntry.swift */,
 				6B9ADBF52266556E00BEF3DC /* LRUCache.swift */,
 			);
 			path = Cache;
@@ -212,11 +212,11 @@
 				6B9ADC02226661BB00BEF3DC /* CGImage_EXT.swift */,
 				6B9ADC1322666A0200BEF3DC /* Date_EXT.swift */,
 				6B9ADBE82266344D00BEF3DC /* Dictionary_EXT.swift */,
+				6B9ADC2D2266887A00BEF3DC /* EventHelper_EXT.swift */,
 				6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */,
 				6B9ADBE4226630A900BEF3DC /* String_EXT.swift */,
 				6B9ADC042266620A00BEF3DC /* UIColor_EXT.swift */,
 				6B9ADC062266663500BEF3DC /* UIImage_EXT.swift */,
-				6B9ADC2D2266887A00BEF3DC /* EventHelper_EXT.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -224,9 +224,9 @@
 		6B9ADBEA2266366C00BEF3DC /* Thread */ = {
 			isa = PBXGroup;
 			children = (
+				6B9ADC1C226677A100BEF3DC /* Delayed.swift */,
 				6B9ADBEB2266368300BEF3DC /* Lock.swift */,
 				6B9ADC1A226672C900BEF3DC /* Promise.swift */,
-				6B9ADC1C226677A100BEF3DC /* Delayed.swift */,
 				6B9ADC1E22667C0800BEF3DC /* TaskManager.swift */,
 			);
 			path = Thread;
@@ -244,8 +244,8 @@
 		6B9ADBF7226655B400BEF3DC /* LinkedList */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADBF8226655C900BEF3DC /* LinkedListNode.swift */,
 				6B9ADBFA226655E400BEF3DC /* LinkedList.swift */,
+				6B9ADBF8226655C900BEF3DC /* LinkedListNode.swift */,
 				6B9ADBFC2266564F00BEF3DC /* LRULinkedList.swift */,
 			);
 			path = LinkedList;
@@ -254,10 +254,10 @@
 		6B9ADC082266670B00BEF3DC /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADC092266672500BEF3DC /* ModuleConfig.swift */,
-				6B9ADC0B2266674300BEF3DC /* ModuleConfigDelegate.swift */,
 				6B9ADC0D226668D000BEF3DC /* EthosUtilConfig.swift */,
 				6B9ADC0F226668E700BEF3DC /* EthosUtilConfigDelegate.swift */,
+				6B9ADC092266672500BEF3DC /* ModuleConfig.swift */,
+				6B9ADC0B2266674300BEF3DC /* ModuleConfigDelegate.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -285,8 +285,8 @@
 		6B9ADC2F226688EB00BEF3DC /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADC2B226682C000BEF3DC /* EventHelper.swift */,
 				6B9ADC30226688F900BEF3DC /* Event.swift */,
+				6B9ADC2B226682C000BEF3DC /* EventHelper.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
