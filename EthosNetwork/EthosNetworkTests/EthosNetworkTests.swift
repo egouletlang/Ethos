@@ -22,13 +22,6 @@ class EthosNetworkTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        let imgUrl =  "https://cdn.vox-cdn.com/thumbor/th5YNVqlkHqkz03Va5RPOXZQRhA=/0x0:2040x1360/1200x800/filters:focal(857x517:1183x843)/cdn.vox-cdn.com/uploads/chorus_image/image/57358643/jbareham_170504_1691_0020.0.0.jpg"
-        
-        
-        let image = NetworkHelper.shared.media(url: imgUrl)
-        
-        Thread.sleep(forTimeInterval: 10)
     }
 
     func testPerformanceExample() {

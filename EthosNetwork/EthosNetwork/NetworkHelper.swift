@@ -18,9 +18,6 @@ open class NetworkHelper {
                                           qos: .background,
                                           attributes: .concurrent)
         
-        self.mediaQueue = DispatchQueue(label: "networking:media",
-                                          qos: .background,
-                                          attributes: .concurrent)
     }
     
     // MARK: - Singleton & Delegate
@@ -28,8 +25,6 @@ open class NetworkHelper {
     
     // MARK: - State variables
     private let defaultQueue: DispatchQueue
-    
-    private let mediaQueue: DispatchQueue
     
     private var queues = [String: DispatchQueue]()
     
@@ -54,20 +49,6 @@ open class NetworkHelper {
                            callback: @escaping (EthosHttpResponse) -> Void) {
         let queue = queue ?? self.getQueue(url: request.url)
         request.alamo.responseData(queue: queue) { callback($0.ethosResponse) }
-    }
-}
-    
-public extension NetworkHelper {
-    private func mediaRequest(url: String, timeout: TimeInterval = 30) -> EthosHttpResponse? {
-        return self.syncRequest(request: EthosHttpRequest(url: url), queue: mediaQueue)
-    }
-    
-    func image(url: String, timeout: TimeInterval = 30) -> UIImage? {
-        return self.mediaRequest(url: url, timeout: timeout)?.image
-    }
-    
-    func media(url: String, timeout: TimeInterval = 30) -> Data? {
-        return self.mediaRequest(url: url, timeout: timeout)?.data
     }
 }
 
