@@ -14,7 +14,7 @@
 
 @interface AttributedStringCreator: NSObject
 
-@property (class, retain) UIFont *main;
+@property (class, retain) UIFont *regular;
 @property (class, retain) UIFont *bold;
 @property (class, retain) UIFont *italic;
 

@@ -66,16 +66,16 @@ static int const FONT_INDEX = 12;
 static int const TAG_COUNT = 13;
 
 // MARK: - Custom Fonts
-static UIFont *_main = nil;
-+ (UIFont *)main {
-    if (_main == nil) {
-        _main = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+static UIFont *_regular = nil;
++ (UIFont *)regular {
+    if (_regular == nil) {
+        _regular = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     }
-    return _main;
+    return _regular;
 }
-+ (void)setMain:(UIFont *)newMain {
-    if (newMain != _main) {
-        _main = [newMain copy];
++ (void)setRegular:(UIFont *)newRegular {
+    if (newRegular != _regular) {
+        _regular = [newRegular copy];
     }
 }
 
@@ -535,8 +535,8 @@ static UIFont *_italic = nil;
                                      :(NSString*)baseColor {
     
     UIFont* font = [UIFont systemFontOfSize:textSize];
-    if (AttributedStringCreator.main != nil) {
-        font = [UIFont fontWithName:[AttributedStringCreator.main fontName] size:textSize];
+    if (AttributedStringCreator.regular != nil) {
+        font = [UIFont fontWithName:[AttributedStringCreator.regular fontName] size:textSize];
     }
     
     NSMutableParagraphStyle * paragraph = [[NSMutableParagraphStyle alloc] init];
@@ -617,8 +617,8 @@ static UIFont *_italic = nil;
                 }
             } else {
                 UIFont* font = [UIFont systemFontOfSize:textSize];
-                if (AttributedStringCreator.main != nil) {
-                    font = [UIFont fontWithName:[AttributedStringCreator.main fontName] size:textSize];
+                if (AttributedStringCreator.regular != nil) {
+                    font = [UIFont fontWithName:[AttributedStringCreator.regular fontName] size:textSize];
                 }
             }
             
