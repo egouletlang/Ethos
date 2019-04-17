@@ -34,7 +34,7 @@ open class LabelDescriptor: NSObject, NSCoding, NSCopying {
     /**
      This member contains the links and their ranges in the NSAttributedString
      */
-    open var links: [URL: NSRange] = [:]
+    open var links: [String: NSRange] = [:]
     
     
     // MARK: - NSCoding Methods
@@ -50,7 +50,7 @@ open class LabelDescriptor: NSObject, NSCoding, NSCopying {
         
         self.attr = attr
         
-        if let links = aDecoder.decodeObject(forKey: LabelDescriptor.LINKS_ARCHIVE_KEY) as? [URL: NSRange] {
+        if let links = aDecoder.decodeObject(forKey: LabelDescriptor.LINKS_ARCHIVE_KEY) as? [String: NSRange] {
             self.links = links
         }
     }

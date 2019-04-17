@@ -12,12 +12,12 @@
 		6B9ADC4B22669FA400BEF3DC /* EthosTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC4A22669FA400BEF3DC /* EthosTextTests.swift */; };
 		6B9ADC4D22669FA400BEF3DC /* EthosText.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B9ADC3F22669FA400BEF3DC /* EthosText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B9ADC582266A18F00BEF3DC /* LabelDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC572266A18F00BEF3DC /* LabelDescriptor.swift */; };
-		6B9ADC5B2266A6DC00BEF3DC /* AttributedStringCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B9ADC5A2266A6B100BEF3DC /* AttributedStringCreator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B9ADC5D2266A72500BEF3DC /* AttributedStringCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC5C2266A72500BEF3DC /* AttributedStringCreator.m */; };
 		6B9ADC602266C66D00BEF3DC /* EthosTextConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC5F2266C66D00BEF3DC /* EthosTextConfig.swift */; };
 		6B9ADC622266C68100BEF3DC /* EthosTextConfigDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC612266C68100BEF3DC /* EthosTextConfigDelegate.swift */; };
 		6B9ADC642266C7AB00BEF3DC /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC632266C7AB00BEF3DC /* TextHelper.swift */; };
 		6B9ADC672266CBD600BEF3DC /* String_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC662266CBD600BEF3DC /* String_EXT.swift */; };
+		6B9ADC6A2267690F00BEF3DC /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC692267690F00BEF3DC /* TagParser.swift */; };
+		6B9ADC6C226774A100BEF3DC /* TagDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC6B226774A100BEF3DC /* TagDescriptor.swift */; };
 		85A0DC5C77E0622EA0871D76 /* Pods_EthosTextTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C3DB5D57D0419AC9334590 /* Pods_EthosTextTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,12 +42,12 @@
 		6B9ADC4A22669FA400BEF3DC /* EthosTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosTextTests.swift; sourceTree = "<group>"; };
 		6B9ADC4C22669FA400BEF3DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B9ADC572266A18F00BEF3DC /* LabelDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDescriptor.swift; sourceTree = "<group>"; };
-		6B9ADC5A2266A6B100BEF3DC /* AttributedStringCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributedStringCreator.h; sourceTree = "<group>"; };
-		6B9ADC5C2266A72500BEF3DC /* AttributedStringCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttributedStringCreator.m; sourceTree = "<group>"; };
 		6B9ADC5F2266C66D00BEF3DC /* EthosTextConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosTextConfig.swift; sourceTree = "<group>"; };
 		6B9ADC612266C68100BEF3DC /* EthosTextConfigDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosTextConfigDelegate.swift; sourceTree = "<group>"; };
 		6B9ADC632266C7AB00BEF3DC /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		6B9ADC662266CBD600BEF3DC /* String_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_EXT.swift; sourceTree = "<group>"; };
+		6B9ADC692267690F00BEF3DC /* TagParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagParser.swift; sourceTree = "<group>"; };
+		6B9ADC6B226774A100BEF3DC /* TagDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDescriptor.swift; sourceTree = "<group>"; };
 		7EE6332998BA9F331999B2A3 /* Pods-EthosText.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosText.debug.xcconfig"; path = "Target Support Files/Pods-EthosText/Pods-EthosText.debug.xcconfig"; sourceTree = "<group>"; };
 		9C42DBBE246CAA353580D296 /* Pods-EthosTextTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosTextTests.debug.xcconfig"; path = "Target Support Files/Pods-EthosTextTests/Pods-EthosTextTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1C3DB5D57D0419AC9334590 /* Pods_EthosTextTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthosTextTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +131,7 @@
 		6B9ADC562266A17400BEF3DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6B9ADC6B226774A100BEF3DC /* TagDescriptor.swift */,
 				6B9ADC572266A18F00BEF3DC /* LabelDescriptor.swift */,
 			);
 			path = Model;
@@ -156,8 +157,7 @@
 		6B9ADC682266CE7300BEF3DC /* AttributedString */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADC5A2266A6B100BEF3DC /* AttributedStringCreator.h */,
-				6B9ADC5C2266A72500BEF3DC /* AttributedStringCreator.m */,
+				6B9ADC692267690F00BEF3DC /* TagParser.swift */,
 			);
 			path = AttributedString;
 			sourceTree = "<group>";
@@ -179,7 +179,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9ADC4D22669FA400BEF3DC /* EthosText.h in Headers */,
-				6B9ADC5B2266A6DC00BEF3DC /* AttributedStringCreator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,11 +353,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9ADC672266CBD600BEF3DC /* String_EXT.swift in Sources */,
+				6B9ADC6C226774A100BEF3DC /* TagDescriptor.swift in Sources */,
 				6B9ADC582266A18F00BEF3DC /* LabelDescriptor.swift in Sources */,
 				6B9ADC622266C68100BEF3DC /* EthosTextConfigDelegate.swift in Sources */,
 				6B9ADC602266C66D00BEF3DC /* EthosTextConfig.swift in Sources */,
-				6B9ADC5D2266A72500BEF3DC /* AttributedStringCreator.m in Sources */,
 				6B9ADC642266C7AB00BEF3DC /* TextHelper.swift in Sources */,
+				6B9ADC6A2267690F00BEF3DC /* TagParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,4 +14,11 @@ import EthosUtil
     @objc optional func getRegularFont() -> UIFont
     @objc optional func getBoldFont() -> UIFont
     @objc optional func getItalicFont() -> UIFont
+    
+    // Font Metadata
+    @objc optional func getFontSize() -> CGFloat
+    @objc optional func getFontColor() -> UIColor?
+    
+    // Component Parameters
+    @objc optional func getLinkColor() -> UIColor
 }

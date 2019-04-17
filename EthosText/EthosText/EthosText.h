@@ -15,5 +15,5 @@ FOUNDATION_EXPORT double EthosTextVersionNumber;
 FOUNDATION_EXPORT const unsigned char EthosTextVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <EthosText/PublicHeader.h>
-#import <EthosText/AttributedStringCreator.h>
+
 

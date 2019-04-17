@@ -20,8 +20,20 @@ class EthosTextTests: XCTestCase {
     }
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        var harderString = "this".b + "is".i + "a".u + "test".addColor("#884411") + "url".addLink("https://www.google.com")
+        harderString = harderString.u
+        
+//        let link = "url".addLink("https://www.google.com")
+//        let finalString = "This".b + " is a " + link
+        
+//        self.measure {
+//            let labelDecriptor = TextHelper.formatString(finalString)
+//        }
+        
+        let desc = TextHelper.parse(harderString)
+        print("hello")
+        
     }
 
     func testPerformanceExample() {

@@ -37,16 +37,29 @@ open class EthosTextConfig: ModuleConfig {
     }
     
     // MARK: - Injectable Configuration
+    
     open var regularFont: UIFont {
         return self.delegate?.getRegularFont?() ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
     
-    open var boldFont : UIFont {
+    open var boldFont: UIFont {
         return self.delegate?.getBoldFont?() ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
     
-    open var italicFont : UIFont {
+    open var italicFont: UIFont {
         return self.delegate?.getItalicFont?() ?? UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)
+    }
+    
+    open var fontSize: CGFloat {
+        return self.delegate?.getFontSize?() ?? UIFont.systemFontSize
+    }
+    
+    open var fontColor: UIColor? {
+        return self.delegate?.getFontColor?()
+    }
+    
+    open var linkColor: UIColor {
+        return self.delegate?.getLinkColor?() ?? UIColor.blue
     }
     
 }
