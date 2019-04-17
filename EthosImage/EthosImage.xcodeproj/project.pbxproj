@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		46DB227B45BAD0171CE5A936 /* Pods_EthosImageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A66A767BB6882DB084092CB /* Pods_EthosImageTests.framework */; };
+		6BFBE0BA2267ED1000E5A0FF /* EthosImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFBE0B02267ED1000E5A0FF /* EthosImage.framework */; };
+		6BFBE0BF2267ED1000E5A0FF /* EthosImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0BE2267ED1000E5A0FF /* EthosImageTests.swift */; };
+		6BFBE0C12267ED1000E5A0FF /* EthosImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFBE0B32267ED1000E5A0FF /* EthosImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E4A8063F179EF1A5B7C88E51 /* Pods_EthosImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743A50C80D2EE4AF26E21F /* Pods_EthosImage.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6BFBE0BB2267ED1000E5A0FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BFBE0A72267ED1000E5A0FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BFBE0AF2267ED1000E5A0FF;
+			remoteInfo = EthosImage;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		24743A50C80D2EE4AF26E21F /* Pods_EthosImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthosImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E844AE85007F8F106131E97 /* Pods-EthosImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImage.release.xcconfig"; path = "Target Support Files/Pods-EthosImage/Pods-EthosImage.release.xcconfig"; sourceTree = "<group>"; };
+		6BFBE0B02267ED1000E5A0FF /* EthosImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EthosImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BFBE0B32267ED1000E5A0FF /* EthosImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthosImage.h; sourceTree = "<group>"; };
+		6BFBE0B42267ED1000E5A0FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BFBE0B92267ED1000E5A0FF /* EthosImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthosImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BFBE0BE2267ED1000E5A0FF /* EthosImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosImageTests.swift; sourceTree = "<group>"; };
+		6BFBE0C02267ED1000E5A0FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A66A767BB6882DB084092CB /* Pods_EthosImageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthosImageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D7C71B41E5617D61B88FBA3 /* Pods-EthosImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImage.debug.xcconfig"; path = "Target Support Files/Pods-EthosImage/Pods-EthosImage.debug.xcconfig"; sourceTree = "<group>"; };
+		C49803EA334D4BAA11779D75 /* Pods-EthosImageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImageTests.release.xcconfig"; path = "Target Support Files/Pods-EthosImageTests/Pods-EthosImageTests.release.xcconfig"; sourceTree = "<group>"; };
+		FF700E9BB8C845C270A8BBA9 /* Pods-EthosImageTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImageTests.debug.xcconfig"; path = "Target Support Files/Pods-EthosImageTests/Pods-EthosImageTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BFBE0AD2267ED1000E5A0FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4A8063F179EF1A5B7C88E51 /* Pods_EthosImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BFBE0B62267ED1000E5A0FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BFBE0BA2267ED1000E5A0FF /* EthosImage.framework in Frameworks */,
+				46DB227B45BAD0171CE5A936 /* Pods_EthosImageTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6BFBE0A62267ED1000E5A0FF = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0B22267ED1000E5A0FF /* EthosImage */,
+				6BFBE0BD2267ED1000E5A0FF /* EthosImageTests */,
+				6BFBE0B12267ED1000E5A0FF /* Products */,
+				FB4881D2B4339188CBA69AC8 /* Pods */,
+				7F5C6D6F8522CA2A2566274D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6BFBE0B12267ED1000E5A0FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0B02267ED1000E5A0FF /* EthosImage.framework */,
+				6BFBE0B92267ED1000E5A0FF /* EthosImageTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6BFBE0B22267ED1000E5A0FF /* EthosImage */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0B32267ED1000E5A0FF /* EthosImage.h */,
+				6BFBE0B42267ED1000E5A0FF /* Info.plist */,
+			);
+			path = EthosImage;
+			sourceTree = "<group>";
+		};
+		6BFBE0BD2267ED1000E5A0FF /* EthosImageTests */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0BE2267ED1000E5A0FF /* EthosImageTests.swift */,
+				6BFBE0C02267ED1000E5A0FF /* Info.plist */,
+			);
+			path = EthosImageTests;
+			sourceTree = "<group>";
+		};
+		7F5C6D6F8522CA2A2566274D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24743A50C80D2EE4AF26E21F /* Pods_EthosImage.framework */,
+				8A66A767BB6882DB084092CB /* Pods_EthosImageTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB4881D2B4339188CBA69AC8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8D7C71B41E5617D61B88FBA3 /* Pods-EthosImage.debug.xcconfig */,
+				3E844AE85007F8F106131E97 /* Pods-EthosImage.release.xcconfig */,
+				FF700E9BB8C845C270A8BBA9 /* Pods-EthosImageTests.debug.xcconfig */,
+				C49803EA334D4BAA11779D75 /* Pods-EthosImageTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6BFBE0AB2267ED1000E5A0FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BFBE0C12267ED1000E5A0FF /* EthosImage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6BFBE0AF2267ED1000E5A0FF /* EthosImage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BFBE0C42267ED1000E5A0FF /* Build configuration list for PBXNativeTarget "EthosImage" */;
+			buildPhases = (
+				8F4B080CF17B1B7413CFB009 /* [CP] Check Pods Manifest.lock */,
+				6BFBE0AB2267ED1000E5A0FF /* Headers */,
+				6BFBE0AC2267ED1000E5A0FF /* Sources */,
+				6BFBE0AD2267ED1000E5A0FF /* Frameworks */,
+				6BFBE0AE2267ED1000E5A0FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EthosImage;
+			productName = EthosImage;
+			productReference = 6BFBE0B02267ED1000E5A0FF /* EthosImage.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6BFBE0B82267ED1000E5A0FF /* EthosImageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BFBE0C72267ED1000E5A0FF /* Build configuration list for PBXNativeTarget "EthosImageTests" */;
+			buildPhases = (
+				E9C6505A80287496A0B0EDB0 /* [CP] Check Pods Manifest.lock */,
+				6BFBE0B52267ED1000E5A0FF /* Sources */,
+				6BFBE0B62267ED1000E5A0FF /* Frameworks */,
+				6BFBE0B72267ED1000E5A0FF /* Resources */,
+				535ECC8C8B4FFE6CEDAE0F56 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BFBE0BC2267ED1000E5A0FF /* PBXTargetDependency */,
+			);
+			name = EthosImageTests;
+			productName = EthosImageTests;
+			productReference = 6BFBE0B92267ED1000E5A0FF /* EthosImageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6BFBE0A72267ED1000E5A0FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = egouletlang;
+				TargetAttributes = {
+					6BFBE0AF2267ED1000E5A0FF = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					6BFBE0B82267ED1000E5A0FF = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
+			};
+			buildConfigurationList = 6BFBE0AA2267ED1000E5A0FF /* Build configuration list for PBXProject "EthosImage" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6BFBE0A62267ED1000E5A0FF;
+			productRefGroup = 6BFBE0B12267ED1000E5A0FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6BFBE0AF2267ED1000E5A0FF /* EthosImage */,
+				6BFBE0B82267ED1000E5A0FF /* EthosImageTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6BFBE0AE2267ED1000E5A0FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BFBE0B72267ED1000E5A0FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		535ECC8C8B4FFE6CEDAE0F56 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EthosImageTests/Pods-EthosImageTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EthosNetwork/EthosNetwork.framework",
+				"${BUILT_PRODUCTS_DIR}/EthosUtil/EthosUtil.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EthosNetwork.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EthosUtil.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EthosImageTests/Pods-EthosImageTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F4B080CF17B1B7413CFB009 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EthosImage-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9C6505A80287496A0B0EDB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EthosImageTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6BFBE0AC2267ED1000E5A0FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BFBE0B52267ED1000E5A0FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BFBE0BF2267ED1000E5A0FF /* EthosImageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6BFBE0BC2267ED1000E5A0FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BFBE0AF2267ED1000E5A0FF /* EthosImage */;
+			targetProxy = 6BFBE0BB2267ED1000E5A0FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6BFBE0C22267ED1000E5A0FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6BFBE0C32267ED1000E5A0FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6BFBE0C52267ED1000E5A0FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D7C71B41E5617D61B88FBA3 /* Pods-EthosImage.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EthosImage/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.egouletlang.ethos.EthosImage;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6BFBE0C62267ED1000E5A0FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E844AE85007F8F106131E97 /* Pods-EthosImage.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EthosImage/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.egouletlang.ethos.EthosImage;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6BFBE0C82267ED1000E5A0FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF700E9BB8C845C270A8BBA9 /* Pods-EthosImageTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EthosImageTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.egouletlang.ethos.EthosImageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6BFBE0C92267ED1000E5A0FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C49803EA334D4BAA11779D75 /* Pods-EthosImageTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EthosImageTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.egouletlang.ethos.EthosImageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6BFBE0AA2267ED1000E5A0FF /* Build configuration list for PBXProject "EthosImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BFBE0C22267ED1000E5A0FF /* Debug */,
+				6BFBE0C32267ED1000E5A0FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BFBE0C42267ED1000E5A0FF /* Build configuration list for PBXNativeTarget "EthosImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BFBE0C52267ED1000E5A0FF /* Debug */,
+				6BFBE0C62267ED1000E5A0FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BFBE0C72267ED1000E5A0FF /* Build configuration list for PBXNativeTarget "EthosImageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BFBE0C82267ED1000E5A0FF /* Debug */,
+				6BFBE0C92267ED1000E5A0FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6BFBE0A72267ED1000E5A0FF /* Project object */;
+}
