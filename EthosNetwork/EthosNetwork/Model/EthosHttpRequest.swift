@@ -36,62 +36,83 @@ open class EthosHttpRequest {
     // MARK: - Builders & Constructors
     public init(url: String, method: Method = .get, headers: [String: String]? = nil,
                 parameters: [String: Any]? = nil) {
-        self.url = url
-        self.method = method
-        self.headers = headers
-        self.parameters = parameters
+        self._url = url
+        self._method = method
+        self._headers = headers
+        self._parameters = parameters
     }
     
     open func with(networkSpinner: Bool) -> EthosHttpRequest {
-        self.showStatusNetworkSpinner = networkSpinner
+        self._network = networkSpinner
         return self
     }
     
     open func with(url: String) -> EthosHttpRequest {
-        self.url = url
+        self._url = url
         return self
     }
     
     open func with(method: Method) -> EthosHttpRequest {
-        self.method = method
+        self._method = method
         return self
     }
     
     open func with(headers: [String: String]?) -> EthosHttpRequest {
-        self.headers = headers
+        self._headers = headers
         return self
     }
     
     open func add(header: String, value: String) -> EthosHttpRequest {
-        if headers == nil {
-            headers = [:]
+        if _headers == nil {
+            _headers = [:]
         }
-        headers?[header] = value
+        _headers?[header] = value
         return self
     }
     
     open func with(parameters: [String: Any]?) -> EthosHttpRequest {
-        self.parameters = parameters
+        self._parameters = parameters
         return self
     }
     
     open func add(parameter: String, value: Any) -> EthosHttpRequest {
-        if parameters == nil {
-            parameters = [:]
+        if _parameters == nil {
+            _parameters = [:]
         }
-        parameters?[parameter] = value
+        _parameters?[parameter] = value
         return self
     }
     
     // MARK: - State variables
-    open var showStatusNetworkSpinner = false
+    fileprivate var _network = false
     
-    open var url = ""
+    fileprivate var _url = ""
     
-    open var method = Method.get
+    fileprivate var _method = Method.get
     
-    open var headers: [String: String]?
+    fileprivate var _headers: [String: String]?
     
-    open var parameters: [String: Any]?
+    fileprivate var _parameters: [String: Any]?
+    
+    
+    open var showStatusNetworkSpinner: Bool {
+        return _network
+    }
+    
+    open var url: String {
+        return _url
+    }
+    
+    open var method: Method {
+        return _method
+    }
+    
+    open var headers: [String: String]? {
+        return _headers
+    }
+    
+    open var parameters: [String: Any]? {
+        return _parameters
+    }
     
 }
