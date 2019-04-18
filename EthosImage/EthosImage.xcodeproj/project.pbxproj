@@ -10,6 +10,7 @@
 		46DB227B45BAD0171CE5A936 /* Pods_EthosImageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A66A767BB6882DB084092CB /* Pods_EthosImageTests.framework */; };
 		6B7B87A82268C54D00E9D35E /* EthosImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87A72268C54D00E9D35E /* EthosImageConfig.swift */; };
 		6B7B87AA2268C55D00E9D35E /* EthosImageConfigDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87A92268C55D00E9D35E /* EthosImageConfigDelegate.swift */; };
+		6B7B87AC2268C67700E9D35E /* CircleCropImageTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87AB2268C67700E9D35E /* CircleCropImageTransform.swift */; };
 		6BFBE0BA2267ED1000E5A0FF /* EthosImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFBE0B02267ED1000E5A0FF /* EthosImage.framework */; };
 		6BFBE0BF2267ED1000E5A0FF /* EthosImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0BE2267ED1000E5A0FF /* EthosImageTests.swift */; };
 		6BFBE0C12267ED1000E5A0FF /* EthosImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFBE0B32267ED1000E5A0FF /* EthosImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,6 +40,7 @@
 		3E844AE85007F8F106131E97 /* Pods-EthosImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImage.release.xcconfig"; path = "Target Support Files/Pods-EthosImage/Pods-EthosImage.release.xcconfig"; sourceTree = "<group>"; };
 		6B7B87A72268C54D00E9D35E /* EthosImageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosImageConfig.swift; sourceTree = "<group>"; };
 		6B7B87A92268C55D00E9D35E /* EthosImageConfigDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosImageConfigDelegate.swift; sourceTree = "<group>"; };
+		6B7B87AB2268C67700E9D35E /* CircleCropImageTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCropImageTransform.swift; sourceTree = "<group>"; };
 		6BFBE0B02267ED1000E5A0FF /* EthosImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EthosImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFBE0B32267ED1000E5A0FF /* EthosImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthosImage.h; sourceTree = "<group>"; };
 		6BFBE0B42267ED1000E5A0FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				6BFBE0E022682F0F00E5A0FF /* BaseImageTransform.swift */,
+				6B7B87AB2268C67700E9D35E /* CircleCropImageTransform.swift */,
 			);
 			path = Transform;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				6BFBE0DE22682EA100E5A0FF /* MediaDescriptor.swift in Sources */,
 				6B7B87AA2268C55D00E9D35E /* EthosImageConfigDelegate.swift in Sources */,
 				6BFBE0CE2267F04300E5A0FF /* NetworkHelper_EXT.swift in Sources */,
+				6B7B87AC2268C67700E9D35E /* CircleCropImageTransform.swift in Sources */,
 				6BFBE0D8226816F600E5A0FF /* GetFileResource.swift in Sources */,
 				6BFBE0E122682F0F00E5A0FF /* BaseImageTransform.swift in Sources */,
 				6BFBE0D6226816E900E5A0FF /* GetUriResource.swift in Sources */,

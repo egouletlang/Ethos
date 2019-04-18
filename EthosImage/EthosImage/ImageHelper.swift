@@ -194,3 +194,46 @@ open class ImageHelper {
     }
 }
 
+
+public extension ImageHelper {
+    
+    private class func getXOffset(size: CGSize) -> CGFloat {
+        return (size.width < size.height) ? 0 : (size.width - size.height) / 2
+    }
+    
+    private class func getYOffset(size: CGSize) -> CGFloat {
+        return (size.width < size.height) ? (size.height - size.width) / 2 : 0
+    }
+    
+    class func circleCrop(img: UIImage?, radius: CGFloat) -> UIImage? {
+        guard let image = img, 0...1 ~= radius else { return img }
+        
+        let diameter = (image.size.width < image.size.height) ? (image.size.width) : (image.size.height)
+        let radius = diameter * radius / 2
+        
+        let size = CGSize(width: diameter, height: diameter)
+        let point = CGPoint(x: diameter / 2, y: diameter / 2)
+        
+        // Calculate the correct size and offsets
+        let xOffset = getXOffset(size: image.size)
+        let yOffset = getYOffset(size: image.size)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Draw the circle
+        context?.beginPath()
+        context?.addArc(center: point, radius: radius, startAngle: 0, endAngle: CGFloat(2 * Double.pi), clockwise: true)
+        context?.closePath()
+        context?.clip()
+        
+        // Draw image with correct offsets
+        let targetRect = CGRect(x: -xOffset, y: -yOffset, width: image.size.width, height: image.size.height);
+        image.draw(in: targetRect)
+        
+        // Get image & Release Context
+        let ret = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return ret;
+    }
+}
