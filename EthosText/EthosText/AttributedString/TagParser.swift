@@ -23,24 +23,24 @@ open class TagParser {
     }
     
     // MARK: - Builders & Constructors
-    open func with(textSize: CGFloat?) -> TagParser {
+    @discardableResult open func with(textSize: CGFloat?) -> TagParser {
         self.defaultTextSize = textSize ?? EthosTextConfig.shared.fontSize
         return self
     }
     
-    open func with(textColorStr: String?) -> TagParser {
+    @discardableResult open func with(textColorStr: String?) -> TagParser {
         if let str = textColorStr, let color = UIColor(hexString: str) {
             return self.with(textColor: color)
         }
         return self.with(textColor: nil)
     }
     
-    open func with(textColor: UIColor?) -> TagParser {
+    @discardableResult open func with(textColor: UIColor?) -> TagParser {
         self.defaultTextColor = textColor ?? EthosTextConfig.shared.fontColor
         return self
     }
     
-    open func with(supportLinks: Bool) -> TagParser {
+    @discardableResult open func with(supportLinks: Bool) -> TagParser {
         self.supportLinks = supportLinks
         return self
     }

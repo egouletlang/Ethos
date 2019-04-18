@@ -25,7 +25,7 @@ open class Delayed<T>: NSObject {
      This method allows you to set a StabilizedResultCallback value
      - returns: current instace
      */
-    public func with(callback: @escaping StabilizedResultCallback) -> Delayed {
+    @discardableResult public func with(callback: @escaping StabilizedResultCallback) -> Delayed {
         self.callback = callback
         return self
     }

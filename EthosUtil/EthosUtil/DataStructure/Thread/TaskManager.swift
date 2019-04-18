@@ -32,7 +32,7 @@ open class TaskManager<T, V> {
      
      - returns: the current TaskManager instance
      */
-    open func with(syncHandler: @escaping SyncHandler) -> TaskManager<T, V> {
+    @discardableResult open func with(syncHandler: @escaping SyncHandler) -> TaskManager<T, V> {
         self.syncHandler = syncHandler
         return self
     }
@@ -45,7 +45,7 @@ open class TaskManager<T, V> {
      
      - returns: the current TaskManager instance
      */
-    open func with(asyncHandler: @escaping AsyncHandler) -> TaskManager<T, V> {
+    @discardableResult open func with(asyncHandler: @escaping AsyncHandler) -> TaskManager<T, V> {
         self.asyncHandler = asyncHandler
         return self
     }

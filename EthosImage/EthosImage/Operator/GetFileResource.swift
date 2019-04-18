@@ -17,7 +17,7 @@ class GetFileResource: UniqueOperation {
         self.uri = uri
     }
     
-    func with(mediaResource: MediaResource?) -> GetFileResource {
+    @discardableResult func with(mediaResource: MediaResource?) -> GetFileResource {
         self.mediaResource = mediaResource
         return self
     }

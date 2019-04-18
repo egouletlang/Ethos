@@ -28,9 +28,8 @@ class EthosImageTests: XCTestCase {
         
 //        let mediaResource = NetworkHelper.shared.media(url: imageUrl)
 //        let mediaResource2 = NetworkHelper.shared.media(url: imageUrl, curr: mediaResource)
-
-        let images = ImageHelper.shared.get(urls: [imageUrl])
-        let images2 = ImageHelper.shared.get(urls: [imageUrl])
+        let images = ImageHelper.shared.get(mediaDescriptors: [MediaDescriptor(resource: imageUrl)])
+        let images2 = ImageHelper.shared.get(mediaDescriptors: [MediaDescriptor(resource: imageUrl)])
         
         print("here")
     }

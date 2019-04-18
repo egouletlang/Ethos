@@ -160,8 +160,8 @@ open class ImageHelper {
      Synchronously get a set of images responses
      - parameter requests: A list of requests describing images and transforms
      */
-    open func get(requests: [MediaDescriptor]) -> [MediaResource?] {
-        return TaskManager<MediaDescriptor, MediaResource>(values: requests)
+    open func get(mediaDescriptors: [MediaDescriptor]) -> [MediaResource?] {
+        return TaskManager<MediaDescriptor, MediaResource>(values: mediaDescriptors)
             .with(asyncHandler: { self.get(mediaDescriptor: $0, callback: $1) })
             .sync(timeout: 120)
     }
@@ -171,8 +171,8 @@ open class ImageHelper {
      - parameter urls: A list of resource urls
      */
     open func get(urls: [String]) -> [UIImage?] {
-        let requests = urls.compactMap() { MediaDescriptor(resource: $0) }
-        let responses = self.get(requests: requests)
+        let mediaDescriptors = urls.compactMap() { MediaDescriptor(resource: $0) }
+        let responses = self.get(mediaDescriptors: mediaDescriptors)
         return responses.map() { $0?.image }
     }
     

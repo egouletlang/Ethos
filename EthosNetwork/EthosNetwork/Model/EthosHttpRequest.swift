@@ -42,27 +42,27 @@ open class EthosHttpRequest {
         self._parameters = parameters
     }
     
-    open func with(networkSpinner: Bool) -> EthosHttpRequest {
+    @discardableResult open func with(networkSpinner: Bool) -> EthosHttpRequest {
         self._network = networkSpinner
         return self
     }
     
-    open func with(url: String) -> EthosHttpRequest {
+    @discardableResult open func with(url: String) -> EthosHttpRequest {
         self._url = url
         return self
     }
     
-    open func with(method: Method) -> EthosHttpRequest {
+    @discardableResult open func with(method: Method) -> EthosHttpRequest {
         self._method = method
         return self
     }
     
-    open func with(headers: [String: String]?) -> EthosHttpRequest {
+    @discardableResult open func with(headers: [String: String]?) -> EthosHttpRequest {
         self._headers = headers
         return self
     }
     
-    open func add(header: String, value: String) -> EthosHttpRequest {
+    @discardableResult open func add(header: String, value: String) -> EthosHttpRequest {
         if _headers == nil {
             _headers = [:]
         }
@@ -70,12 +70,12 @@ open class EthosHttpRequest {
         return self
     }
     
-    open func with(parameters: [String: Any]?) -> EthosHttpRequest {
+    @discardableResult open func with(parameters: [String: Any]?) -> EthosHttpRequest {
         self._parameters = parameters
         return self
     }
     
-    open func add(parameter: String, value: Any) -> EthosHttpRequest {
+    @discardableResult open func add(parameter: String, value: Any) -> EthosHttpRequest {
         if _parameters == nil {
             _parameters = [:]
         }
