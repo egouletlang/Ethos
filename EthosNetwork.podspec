@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   spec.name         = "EthosNetwork"
-  spec.version      = "0.1.5"
+  spec.version      = "0.1.6"
   spec.summary      = "A collection of useful building blocks to help rapidly develop iOS apps using Swift"
   spec.description  = <<-DESC
   A collection of useful building blocks to help rapidly develop iOS apps using Swift and more
@@ -29,7 +29,7 @@ Pod::Spec.new do |spec|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
-  spec.source       = { :git => "https://github.com/egouletlang/Ethos.git", :tag => "v0.5.24" }
+  spec.source       = { :git => "https://github.com/egouletlang/Ethos.git", :tag => "v0.5.25" }
   spec.source_files = 'EthosNetwork/EthosNetwork/**/*.{h,m,swift}'
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

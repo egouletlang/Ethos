@@ -11,6 +11,9 @@
 		6BFBE0BA2267ED1000E5A0FF /* EthosImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFBE0B02267ED1000E5A0FF /* EthosImage.framework */; };
 		6BFBE0BF2267ED1000E5A0FF /* EthosImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0BE2267ED1000E5A0FF /* EthosImageTests.swift */; };
 		6BFBE0C12267ED1000E5A0FF /* EthosImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFBE0B32267ED1000E5A0FF /* EthosImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BFBE0CE2267F04300E5A0FF /* NetworkHelper_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0CD2267F04300E5A0FF /* NetworkHelper_EXT.swift */; };
+		6BFBE0D12267F44A00E5A0FF /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0D02267F44A00E5A0FF /* MediaResource.swift */; };
+		6BFBE0D32267FA0600E5A0FF /* Data_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0D22267FA0600E5A0FF /* Data_EXT.swift */; };
 		E4A8063F179EF1A5B7C88E51 /* Pods_EthosImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743A50C80D2EE4AF26E21F /* Pods_EthosImage.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +36,9 @@
 		6BFBE0B92267ED1000E5A0FF /* EthosImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthosImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFBE0BE2267ED1000E5A0FF /* EthosImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosImageTests.swift; sourceTree = "<group>"; };
 		6BFBE0C02267ED1000E5A0FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BFBE0CD2267F04300E5A0FF /* NetworkHelper_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper_EXT.swift; sourceTree = "<group>"; };
+		6BFBE0D02267F44A00E5A0FF /* MediaResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
+		6BFBE0D22267FA0600E5A0FF /* Data_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data_EXT.swift; sourceTree = "<group>"; };
 		8A66A767BB6882DB084092CB /* Pods_EthosImageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthosImageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7C71B41E5617D61B88FBA3 /* Pods-EthosImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImage.debug.xcconfig"; path = "Target Support Files/Pods-EthosImage/Pods-EthosImage.debug.xcconfig"; sourceTree = "<group>"; };
 		C49803EA334D4BAA11779D75 /* Pods-EthosImageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImageTests.release.xcconfig"; path = "Target Support Files/Pods-EthosImageTests/Pods-EthosImageTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +89,8 @@
 		6BFBE0B22267ED1000E5A0FF /* EthosImage */ = {
 			isa = PBXGroup;
 			children = (
+				6BFBE0CF2267F42E00E5A0FF /* Model */,
+				6BFBE0CA2267F02100E5A0FF /* Extension */,
 				6BFBE0B32267ED1000E5A0FF /* EthosImage.h */,
 				6BFBE0B42267ED1000E5A0FF /* Info.plist */,
 			);
@@ -96,6 +104,23 @@
 				6BFBE0C02267ED1000E5A0FF /* Info.plist */,
 			);
 			path = EthosImageTests;
+			sourceTree = "<group>";
+		};
+		6BFBE0CA2267F02100E5A0FF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0CD2267F04300E5A0FF /* NetworkHelper_EXT.swift */,
+				6BFBE0D22267FA0600E5A0FF /* Data_EXT.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6BFBE0CF2267F42E00E5A0FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0D02267F44A00E5A0FF /* MediaResource.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7F5C6D6F8522CA2A2566274D /* Frameworks */ = {
@@ -115,7 +140,6 @@
 				FF700E9BB8C845C270A8BBA9 /* Pods-EthosImageTests.debug.xcconfig */,
 				C49803EA334D4BAA11779D75 /* Pods-EthosImageTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -184,6 +208,7 @@
 				TargetAttributes = {
 					6BFBE0AF2267ED1000E5A0FF = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 					6BFBE0B82267ED1000E5A0FF = {
 						CreatedOnToolsVersion = 10.2;
@@ -305,6 +330,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BFBE0D32267FA0600E5A0FF /* Data_EXT.swift in Sources */,
+				6BFBE0D12267F44A00E5A0FF /* MediaResource.swift in Sources */,
+				6BFBE0CE2267F04300E5A0FF /* NetworkHelper_EXT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D7C71B41E5617D61B88FBA3 /* Pods-EthosImage.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -469,6 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.egouletlang.ethos.EthosImage;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -478,6 +508,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E844AE85007F8F106131E97 /* Pods-EthosImage.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -503,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF700E9BB8C845C270A8BBA9 /* Pods-EthosImageTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = EthosImageTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -521,6 +553,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C49803EA334D4BAA11779D75 /* Pods-EthosImageTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = EthosImageTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
