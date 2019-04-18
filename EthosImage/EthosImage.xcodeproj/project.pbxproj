@@ -14,6 +14,11 @@
 		6BFBE0CE2267F04300E5A0FF /* NetworkHelper_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0CD2267F04300E5A0FF /* NetworkHelper_EXT.swift */; };
 		6BFBE0D12267F44A00E5A0FF /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0D02267F44A00E5A0FF /* MediaResource.swift */; };
 		6BFBE0D32267FA0600E5A0FF /* Data_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0D22267FA0600E5A0FF /* Data_EXT.swift */; };
+		6BFBE0D6226816E900E5A0FF /* GetUriResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0D5226816E900E5A0FF /* GetUriResource.swift */; };
+		6BFBE0D8226816F600E5A0FF /* GetFileResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0D7226816F600E5A0FF /* GetFileResource.swift */; };
+		6BFBE0DA22682A6500E5A0FF /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0D922682A6500E5A0FF /* ImageHelper.swift */; };
+		6BFBE0DE22682EA100E5A0FF /* MediaDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0DD22682EA100E5A0FF /* MediaDescriptor.swift */; };
+		6BFBE0E122682F0F00E5A0FF /* BaseImageTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBE0E022682F0F00E5A0FF /* BaseImageTransform.swift */; };
 		E4A8063F179EF1A5B7C88E51 /* Pods_EthosImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743A50C80D2EE4AF26E21F /* Pods_EthosImage.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +44,11 @@
 		6BFBE0CD2267F04300E5A0FF /* NetworkHelper_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper_EXT.swift; sourceTree = "<group>"; };
 		6BFBE0D02267F44A00E5A0FF /* MediaResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
 		6BFBE0D22267FA0600E5A0FF /* Data_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data_EXT.swift; sourceTree = "<group>"; };
+		6BFBE0D5226816E900E5A0FF /* GetUriResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUriResource.swift; sourceTree = "<group>"; };
+		6BFBE0D7226816F600E5A0FF /* GetFileResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileResource.swift; sourceTree = "<group>"; };
+		6BFBE0D922682A6500E5A0FF /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		6BFBE0DD22682EA100E5A0FF /* MediaDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDescriptor.swift; sourceTree = "<group>"; };
+		6BFBE0E022682F0F00E5A0FF /* BaseImageTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImageTransform.swift; sourceTree = "<group>"; };
 		8A66A767BB6882DB084092CB /* Pods_EthosImageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthosImageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7C71B41E5617D61B88FBA3 /* Pods-EthosImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImage.debug.xcconfig"; path = "Target Support Files/Pods-EthosImage/Pods-EthosImage.debug.xcconfig"; sourceTree = "<group>"; };
 		C49803EA334D4BAA11779D75 /* Pods-EthosImageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthosImageTests.release.xcconfig"; path = "Target Support Files/Pods-EthosImageTests/Pods-EthosImageTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,10 +99,12 @@
 		6BFBE0B22267ED1000E5A0FF /* EthosImage */ = {
 			isa = PBXGroup;
 			children = (
+				6BFBE0D4226816AC00E5A0FF /* Operator */,
 				6BFBE0CF2267F42E00E5A0FF /* Model */,
 				6BFBE0CA2267F02100E5A0FF /* Extension */,
 				6BFBE0B32267ED1000E5A0FF /* EthosImage.h */,
 				6BFBE0B42267ED1000E5A0FF /* Info.plist */,
+				6BFBE0D922682A6500E5A0FF /* ImageHelper.swift */,
 			);
 			path = EthosImage;
 			sourceTree = "<group>";
@@ -118,9 +130,28 @@
 		6BFBE0CF2267F42E00E5A0FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6BFBE0DF22682EF100E5A0FF /* Transform */,
 				6BFBE0D02267F44A00E5A0FF /* MediaResource.swift */,
+				6BFBE0DD22682EA100E5A0FF /* MediaDescriptor.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6BFBE0D4226816AC00E5A0FF /* Operator */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0D5226816E900E5A0FF /* GetUriResource.swift */,
+				6BFBE0D7226816F600E5A0FF /* GetFileResource.swift */,
+			);
+			path = Operator;
+			sourceTree = "<group>";
+		};
+		6BFBE0DF22682EF100E5A0FF /* Transform */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBE0E022682F0F00E5A0FF /* BaseImageTransform.swift */,
+			);
+			path = Transform;
 			sourceTree = "<group>";
 		};
 		7F5C6D6F8522CA2A2566274D /* Frameworks */ = {
@@ -332,7 +363,12 @@
 			files = (
 				6BFBE0D32267FA0600E5A0FF /* Data_EXT.swift in Sources */,
 				6BFBE0D12267F44A00E5A0FF /* MediaResource.swift in Sources */,
+				6BFBE0DE22682EA100E5A0FF /* MediaDescriptor.swift in Sources */,
 				6BFBE0CE2267F04300E5A0FF /* NetworkHelper_EXT.swift in Sources */,
+				6BFBE0D8226816F600E5A0FF /* GetFileResource.swift in Sources */,
+				6BFBE0E122682F0F00E5A0FF /* BaseImageTransform.swift in Sources */,
+				6BFBE0D6226816E900E5A0FF /* GetUriResource.swift in Sources */,
+				6BFBE0DA22682A6500E5A0FF /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

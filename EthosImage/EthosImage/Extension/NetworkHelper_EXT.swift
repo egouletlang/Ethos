@@ -13,18 +13,31 @@ fileprivate let mediaQueue = DispatchQueue(label: "networking:media", qos: .back
 
 extension NetworkHelper {
     
-    private func getMediaResponse(url: String, timeout: TimeInterval = 30) -> EthosHttpResponse? {
-        return self.syncRequest(request: EthosHttpRequest(url: url), queue: mediaQueue)
-    }
-    
-    func media(url: String, timeout: TimeInterval = 30) -> MediaResource? {
-        guard let response = self.getMediaResponse(url: url, timeout: timeout) else {
+    func media(url: String, curr: MediaResource? = nil, timeout: TimeInterval = 30) -> MediaResource? {
+        let request = EthosHttpRequest(url: url).with(method: curr != nil ? .head : .get)
+        
+        if let etag = curr?.etag {
+            request.add(header: "If-None-Match", value: etag)
+        }
+        
+        if let lastModified = curr?.lastModified {
+            request.add(header: "If-Modified-Since", value: lastModified)
+        }
+        
+        guard let response = self.syncRequest(request: request, queue: mediaQueue) else {
             return nil
         }
-        return MediaResource(response: response)
+        
+        if response.success {
+            return MediaResource(response: response)
+        } else if response.statusCode == 304 { // The resource has not changed
+            return curr
+        }
+        
+        return nil
     }
     
-    func image(url: String, timeout: TimeInterval = 30) -> Data? {
+    func data(url: String, timeout: TimeInterval = 30) -> Data? {
         return self.media(url: url, timeout: timeout)?.data
     }
     

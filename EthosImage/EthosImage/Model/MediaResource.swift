@@ -17,6 +17,16 @@ open class MediaResource: NSObject, NSCoding {
         case headers = "headers"
     }
     
+    public enum Source: String {
+        case cache
+        case web
+        case bundle
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
     public init(response: EthosHttpResponse) {
         self.headers = response.headers
         self.data = response.data
@@ -25,6 +35,8 @@ open class MediaResource: NSObject, NSCoding {
     private var headers: [String: Any]?
     
     open var data: Data?
+    
+    open var source = Source.cache
     
     open var age: Int? {
         return self.getHeader("Age")
@@ -39,7 +51,12 @@ open class MediaResource: NSObject, NSCoding {
     }
     
     open var contentType: String? {
-        return self.getHeader("Content-Type")
+        get {
+            return self.getHeader("Content-Type")
+        }
+        set {
+            self.addHeader("Content-Type", newValue)
+        }
     }
     
     open var etag: String? {
@@ -51,12 +68,21 @@ open class MediaResource: NSObject, NSCoding {
     }
     
     open var lastModified: String? {
-        return self.getHeader("Last-Modified")
+        get {
+            return self.getHeader("Last-Modified")
+        }
+        set {
+            self.addHeader("Last-Modified", newValue)
+        }
     }
     
     private func getHeader<T>(_ key: String) -> T? {
         return self.headers?.get(key) as? T ??
                self.headers?.get(key.lowercased()) as? T
+    }
+    
+    private func addHeader<T>(_ key: String,_ value: T?) {
+        self.headers?.set(key, value, allowNil: false)
     }
     
     open var image: UIImage? {
@@ -77,6 +103,24 @@ open class MediaResource: NSObject, NSCoding {
         aCoder.encode(data, forKey: Archive.data.rawValue)
         aCoder.encode(headers, forKey: Archive.headers.rawValue)
     }
+    
+    // MARK: - Equality
+    open override func isEqual(_ object: Any?) -> Bool {
+        guard let resource = object as? MediaResource else {
+            return super.isEqual(object)
+        }
+        
+        if self.etag != nil {
+            return self.etag == resource.etag
+        }
+        
+        if self.lastModified != nil {
+            return self.lastModified == resource.lastModified
+        }
+        
+        return false
+    }
+    
 }
 
 
