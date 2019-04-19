@@ -1,5 +1,5 @@
 //
-//  CircleCropImageTransform.swift
+//  CircleCropTransform.swift
 //  EthosImage
 //
 //  Created by Etienne Goulet-Lang on 4/18/19.
@@ -8,23 +8,21 @@
 
 import Foundation
 
-open class CircleCropImageTransform: BaseImageTransform {
+open class CircleCropTransform: BaseImageTransform {
     
-    // MARK: - Constructor -
-    public convenience init (radius: CGFloat) {
-        self.init()
+    public init(radius: CGFloat = 1) {
         self.radius = radius
     }
     
     // MARK: - Variables -
-    private var radius: CGFloat = 1
+    private var radius: CGFloat
     
     // MARK: - Parent Methods -
     override open func modifyKey(key: String) -> String {
-        return "\(key)[\(radius)-circle]"
+        return "\(key)-circle-\(radius)"
     }
     
     override open func transform(img: UIImage?) -> UIImage? {
-        return ImageHelper.circleCrop(img: img, radius: radius)
+        return img?.circleCrop(radius: radius)
     }
 }

@@ -208,7 +208,7 @@ public extension ImageHelper {
     class func circleCrop(img: UIImage?, radius: CGFloat) -> UIImage? {
         guard let image = img, 0...1 ~= radius else { return img }
         
-        let diameter = (image.size.width < image.size.height) ? (image.size.width) : (image.size.height)
+        let diameter = image.shortestEgde
         let radius = diameter * radius / 2
         
         let size = CGSize(width: diameter, height: diameter)
@@ -228,7 +228,7 @@ public extension ImageHelper {
         context?.clip()
         
         // Draw image with correct offsets
-        let targetRect = CGRect(x: -xOffset, y: -yOffset, width: image.size.width, height: image.size.height);
+        let targetRect = image.bounds.offsetBy(dx: -xOffset, dy: -yOffset)
         image.draw(in: targetRect)
         
         // Get image & Release Context
@@ -236,4 +236,52 @@ public extension ImageHelper {
         UIGraphicsEndImageContext()
         return ret;
     }
+}
+
+public extension ImageHelper {
+    
+    class func addBackgroundColor(img: UIImage?, color: UIColor?) -> UIImage? {
+        guard let image = img, let c = color else {
+            return img
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+        let context = UIGraphicsGetCurrentContext()
+        
+        let targetRect = image.bounds
+        
+        context?.setFillColor(c.cgColor)
+        context?.fill(targetRect)
+        image.draw(in: targetRect)
+        
+        let ret = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return ret
+    }
+    
+}
+
+public extension ImageHelper {
+    
+    class func addColorMask(img: UIImage?, color: UIColor?) -> UIImage? {
+        guard let image = img, let cgImage = image.cgImage, let color = color else {
+            return img
+        }
+        
+        let imageRect = image.bounds
+        
+        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+        let context = UIGraphicsGetCurrentContext()
+        context?.scaleBy(x: 1, y: -1)
+        context?.translateBy(x: 0, y: -(imageRect.size.height))
+        
+        context?.clip(to: imageRect, mask: cgImage)
+        context?.setFillColor(color.cgColor)
+        context?.fill(imageRect)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
 }
