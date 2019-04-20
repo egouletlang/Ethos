@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/egouletlang/EthosSpecs.git'
+
+target 'EthosUI' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for EthosUI  
+  pod 'EthosUtil'
+  pod 'EthosImage'
+  pod 'EthosText'
+
+  target 'EthosUITests' do
+    inherit! :search_paths
+    # Pods for testing
+    pod 'EthosUtil'
+  	pod 'EthosImage'
+  	pod 'EthosText'
+  end
+
+end
