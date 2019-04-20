@@ -19,6 +19,15 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableViewInterface {
     }
     
     // MARK: - Builders & Constructors
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        (self as LifeCycleInterface).initialize?()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     deinit {
         (self as LifeCycleInterface).destroy?()
     }
