@@ -28,7 +28,7 @@ open class EthosUILabel: EthosUIView {
         }
     }
     
-    open var padding = Rect<CGFloat>(0, 0, 0, 0)
+    open var padding = Rect<CGFloat>(def: 0)
     
     // MARK: - State variables
     fileprivate var canRespondToTap = true
