@@ -10,31 +10,16 @@ import Foundation
 import EthosUtil
 import EthosImage
 
-open class EthosUIMediaView: BaseUIView {
+public class EthosUIMediaView: BaseUIView {
     
     // MARK: - Constants & Types
-    
     public typealias ImageCallback = (UIImage?) -> Void
     
-    public enum FadeInEffect {
-        case none
-        case web
-        case webFirstTime
-    }
-    
-    // MARK: - UI Components -
+    // MARK: - UI Components
     private let imageView = UIImageView(frame: CGRect.zero)
     
-    open var padding = Rect<CGFloat>(def: 0)
-    
-    // MARK: - State variables
-    private var activeDescriptor: MediaDescriptor?
-    
-    open var defaultImage: UIImage?
-    
-    open var fadeEffect = FadeInEffect.webFirstTime
-    
-    override open var contentMode: UIView.ContentMode {
+    // MARK: - UI Variables
+    override public var contentMode: UIView.ContentMode {
         get {
             return imageView.contentMode
         }
@@ -43,16 +28,16 @@ open class EthosUIMediaView: BaseUIView {
         }
     }
     
-    open var currentImage: UIImage? {
+    // MARK: - State variables
+    private var activeDescriptor: MediaDescriptor?
+    
+    public var defaultImage: UIImage?
+    
+    public var image: UIImage? {
         return self.imageView.image
     }
     
-    open var desiredSize: CGSize {
-        return self.currentImage?.size ?? CGSize.zero
-    }
-    
-    
-    // MARK: - Parent Methods -
+    // MARK: - LifeCycleInterface Methods
     override open func createLayout() {
         super.createLayout()
         self.addSubview(imageView)
@@ -65,6 +50,12 @@ open class EthosUIMediaView: BaseUIView {
         self.imageView.frame = self.bounds.insetBy(padding: padding)
     }
     
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+        self.clear(setDefault: true)
+    }
+    
+    // MARK: - Private Helper
     private func isActiveResource(descriptor: MediaDescriptor) -> Bool {
         guard let active = self.activeDescriptor else {
             return false
@@ -73,7 +64,27 @@ open class EthosUIMediaView: BaseUIView {
         return active.resource != descriptor.resource
     }
     
-    open func load(descriptor: MediaDescriptor?, callback: ImageCallback?) {
+    // MARK: - MediaResource Handler
+    private func handle(mediaResource: MediaResource?) {
+        guard Thread.isMainThread else {
+            ThreadHelper.main { self.handle(mediaResource: mediaResource) }
+            return
+        }
+        
+        guard let res = mediaResource, let image = res.image else {
+            self.clear(setDefault: true)
+            return
+        }
+        
+        if self.shouldAddFadeEffect(mediaResource: res) {
+            self.addFadeEffect(image: image)
+        } else {
+            self.imageView.image = image
+        }
+    }
+    
+    // MARK: - Interface
+    open func fetch(descriptor: MediaDescriptor?, callback: ImageCallback?) {
         guard let desc = descriptor else {
             self.clear(setDefault: true)
             callback?(nil)
@@ -86,56 +97,16 @@ open class EthosUIMediaView: BaseUIView {
             
             ImageHelper.shared.get(mediaDescriptor: desc) { (resource) in
                 if self.isActiveResource(descriptor: desc) {
-                    self.load(descriptor: desc, mediaResource: resource)
+                    self.handle(mediaResource: resource)
                 }
                 callback?(resource?.image)
             }
         }
     }
     
-    // MARK: - Load resources -
-    open func load(descriptor: MediaDescriptor, mediaResource: MediaResource?) {
-        guard Thread.isMainThread else {
-            ThreadHelper.main { self.load(descriptor: descriptor, mediaResource: mediaResource) }
-            return
-        }
-        
-        guard let res = mediaResource, let image = res.image else {
-            self.clear(setDefault: true)
-            return
-        }
-        
-        self.load(image: image, descSource: descriptor.source, resSource: res.source)
-    }
-    
-    open func load(image: UIImage, descSource: MediaDescriptor.Source, resSource: MediaResource.Source) {
-        guard Thread.isMainThread else {
-            ThreadHelper.main { self.load(image: image, descSource: descSource, resSource: resSource) }
-            return
-        }
-        
-        let isWebResource = descSource == .Http || descSource == .Https
-        let isWebResponse = resSource == .web
-        
-        var shouldAnimate = false
-        switch (fadeEffect) {
-        case .web:
-            shouldAnimate = isWebResource
-        case .webFirstTime:
-            shouldAnimate = isWebResource && isWebResponse
-        default:
-            break
-        }
-        
-        if (shouldAnimate) {
-            UIView.transition(with: self.imageView, duration: 0.3,
-                              options: .transitionCrossDissolve,
-                              animations: { self.imageView.image = image },
-                              completion: nil)
-        } else {
-            self.imageView.image = image
-        }
-        
+    open func load(resource: String, transforms: [BaseImageTransform]? = nil, callback: ImageCallback? = nil) {
+        let descriptor = MediaDescriptor(resource: resource).with(transforms: transforms)
+        self.fetch(descriptor: descriptor, callback: callback)
     }
     
     open func clear(setDefault: Bool = true) {
@@ -143,14 +114,61 @@ open class EthosUIMediaView: BaseUIView {
         self.imageView.image = self.defaultImage
     }
     
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-        self.clear(setDefault: true)
+}
+
+extension EthosUIMediaView {
+    
+    // MARK: Constants & Types
+    fileprivate static let DEFAULT_FADE_EFFECT = FadeInEffect.webFirstTime
+    
+    fileprivate static let STATE_KEY_FADE_IN_EFFECT = "fade_in_effect"
+    
+    public enum FadeInEffect {
+        case none
+        case web
+        case webFirstTime
     }
     
-    open func load(resource: String, transforms: [BaseImageTransform]? = nil, callback: ImageCallback? = nil) {
-        let descriptor = MediaDescriptor(resource: resource).with(transforms: transforms)
-        self.load(descriptor: descriptor, callback: callback)
+    // MARK: - State variables
+    public var fadeEffect: FadeInEffect {
+        get {
+            guard let effect = self.state.get(EthosUIMediaView.STATE_KEY_FADE_IN_EFFECT) as? FadeInEffect else {
+                return EthosUIMediaView.DEFAULT_FADE_EFFECT
+            }
+            return effect
+        }
+        set {
+            self.state.set(EthosUIMediaView.STATE_KEY_FADE_IN_EFFECT, newValue)
+        }
+    }
+    
+    fileprivate var descriptorSource: MediaDescriptor.Source {
+        return self.activeDescriptor?.source ?? .Asset
+    }
+    
+    // MARK: - Interface
+    fileprivate func shouldAddFadeEffect(mediaResource: MediaResource) -> Bool {
+        guard fadeEffect != .none else { return false }
+        
+        let isWebResource = self.descriptorSource == .Http || self.descriptorSource == .Https
+        let isWebResponse = mediaResource.source == .web
+        
+        switch (fadeEffect) {
+        case .web:
+            return isWebResource
+        case .webFirstTime:
+            return isWebResource && isWebResponse
+        default:
+            return false
+        }
+        
+    }
+    
+    fileprivate func addFadeEffect(image: UIImage) {
+        UIView.transition(with: self.imageView, duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: { self.imageView.image = image },
+                          completion: nil)
     }
     
 }

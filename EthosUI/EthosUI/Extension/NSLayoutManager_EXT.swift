@@ -21,7 +21,9 @@ extension NSLayoutManager {
         
         self.glyphRange.map() { self.location(forGlyphAt: $0) }
             .forEach { (point) in
-                if prevX == CGFloat.nan || point.x < prevX {
+                if prevX.isNaN {
+                    ret = point.y
+                } else if point.x < prevX {
                     ret += point.y
                 }
                 prevX = point.x

@@ -11,7 +11,7 @@ import EthosUtil
 import EthosText
 import UIKit
 
-open class EthosUILabel: EthosUIView {
+public class EthosUILabel: BaseUIView {
     
     // MARK: Constants & Types
     public typealias LabelDelegate = EthosUILabelDelegate
@@ -27,8 +27,6 @@ open class EthosUILabel: EthosUIView {
             self.labelView.attributedText = self.labelDescriptor?.attr
         }
     }
-    
-    open var padding = Rect<CGFloat>(def: 0)
     
     // MARK: - State variables
     fileprivate var canRespondToTap = true
@@ -52,13 +50,28 @@ open class EthosUILabel: EthosUIView {
         self.labelView.frame = self.bounds.insetBy(padding: padding)
     }
     
+    // MARK: - Size
+    override open func sizeToFit() {
+        let size = self.labelView.sizeThatFits(CGSize.maxSize)
+        self.frame.size = size.addPadding(padding: padding)
+    }
     
-    // MARK: - Handling Links -
-    open override func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func sizeThatFits(_ size: CGSize) -> CGSize {
+        let sizeWithoutPadding = size.removePadding(padding: padding)
+        let retSize = labelView.sizeThatFits(sizeWithoutPadding)
+        return retSize.addPadding(padding: padding)
+    }
+    
+}
+
+// MARK: - Link
+public extension EthosUILabel {
+    
+    override func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
         return canRespondToTap && !willConsumeLocationTap(point)
     }
     
-    open func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
+    func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
         canRespondToTap = false
         tapCooldown?.set(value: true)
         
@@ -72,7 +85,7 @@ open class EthosUILabel: EthosUIView {
         return false
     }
     
-    open func didTapOnLink(_ point: CGPoint?) -> String? {
+    func didTapOnLink(_ point: CGPoint?) -> String? {
         guard var location = point, self.labelView.frame.contains(location) else {
             return nil
         }
@@ -99,20 +112,9 @@ open class EthosUILabel: EthosUIView {
                                                      fractionOfDistanceBetweenInsertionPoints: nil)
         
         return desc.links
-                   .compactMap() { NSLocationInRange(charIndex, $0.value) ? $0.key : nil }
-                   .first
+            .compactMap() { NSLocationInRange(charIndex, $0.value) ? $0.key : nil }
+            .first
         
-    }
-    
-    override open func sizeToFit() {
-        let size = self.labelView.sizeThatFits(CGSize.maxSize)
-        self.frame.size = size.addPadding(padding: padding)
-    }
-    
-    override open func sizeThatFits(_ size: CGSize) -> CGSize {
-        let sizeWithoutPadding = size.removePadding(padding: padding)
-        let retSize = labelView.sizeThatFits(sizeWithoutPadding)
-        return retSize.addPadding(padding: padding)
     }
     
 }

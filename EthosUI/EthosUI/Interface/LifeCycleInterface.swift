@@ -10,10 +10,16 @@ import Foundation
 
 @objc
 public protocol LifeCycleInterface {
+    // Initialize
     @objc optional func initialize()
     func createLayout()
+    
+    // Updates
     func frameUpdate()
-    @objc optional func destroy()
     @objc optional func frameWidthUpdate()
     @objc optional func frameHeightUpdate()
+    
+    // CleanUp
+    @objc optional func cleanUp()
+    @objc optional func destroy()
 }

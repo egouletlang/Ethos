@@ -19,6 +19,6 @@ open class UIHelper {
             }
         }
         return 1.0
-    }()
-
+    }()    
+    
 }
