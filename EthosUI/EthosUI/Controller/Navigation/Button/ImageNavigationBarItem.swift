@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import EthosImage
 
 open class ImageNavigationBarItem: BaseNavigationBarItem {
+    
+    open func with(imageUri: String?) -> ImageNavigationBarItem {
+        self.imageUri = imageUri
+        return self
+    }
     
     open func with(image: UIImage?) -> ImageNavigationBarItem {
         self.image = image
@@ -20,11 +26,29 @@ open class ImageNavigationBarItem: BaseNavigationBarItem {
         return self
     }
     
+    open var imageUri: String?
+    
     open var image: UIImage?
     
     open var tint: UIColor?
     
+    private func getImage() -> UIImage? {
+        if let image = self.image {
+            return image
+        }
+        
+        if let url = self.imageUri {
+            return (ImageHelper.shared.get(urls: [url]).first as? UIImage)
+        }
+        
+        return nil
+    }
+    
     open override var button: UIBarButtonItem? {
+        guard let image = ImageHelper.addColorMask(img: self.getImage(), color: tint) else {
+            return nil
+        }
+        
         let button = UIButton(type: .custom)
         button.setImage(image, for: UIControl.State())
         button.addTarget(self.target, action: self.selector, for: .touchUpInside)

@@ -36,8 +36,12 @@ open class TextNavigationBarItem: BaseNavigationBarItem {
         let button = UIBarButtonItem(title: label, style: .plain, target: target, action: selector)
         let color = tint ?? UIColor.white
         let desiredFont = font ?? EthosTextConfig.shared.regularFont.withSize(14)
-        button.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : color], for: UIControl.State())
-        button.setTitleTextAttributes([NSAttributedString.Key.font: desiredFont], for: UIControl.State())
+        
+        var attr = [NSAttributedString.Key : Any]()
+        attr.set(NSAttributedString.Key.font, desiredFont, allowNil: false)
+        attr.set(NSAttributedString.Key.foregroundColor, color, allowNil: false)
+        
+        button.setTitleTextAttributes(attr, for: UIControl.State())
         return button
     }
     

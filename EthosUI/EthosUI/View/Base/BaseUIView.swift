@@ -75,6 +75,14 @@ public class BaseUIView: UIView, LifeCycleInterface {
         self.setBorderFrame()
     }
     
+    public func cleanUp() {
+        self.subviews.forEach() { ($0 as? BaseUIView)?.cleanUp() }
+    }
+    
+    public func destroy() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
 
 // MARK: - Borders
@@ -176,19 +184,31 @@ extension BaseUIView {
 extension BaseUIView: ReusableComponentInterface {
     
     public func prepareForReuse() {
-        self.subviews.forEach() { ($0 as? BaseUIView)?.prepareForReuse() }
+        self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.prepareForReuse?() }
     }
     
-    public func onScreen() {
-        self.subviews.forEach() { ($0 as? BaseUIView)?.onScreen() }
+    public func willAppear(first: Bool) {
+        self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.willAppear?(first: first) }
     }
     
-    public func offScreen() {
-        self.subviews.forEach() { ($0 as? BaseUIView)?.offScreen() }
+    public func onScreen(first: Bool) {
+        self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.onScreen?(first: first) }
     }
     
-    public func cleanUp() {
-        self.subviews.forEach() { ($0 as? BaseUIView)?.cleanUp() }
+    public func didAppear(first: Bool) {
+        self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.didAppear?(first: first) }
+    }
+    
+    public func willDisappear(first: Bool) {
+        self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.willDisappear?(first: first) }
+    }
+    
+    public func offScreen(first: Bool) {
+        self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.offScreen?(first: first) }
+    }
+    
+    public func didDisappear(first: Bool) {
+        self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.didDisappear?(first: first) }
     }
     
 }

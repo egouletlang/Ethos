@@ -11,6 +11,15 @@ import Foundation
 @objc
 public protocol ReusableComponentInterface {
     @objc optional func prepareForReuse()
-    @objc optional func onScreen()
-    @objc optional func offScreen()
+    
+    // On Screen
+    @objc optional func willAppear(first: Bool)
+    @objc optional func onScreen(first: Bool)
+    @objc optional func didAppear(first: Bool)
+    
+    // Off Screen
+    @objc optional func willDisappear(first: Bool)
+    @objc optional func offScreen(first: Bool)
+    @objc optional func didDisappear(first: Bool)
+    
 }

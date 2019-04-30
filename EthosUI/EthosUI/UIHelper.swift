@@ -21,4 +21,13 @@ open class UIHelper {
         return 1.0
     }()    
     
+    public static var statusBarHeight: CGFloat {
+        return UIScreen.main.nativeBounds.height == 2436 ? 44 : 20
+    }
+    
+    public static var navigationBarHeight: CGFloat {
+        return UIScreen.main.nativeBounds.height == 2436 ? 44 : 44
+    }
+    
+    
 }
