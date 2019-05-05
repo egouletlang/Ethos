@@ -23,6 +23,9 @@ public class VariableHandle<T> {
     public let def: T
     
     public func newInstance() -> VariableHandle<T> {
+        if let def = (self.def as? NSCopying)?.copy(with: nil) as? T {
+            return VariableHandle<T>(self.key, def)
+        }
         return VariableHandle<T>(self.key, self.def)
     }
     

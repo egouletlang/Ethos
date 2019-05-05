@@ -32,10 +32,10 @@ open class Rect<T: Equatable>: NSObject, Sequence, NSCoding, NSCopying {
     }
     
     public init(def: T) {
-        self.left = def
-        self.top = def
-        self.right = def
-        self.bottom = def
+        self.left = (def as? NSCopying)?.copy(with: nil) as? T ?? def
+        self.top = (def as? NSCopying)?.copy(with: nil) as? T ?? def
+        self.right = (def as? NSCopying)?.copy(with: nil) as? T ?? def
+        self.bottom = (def as? NSCopying)?.copy(with: nil) as? T ?? def
     }
     
     // MARK: - State variables
@@ -85,7 +85,24 @@ open class Rect<T: Equatable>: NSObject, Sequence, NSCoding, NSCopying {
     
     // MARK: - NSCopying Methods
     public func copy(with zone: NSZone? = nil) -> Any {
-        return Rect<T>(left, top, right, bottom)
+        if let l = (self.left as? NSCopying)?.copy(with: zone) as? T,
+            let t = (self.top as? NSCopying)?.copy(with: zone) as? T,
+            let r = (self.right as? NSCopying)?.copy(with: zone) as? T,
+            let b = (self.bottom as? NSCopying)?.copy(with: zone) as? T {
+            return Rect<T>(l, t, r, b)
+        }
+        return Rect<T>((self.left as? NSCopying)?.copy(with: zone) as? T ?? left,
+                       (self.top as? NSCopying)?.copy(with: zone) as? T ?? top,
+                       (self.right as? NSCopying)?.copy(with: zone) as? T ?? right,
+                       (self.bottom as? NSCopying)?.copy(with: zone) as? T ?? bottom)
+    }
+    
+    public func map<K>(handler: @escaping (T) -> K ) -> Rect<K> {
+        let l = handler(self.left)
+        let t = handler(self.top)
+        let r = handler(self.right)
+        let b = handler(self.bottom)
+        return Rect<K>(l, t, r, b)
     }
     
 }

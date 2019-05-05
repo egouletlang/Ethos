@@ -58,10 +58,15 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
 public extension BaseRecycleModel {
     
     fileprivate static let BACKGROUND_COLOR_HANDLE = VariableHandle<UIColor?>("background_color", nil)
+    
     fileprivate static let CONTENT_COLOR_HANDLE = VariableHandle<UIColor?>("content_color", nil)
+    
     fileprivate static let SHADOW_OFFSET_HANDLE = VariableHandle<CGSize>("shadow_offset", CGSize.zero)
+    
     fileprivate static let SHADOW_RADIUS_HANDLE = VariableHandle<CGFloat>("shadow_radius", 0)
+    
     fileprivate static let SHADOW_OPACITY_HANDLE = VariableHandle<Float>("shadow_opacity", 0)
+    
     fileprivate static let CORNER_RADIUS_HANDLE = VariableHandle<CGFloat>("corner_radius", 0)
     
     // MARK: - Handles
@@ -179,14 +184,23 @@ public extension BaseRecycleModel {
     }
 
     fileprivate static let LEFT_BORDER_PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("left_border_padding", Rect<CGFloat>(def: 0))
+    
     fileprivate static let TOP_BORDER_PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("top_border_padding", Rect<CGFloat>(def: 0))
+    
     fileprivate static let RIGHT_BORDER_PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("right_border_padding", Rect<CGFloat>(def: 0))
+    
     fileprivate static let BOTTOM_BORDER_PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("bottom_border_padding", Rect<CGFloat>(def: 0))
+    
     fileprivate static let LEFT_BORDER_HANDLE = VariableHandle<Bool>("left_border", false)
+    
     fileprivate static let TOP_BORDER_HANDLE = VariableHandle<Bool>("top_border", false)
+    
     fileprivate static let RIGHT_BORDER_HANDLE = VariableHandle<Bool>("right_border", false)
+    
     fileprivate static let BOTTOM_BORDER_HANDLE = VariableHandle<Bool>("left_border", false)
+    
     fileprivate static let BORDER_COLOR_HANDLE = VariableHandle<UIColor?>("border_color", nil)
+    
     fileprivate static let PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("padding", Rect<CGFloat>(def: 0))
     
     // MARK: - Handles
@@ -330,10 +344,10 @@ public extension BaseRecycleModel {
 // MARK: - Size
 public extension BaseRecycleModel {
     
-    fileprivate static let NO_MIN_HEIGHT: CGFloat = -1
-    
     fileprivate static let SIZE_HANDLE = VariableHandle<CGSize>("size", CGSize.zero)
-    fileprivate static let MIN_HEIGHT_HANDLE = VariableHandle<CGFloat>("min_height", NO_MIN_HEIGHT)
+    
+    fileprivate static let MIN_HEIGHT_HANDLE = VariableHandle<CGFloat>("min_height", -1)
+    
     fileprivate static let SHOULD_MEASURE = VariableHandle<CGSize>("should_measure", CGSize.zero)
 
     fileprivate var sizeHandle: VariableHandle<CGSize> {
@@ -429,12 +443,17 @@ public extension BaseRecycleModel {
 public extension BaseRecycleModel {
 
     static let ANY_SCOPE = ".*"
+    
     static let NO_SCOPE = "^.*"
+    
     static let ANY_QUERY = ".*"
+    
     static let NO_QUERY = "^.*"
     
     fileprivate static let TAG_HANDLE = VariableHandle<String?>("tag", nil)
+    
     fileprivate static let SCOPE_HANDLE = VariableHandle<String>("scope", BaseRecycleModel.NO_SCOPE)
+    
     fileprivate static let SEARCHABLE_HANDLE = VariableHandle<String>("searchable", BaseRecycleModel.NO_QUERY)
     
     fileprivate var tagHandle: VariableHandle<String?> {
@@ -515,6 +534,7 @@ public extension BaseRecycleModel {
     static let PARENT_CLICK_RESPONSE = "parent.click_response"
 
     fileprivate static let CLICK_RESPONSE_HANDLE = VariableHandle<Any?>("click_response", nil)
+    
     fileprivate static let LONG_CLICK_RESPONSE_HANDLE = VariableHandle<Any?>("long_click_response", nil)
     
     fileprivate var clickResponseHandle: VariableHandle<Any?> {

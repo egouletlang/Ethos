@@ -25,21 +25,7 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface {
         (self as LifeCycleInterface).destroy?()
     }
     
-    var state = [String: Any]()
-    
-    // MARK: - Layout Information -
-    fileprivate var currSize = CGSize.zero
-    
-    fileprivate var currTopLayout: CGFloat = 0
-    
-    public var effectiveTopLayoutGuide: CGFloat {
-        guard self.navigationController != nil else { return 0 }
-        return UIHelper.statusBarHeight + UIHelper.navigationBarHeight
-    }
-    
-    public var effectiveBottomLayoutGuide: CGFloat {
-        return self.view.frame.height - keyboardHeight
-    }
+    var state = ComponentState()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +35,9 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface {
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        if self.currSize != view.frame.size || self.currTopLayout != effectiveTopLayoutGuide {
-            self.currSize = view.frame.size
-            self.currTopLayout = effectiveTopLayoutGuide
+        if self.size != view.frame.size || self.topLayout != effectiveTopLayoutGuide {
+            self.size = view.frame.size
+            self.topLayout = effectiveTopLayoutGuide
             frameUpdate()
         }
     }
@@ -80,6 +66,42 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface {
         NotificationCenter.default.removeObserver(self)
     }
     
+}
+
+
+// MARK: - Size
+public extension BaseUIViewController {
+    
+    fileprivate static let SIZE_HANDLE = VariableHandle<CGSize>("size", CGSize.zero)
+    
+    fileprivate static let TOP_LAYOUT_HANDLE = VariableHandle<CGFloat>("top_layout", 0)
+    
+    fileprivate var sizeHandle: VariableHandle<CGSize> {
+        return self.state.getHandle(handle: BaseUIViewController.SIZE_HANDLE)
+    }
+    
+    fileprivate var topLayoutHandle: VariableHandle<CGFloat> {
+        return self.state.getHandle(handle: BaseUIViewController.TOP_LAYOUT_HANDLE)
+    }
+    
+    fileprivate var size: CGSize {
+        get { return self.sizeHandle.val }
+        set { self.sizeHandle.val = newValue }
+    }
+    
+    fileprivate var topLayout: CGFloat {
+        get { return self.topLayoutHandle.val }
+        set { self.topLayoutHandle.val = newValue }
+    }
+    
+    var effectiveTopLayoutGuide: CGFloat {
+        guard self.navigationController != nil else { return 0 }
+        return UIHelper.statusBarHeight + UIHelper.navigationBarHeight
+    }
+    
+    var effectiveBottomLayoutGuide: CGFloat {
+        return self.view.frame.height - keyboardHeight
+    }
 }
 
 // MARK: - Configuration
@@ -269,13 +291,17 @@ public extension BaseUIViewController {
 // MARK: - Keyboard Interface
 public extension BaseUIViewController {
     
-    fileprivate static let DEFAULT_KEYBOARD_HEIGHT: CGFloat = 0
+    fileprivate static let KEYBOARD_HEIGHT_HANDLE = VariableHandle<CGFloat>("keyboard_height", 0)
     
-    fileprivate static let DEFAULT_TEMP_DISABLE_KEYBOARD = false
+    fileprivate static let TEMP_DISABLE_KEYBOARD_HANDLE = VariableHandle<Bool>("temp_disable_keyboard", false)
     
-    fileprivate static let STATE_KEY_KEYBOARD_HEIGHT = "keyboard_height"
+    fileprivate var keyboardHeightHandle: VariableHandle<CGFloat> {
+        return self.state.getHandle(handle: BaseUIViewController.KEYBOARD_HEIGHT_HANDLE)
+    }
     
-    fileprivate static let STATE_KEY_TEMP_DISABLE_KEYBOARD = "temp_disable_keyboard"
+    fileprivate var tempDisableKeyboardHandle: VariableHandle<Bool> {
+        return self.state.getHandle(handle: BaseUIViewController.TEMP_DISABLE_KEYBOARD_HANDLE)
+    }
 
     var addKeyboardEvents: Bool {
         return false
@@ -286,25 +312,13 @@ public extension BaseUIViewController {
     }
     
     var keyboardHeight: CGFloat {
-        get {
-            return self.state.get(BaseUIViewController.STATE_KEY_KEYBOARD_HEIGHT) { () -> Any? in
-                return BaseUIViewController.DEFAULT_KEYBOARD_HEIGHT
-            } as! CGFloat
-        }
-        set {
-            self.state.set(BaseUIViewController.STATE_KEY_KEYBOARD_HEIGHT, newValue)
-        }
+        get { return keyboardHeightHandle.val }
+        set { keyboardHeightHandle.val = newValue }
     }
     
     var temporarilyIgnoreKeyboardChanges: Bool {
-        get {
-            return self.state.get(BaseUIViewController.STATE_KEY_TEMP_DISABLE_KEYBOARD) { () -> Any? in
-                return BaseUIViewController.DEFAULT_TEMP_DISABLE_KEYBOARD
-            } as! Bool
-        }
-        set {
-            self.state.set(BaseUIViewController.STATE_KEY_TEMP_DISABLE_KEYBOARD, newValue)
-        }
+        get { return tempDisableKeyboardHandle.val }
+        set { tempDisableKeyboardHandle.val = newValue}
     }
     
     fileprivate func createKeyboard() {
@@ -367,24 +381,26 @@ public extension BaseUIViewController {
 // MARK: - ReusableComponentInterface
 extension BaseUIViewController: ReusableComponentInterface {
     
-    fileprivate static let DEFAULT_HAS_APPEARED = false
+    fileprivate static let HAS_APPEARED_HANDLE = VariableHandle<Bool>("has_appeared", false)
     
-    fileprivate static let DEFAULT_HAS_DISAPPEARED = false
+    fileprivate static let HAS_DISAPPEARED_HANDLE = VariableHandle<Bool>("has_disappeared", false)
     
-    fileprivate static let STATE_KEY_HAS_APPEARED = "has_appeared"
+    fileprivate var hasAppearedHandle: VariableHandle<Bool> {
+        return self.state.getHandle(handle: BaseUIViewController.HAS_APPEARED_HANDLE)
+    }
     
-    fileprivate static let STATE_KEY_HAS_DISAPPEARED = "has_disappeared"
+    fileprivate var hasDisappearedHandle: VariableHandle<Bool> {
+        return self.state.getHandle(handle: BaseUIViewController.HAS_DISAPPEARED_HANDLE)
+    }
     
     fileprivate var hasAppeared: Bool {
-        return self.state.get(BaseUIViewController.STATE_KEY_HAS_APPEARED) { () -> Any? in
-            return BaseUIViewController.DEFAULT_HAS_APPEARED
-        } as! Bool
+        get { return hasAppearedHandle.val }
+        set { hasAppearedHandle.val = newValue }
     }
     
     fileprivate var hasDisappeared: Bool {
-        return self.state.get(BaseUIViewController.STATE_KEY_HAS_DISAPPEARED) { () -> Any? in
-            return BaseUIViewController.DEFAULT_HAS_DISAPPEARED
-        } as! Bool
+        get { return hasDisappearedHandle.val }
+        set { hasDisappearedHandle.val = newValue }
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -395,7 +411,7 @@ extension BaseUIViewController: ReusableComponentInterface {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.didAppear(first: !hasAppeared)
-        self.state.set(BaseUIViewController.STATE_KEY_HAS_APPEARED, true)
+        self.hasAppeared = true
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
@@ -406,7 +422,7 @@ extension BaseUIViewController: ReusableComponentInterface {
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.didDisappear(first: !hasDisappeared)
-        self.state.set(BaseUIViewController.STATE_KEY_HAS_DISAPPEARED, true)
+        self.hasDisappeared = true
     }
     
     public func willAppear(first: Bool) {

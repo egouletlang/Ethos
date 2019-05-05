@@ -118,28 +118,22 @@ public class EthosUIMediaView: BaseUIView {
 
 extension EthosUIMediaView {
     
-    // MARK: Constants & Types
-    fileprivate static let DEFAULT_FADE_EFFECT = FadeInEffect.webFirstTime
-    
-    fileprivate static let STATE_KEY_FADE_IN_EFFECT = "fade_in_effect"
-    
     public enum FadeInEffect {
         case none
         case web
         case webFirstTime
     }
     
-    // MARK: - State variables
+    // MARK: Constants & Types
+    fileprivate static let FADE_EFFECT_HANDLE = VariableHandle<FadeInEffect>("fade_in_effect", .webFirstTime)
+    
+    fileprivate var fadeEffectHandle: VariableHandle<FadeInEffect> {
+        return self.state.getHandle(handle: EthosUIMediaView.FADE_EFFECT_HANDLE)
+    }
+    
     public var fadeEffect: FadeInEffect {
-        get {
-            guard let effect = self.state.get(EthosUIMediaView.STATE_KEY_FADE_IN_EFFECT) as? FadeInEffect else {
-                return EthosUIMediaView.DEFAULT_FADE_EFFECT
-            }
-            return effect
-        }
-        set {
-            self.state.set(EthosUIMediaView.STATE_KEY_FADE_IN_EFFECT, newValue)
-        }
+        get { return self.fadeEffectHandle.val }
+        set { self.fadeEffectHandle.val = newValue }
     }
     
     fileprivate var descriptorSource: MediaDescriptor.Source {
