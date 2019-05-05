@@ -197,6 +197,7 @@ public extension BaseUIViewController {
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(tapGesture)
     }
+
 }
 
 // MARK: - Dismiss Interface
@@ -286,10 +287,9 @@ public extension BaseUIViewController {
     
     var keyboardHeight: CGFloat {
         get {
-            guard let value = self.state.get(BaseUIViewController.STATE_KEY_KEYBOARD_HEIGHT) as? CGFloat else {
+            return self.state.get(BaseUIViewController.STATE_KEY_KEYBOARD_HEIGHT) { () -> Any? in
                 return BaseUIViewController.DEFAULT_KEYBOARD_HEIGHT
-            }
-            return value
+            } as! CGFloat
         }
         set {
             self.state.set(BaseUIViewController.STATE_KEY_KEYBOARD_HEIGHT, newValue)
@@ -298,10 +298,9 @@ public extension BaseUIViewController {
     
     var temporarilyIgnoreKeyboardChanges: Bool {
         get {
-            guard let value = self.state.get(BaseUIViewController.STATE_KEY_TEMP_DISABLE_KEYBOARD) as? Bool else {
+            return self.state.get(BaseUIViewController.STATE_KEY_TEMP_DISABLE_KEYBOARD) { () -> Any? in
                 return BaseUIViewController.DEFAULT_TEMP_DISABLE_KEYBOARD
-            }
-            return value
+            } as! Bool
         }
         set {
             self.state.set(BaseUIViewController.STATE_KEY_TEMP_DISABLE_KEYBOARD, newValue)
@@ -377,17 +376,15 @@ extension BaseUIViewController: ReusableComponentInterface {
     fileprivate static let STATE_KEY_HAS_DISAPPEARED = "has_disappeared"
     
     fileprivate var hasAppeared: Bool {
-        guard let value = self.state.get(BaseUIViewController.STATE_KEY_HAS_APPEARED) as? Bool else {
+        return self.state.get(BaseUIViewController.STATE_KEY_HAS_APPEARED) { () -> Any? in
             return BaseUIViewController.DEFAULT_HAS_APPEARED
-        }
-        return value
+        } as! Bool
     }
     
     fileprivate var hasDisappeared: Bool {
-        guard let value = self.state.get(BaseUIViewController.STATE_KEY_HAS_DISAPPEARED) as? Bool else {
+        return self.state.get(BaseUIViewController.STATE_KEY_HAS_DISAPPEARED) { () -> Any? in
             return BaseUIViewController.DEFAULT_HAS_DISAPPEARED
-        }
-        return value
+        } as! Bool
     }
     
     override public func viewWillAppear(_ animated: Bool) {

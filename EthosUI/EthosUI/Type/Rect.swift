@@ -26,6 +26,11 @@ open class Rect<T: Equatable>: NSObject, Sequence, NSCoding, NSCopying {
         self.bottom = b
     }
     
+    public convenience init?(_ l: [T]) {
+        guard l.count >= 4 else { return nil }
+        self.init(l[0], l[1], l[2], l[3])
+    }
+    
     public init(def: T) {
         self.left = def
         self.top = def

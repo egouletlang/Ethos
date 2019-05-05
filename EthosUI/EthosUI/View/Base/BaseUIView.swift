@@ -107,10 +107,9 @@ extension BaseUIView {
     
     open var borderVisible: Rect<Bool> {
         get {
-            guard let visible = self.state.get(BaseUIView.STATE_KEY_BORDER_VISIBLE) as? Rect<Bool> else {
+            return self.state.get(BaseUIView.STATE_KEY_BORDER_VISIBLE) { () -> Any? in
                 return Rect<Bool>(def: BaseUIView.DEFAULT_BORDER_VISIBLE)
-            }
-            return visible
+            } as! Rect<Bool>
         }
         set {
             self.state.set(BaseUIView.STATE_KEY_BORDER_VISIBLE, newValue)
@@ -280,7 +279,9 @@ public extension BaseUIView {
     
     // MARK: - State variables
     var shouldRespondToTouch: Bool {
-        return self.state.get(BaseUIView.STATE_KEY_RESPOND_TO_TOUCH) as? Bool ?? BaseUIView.DEFAULT_SHOULD_RESPOND_TO_TOUCH
+        return self.state.get(BaseUIView.STATE_KEY_RESPOND_TO_TOUCH) { () -> Any? in
+            return BaseUIView.DEFAULT_SHOULD_RESPOND_TO_TOUCH
+        } as! Bool
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
