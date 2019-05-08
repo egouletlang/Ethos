@@ -9,10 +9,15 @@
 import Foundation
 import EthosUtil
 
-public class BaseUIView: UIView, LifeCycleInterface {
+public class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, FirstResponderInterface {
     
-    // MARK: Constants & Types
-    public typealias Delegate = BaseUIViewDelegate
+    public static let DEFAULT_BORDER_VISIBILITY = false
+    
+    public static let DEFAULT_BORDER_COLOR = EthosUIConfig.shared.borderColor
+    
+    public class Config {
+        public init() {}
+    }
     
     // MARK: - Builders & Constructors
     public override init(frame: CGRect) {
@@ -28,10 +33,8 @@ public class BaseUIView: UIView, LifeCycleInterface {
         (self as LifeCycleInterface).destroy?()
     }
     
-    // MARK: - State variables
-    var state = ComponentState()
-    
-    override open var frame: CGRect {
+    // MARK: - UI
+    override public var frame: CGRect {
         didSet {
             if self.size.width != self.frame.size.width {
                 (self as LifeCycleInterface).frameWidthUpdate?()
@@ -54,16 +57,100 @@ public class BaseUIView: UIView, LifeCycleInterface {
         }
     }
     
-    // MARK: - Delegate
-    open weak var delegate: Delegate? {
-        didSet {
-            self.subviews.forEach() { ($0 as? BaseUIView)?.delegate = self.delegate }
+    // MARK: - State variables
+    fileprivate var size = CGSize.zero
+    
+    public var padding = Rect<CGFloat>(def: 0)
+    
+    // MARK: - Config
+    public var config: Config?
+    
+    public func with(config: Config) -> BaseUIView {
+        self.config = config
+        return self
+    }
+    
+    // MARK: - Touch
+    public var shouldRespondToTouch: Bool {
+        return false
+    }
+    
+    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let view = super.hitTest(point, with: event)
+        
+        if !shouldRespondToTouch(point, with: event) && view == self {
+            return nil
+        }
+        
+        return view
+    }
+    
+    public func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
+        return shouldRespondToTouch
+    }
+    
+    // MARK: - Borders
+    public var borders = createDefaultBorders()
+    
+    public var borderPadding = Rect<Rect<CGFloat>>(def: Rect<CGFloat>(def: 0))
+    
+    public var borderVisible: Rect<Bool> {
+        get { return self.borders.map() { !$0.isHidden } }
+        set { zip(self.borders, newValue).forEach { $0.0.isHidden = !$0.1 } }
+    }
+    
+    public var borderColors: Rect<CGColor?> {
+        get { return self.borders.map() { $0.backgroundColor } }
+        set { zip(self.borders, newValue).forEach { $0.0.backgroundColor = $0.1 } }
+    }
+    
+    fileprivate var horizontalBorderSize: CGSize {
+        return CGSize(width: self.frame.width, height: UIHelper.onePixel)
+    }
+    
+    fileprivate var verticalBorderSize: CGSize {
+        return CGSize(width: UIHelper.onePixel, height: self.frame.height)
+    }
+    
+    fileprivate var borderOrigins: Rect<CGPoint> {
+        return Rect<CGPoint>(CGPoint.zero, CGPoint.zero,
+                             CGPoint(x: self.frame.width - UIHelper.onePixel, y: 0),
+                             CGPoint(x: 0, y: self.frame.height - UIHelper.onePixel))
+    }
+    
+    fileprivate func setBorderFrame() {
+        borders.left.frame = CGRect(origin: borderOrigins.left, size: verticalBorderSize).insetBy(padding: borderPadding.left)
+        borders.top.frame = CGRect(origin: borderOrigins.top, size: horizontalBorderSize).insetBy(padding: borderPadding.top)
+        borders.right.frame = CGRect(origin: borderOrigins.right, size: verticalBorderSize).insetBy(padding: borderPadding.right)
+        borders.bottom.frame = CGRect(origin: borderOrigins.bottom, size: horizontalBorderSize).insetBy(padding: borderPadding.bottom)
+    }
+    
+    fileprivate static func createDefaultBorderLayer() -> CALayer {
+        let layer = CALayer()
+        layer.isHidden = BaseUIView.DEFAULT_BORDER_VISIBILITY
+        layer.backgroundColor = BaseUIView.DEFAULT_BORDER_COLOR.cgColor
+        return layer
+    }
+    
+    fileprivate static func createDefaultBorders() -> Rect<CALayer> {
+        return Rect<CALayer>(createDefaultBorderLayer(), createDefaultBorderLayer(),
+                             createDefaultBorderLayer(), createDefaultBorderLayer())
+    }
+    
+    public func resetBorders(needsDisplay: Bool = true) {
+        let defaultBorders = BaseUIView.createDefaultBorders()
+        self.borderVisible = defaultBorders.map { !$0.isHidden }
+        self.borderColors = defaultBorders.map { $0.backgroundColor }
+        
+        if needsDisplay {
+            self.setNeedsDisplay()
         }
     }
     
     // MARK: - LifeCycleInterface Methods
     public func createLayout() {
-        self.createBorders()
+        self.borders = Rect<CALayer>(BaseUIView.createDefaultBorderLayer(), BaseUIView.createDefaultBorderLayer(),
+                                     BaseUIView.createDefaultBorderLayer(), BaseUIView.createDefaultBorderLayer())
         self.resetBorders(needsDisplay: false)
     }
     
@@ -79,114 +166,7 @@ public class BaseUIView: UIView, LifeCycleInterface {
         NotificationCenter.default.removeObserver(self)
     }
     
-}
-
-// MARK: - Size
-public extension BaseUIView {
-    fileprivate static let SIZE_HANDLE = VariableHandle<CGSize>("size", CGSize.zero)
-    
-    fileprivate var sizeHandle: VariableHandle<CGSize> {
-        return self.state.getHandle(handle: BaseUIView.SIZE_HANDLE)
-    }
-    
-    fileprivate var size: CGSize {
-        get { return self.sizeHandle.val }
-        set { self.sizeHandle.val = newValue }
-    }
-}
-
-// MARK: - Borders & Padding
-extension BaseUIView {
-    
-    // MARK: Constants & Types
-    fileprivate static let BORDERS_HANDLE = VariableHandle<Rect<CALayer>>("borders", createDefaultBorderRect())
-    
-    fileprivate static let PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("padding", Rect<CGFloat>(def: 0))
-    
-    fileprivate var bordersHandle: VariableHandle<Rect<CALayer>> {
-        return self.state.getHandle(handle: BaseUIView.BORDERS_HANDLE)
-    }
-    
-    fileprivate var paddingHandle: VariableHandle<Rect<CGFloat>> {
-        return self.state.getHandle(handle: BaseUIView.PADDING_HANDLE)
-    }
-    
-    // MARK: - Static & Class Methods
-    fileprivate static func createDefaultBorderLayer() -> CALayer {
-        let layer = CALayer()
-        layer.isHidden = true
-        layer.backgroundColor = EthosUIConfig.shared.borderColor.cgColor
-        return layer
-    }
-    
-    fileprivate static func createDefaultBorderRect() -> Rect<CALayer> {
-        return Rect<CALayer>(createDefaultBorderLayer(), createDefaultBorderLayer(),
-                             createDefaultBorderLayer(), createDefaultBorderLayer())
-    }
-    
-    // MARK: - UI Components
-    open var borders: Rect<CALayer> {
-        get { return self.bordersHandle.val }
-        set { self.bordersHandle.val = newValue }
-    }
-    
-    open var borderVisible: Rect<Bool> {
-        get { return self.borders.map() { !$0.isHidden } }
-        set { zip(self.borders, newValue).forEach { $0.0.isHidden = !$0.1 } }
-    }
-    
-    open var borderColors: Rect<CGColor?> {
-        get { return self.borders.map() { $0.backgroundColor } }
-        set { zip(self.borders, newValue).forEach { $0.0.backgroundColor = $0.1 } }
-    }
-    
-    open var padding: Rect<CGFloat> {
-        get { return self.paddingHandle.val }
-        set { self.paddingHandle.val = newValue }
-    }
-    
-    // MARK: - State variables
-    private var horizontalBorderSize: CGSize {
-        return CGSize(width: self.frame.width, height: UIHelper.onePixel)
-    }
-    
-    private var verticalBorderSize: CGSize {
-        return CGSize(width: UIHelper.onePixel, height: self.frame.height)
-    }
-    
-    private var borderOrigins: Rect<CGPoint> {
-        return Rect<CGPoint>(CGPoint.zero, CGPoint.zero,
-                             CGPoint(x: self.frame.width - UIHelper.onePixel, y: 0),
-                             CGPoint(x: 0, y: self.frame.height - UIHelper.onePixel))
-    }
-    
-    // MARK: - Helper Methods
-    fileprivate func createBorders() {
-        self.borders = Rect<CALayer>(BaseUIView.createDefaultBorderLayer(), BaseUIView.createDefaultBorderLayer(),
-                                     BaseUIView.createDefaultBorderLayer(), BaseUIView.createDefaultBorderLayer())
-    }
-    
-    fileprivate func setBorderFrame() {
-        borders.left.frame = CGRect(origin: borderOrigins.left, size: verticalBorderSize)
-        borders.top.frame = CGRect(origin: borderOrigins.top, size: horizontalBorderSize)
-        borders.right.frame = CGRect(origin: borderOrigins.right, size: verticalBorderSize)
-        borders.bottom.frame = CGRect(origin: borderOrigins.bottom, size: horizontalBorderSize)
-    }
-    
-    public func resetBorders(needsDisplay: Bool = true) {
-        self.borderVisible = BaseUIView.BORDERS_HANDLE.def.map { !$0.isHidden }
-        self.borderColors = BaseUIView.BORDERS_HANDLE.def.map { $0.backgroundColor }
-        
-        if needsDisplay {
-            self.setNeedsDisplay()
-        }
-    }
-    
-}
-
-// MARK: - ReusableComponentInterface
-extension BaseUIView: ReusableComponentInterface {
-    
+    // MARK: - ReusableComponentInterface
     public func prepareForReuse() {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.prepareForReuse?() }
     }
@@ -215,11 +195,7 @@ extension BaseUIView: ReusableComponentInterface {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.didDisappear?(first: first) }
     }
     
-}
-
-// MARK: - First Responder & FirstResponderInterface
-extension BaseUIView: FirstResponderInterface {
-    
+    // MARK: - First Responder & FirstResponderInterface
     public func allowFirstResponderResign() {
         self.subviews.forEach() { ($0 as? BaseUIView)?.allowFirstResponderResign() }
     }
@@ -228,7 +204,6 @@ extension BaseUIView: FirstResponderInterface {
         self.subviews.forEach() { ($0 as? BaseUIView)?.preventFirstResponderResign() }
     }
     
-    // MARK: - First Responder
     public override var canBecomeFirstResponder: Bool {
         return self.subviews.reduce(false) { $0 || $1.canBecomeFirstResponder }
     }
@@ -249,62 +224,4 @@ extension BaseUIView: FirstResponderInterface {
         return self.getFirstResponder()?.resignFirstResponder() ?? false
     }
     
-}
-
-// MARK: - Config
-public extension BaseUIView {
-    
-    // MARK: Constants & Types
-    class Config {
-        public init() {}
-    }
-    
-    fileprivate static let CONFIG_HANDLE = VariableHandle<Config?>("config", nil)
-    
-    fileprivate var configHandle: VariableHandle<Config?> {
-        return self.state.getHandle(handle: BaseUIView.CONFIG_HANDLE)
-    }
-    
-    var config: Config? {
-        get { return self.configHandle.val }
-        set { self.configHandle.val = newValue }
-    }
-    
-    // MARK: - Builders & Constructors
-    func with(config: Config) -> BaseUIView {
-        self.config = config
-        return self
-    }
-}
-
-// MARK: - Touch
-public extension BaseUIView {
-    
-    // MARK: Constants & Types
-    fileprivate static let SHOULD_RESPOND_TO_TOUCH_HANDLE = VariableHandle<Bool>("respond_to_touch", false)
-    
-    fileprivate var shouldRespondToTouchHandle: VariableHandle<Bool> {
-        return self.state.getHandle(handle: BaseUIView.SHOULD_RESPOND_TO_TOUCH_HANDLE)
-    }
-    
-    // MARK: - State variables
-    var shouldRespondToTouch: Bool {
-        get { return self.shouldRespondToTouchHandle.val }
-        set { self.shouldRespondToTouchHandle.val = newValue }
-    }
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let view = super.hitTest(point, with: event)
-        
-        if !shouldRespondToTouch(point, with: event) && view == self {
-            return nil
-        }
-        
-        return view
-    }
-    
-    @objc
-    func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
-        return shouldRespondToTouch
-    }
 }

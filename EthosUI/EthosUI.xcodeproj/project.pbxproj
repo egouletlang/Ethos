@@ -17,7 +17,6 @@
 		6B7B87E8226AD97900E9D35E /* EthosUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87E7226AD97900E9D35E /* EthosUIConfig.swift */; };
 		6B7B87EA226AD99B00E9D35E /* EthosUIConfigDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87E9226AD99B00E9D35E /* EthosUIConfigDelegate.swift */; };
 		6B7B87EE226B571000E9D35E /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87ED226B571000E9D35E /* BaseUIView.swift */; };
-		6B7B87F1226B57C900E9D35E /* BaseUIViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87F0226B57C900E9D35E /* BaseUIViewDelegate.swift */; };
 		6B7B87F3226B58CC00E9D35E /* ReusableComponentInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87F2226B58CC00E9D35E /* ReusableComponentInterface.swift */; };
 		6B7B87F5226B5A3700E9D35E /* LifeCycleInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87F4226B5A3700E9D35E /* LifeCycleInterface.swift */; };
 		6B7B87F8226B60C300E9D35E /* BaseUIView_Animation_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87F7226B60C300E9D35E /* BaseUIView_Animation_EXT.swift */; };
@@ -34,6 +33,8 @@
 		6B9EEE882278E705002DFD1C /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EEE872278E705002DFD1C /* Register.swift */; };
 		6B9EEE8C227A40B0002DFD1C /* SerializableDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EEE8B227A40B0002DFD1C /* SerializableDict.swift */; };
 		6B9EEE92227F49D3002DFD1C /* ComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EEE91227F49D3002DFD1C /* ComponentState.swift */; };
+		6B9EEE95227F8442002DFD1C /* BaseRecycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EEE94227F8442002DFD1C /* BaseRecycleView.swift */; };
+		6B9EEE98227F8752002DFD1C /* BaseRowViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EEE97227F8752002DFD1C /* BaseRowViewDelegate.swift */; };
 		6BB0BFDC226B9F1B00DFBC3E /* FirstResponderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB0BFDB226B9F1B00DFBC3E /* FirstResponderInterface.swift */; };
 		6BB0BFDF226BA21D00DFBC3E /* EthosUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB0BFDE226BA21D00DFBC3E /* EthosUITextField.swift */; };
 		6BB0BFE5226BB0DE00DFBC3E /* DeviceHelper_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB0BFE4226BB0DE00DFBC3E /* DeviceHelper_EXT.swift */; };
@@ -67,7 +68,6 @@
 		6B7B87E7226AD97900E9D35E /* EthosUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosUIConfig.swift; sourceTree = "<group>"; };
 		6B7B87E9226AD99B00E9D35E /* EthosUIConfigDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosUIConfigDelegate.swift; sourceTree = "<group>"; };
 		6B7B87ED226B571000E9D35E /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
-		6B7B87F0226B57C900E9D35E /* BaseUIViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIViewDelegate.swift; sourceTree = "<group>"; };
 		6B7B87F2226B58CC00E9D35E /* ReusableComponentInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableComponentInterface.swift; sourceTree = "<group>"; };
 		6B7B87F4226B5A3700E9D35E /* LifeCycleInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleInterface.swift; sourceTree = "<group>"; };
 		6B7B87F7226B60C300E9D35E /* BaseUIView_Animation_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView_Animation_EXT.swift; sourceTree = "<group>"; };
@@ -84,6 +84,8 @@
 		6B9EEE872278E705002DFD1C /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		6B9EEE8B227A40B0002DFD1C /* SerializableDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializableDict.swift; sourceTree = "<group>"; };
 		6B9EEE91227F49D3002DFD1C /* ComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentState.swift; sourceTree = "<group>"; };
+		6B9EEE94227F8442002DFD1C /* BaseRecycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecycleView.swift; sourceTree = "<group>"; };
+		6B9EEE97227F8752002DFD1C /* BaseRowViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRowViewDelegate.swift; sourceTree = "<group>"; };
 		6BB0BFDB226B9F1B00DFBC3E /* FirstResponderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponderInterface.swift; sourceTree = "<group>"; };
 		6BB0BFDE226BA21D00DFBC3E /* EthosUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthosUITextField.swift; sourceTree = "<group>"; };
 		6BB0BFE4226BB0DE00DFBC3E /* DeviceHelper_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHelper_EXT.swift; sourceTree = "<group>"; };
@@ -198,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				6B7B87ED226B571000E9D35E /* BaseUIView.swift */,
-				6B7B87F0226B57C900E9D35E /* BaseUIViewDelegate.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -237,6 +238,8 @@
 		6B9EEE7F2278D3BC002DFD1C /* Recycle */ = {
 			isa = PBXGroup;
 			children = (
+				6B9EEE96227F8745002DFD1C /* Delegate */,
+				6B9EEE93227F840A002DFD1C /* View */,
 				6B9EEE802278D3E1002DFD1C /* Model */,
 				6B9EEE872278E705002DFD1C /* Register.swift */,
 			);
@@ -249,6 +252,22 @@
 				6B9EEE812278D419002DFD1C /* BaseRecycleModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6B9EEE93227F840A002DFD1C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B9EEE94227F8442002DFD1C /* BaseRecycleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B9EEE96227F8745002DFD1C /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				6B9EEE97227F8752002DFD1C /* BaseRowViewDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		6BB0BFDA226B9E8200DFBC3E /* Interface */ = {
@@ -521,7 +540,6 @@
 				6B7B8809226B841500E9D35E /* CGSize_EXT.swift in Sources */,
 				6B9EEE822278D419002DFD1C /* BaseRecycleModel.swift in Sources */,
 				6B7B8807226B82D900E9D35E /* EventHelper_EXT.swift in Sources */,
-				6B7B87F1226B57C900E9D35E /* BaseUIViewDelegate.swift in Sources */,
 				6B7B87FF226B704300E9D35E /* EthosUILabel.swift in Sources */,
 				6B7B880C226B874A00E9D35E /* EthosUIMediaView.swift in Sources */,
 				6B7B87EE226B571000E9D35E /* BaseUIView.swift in Sources */,
@@ -535,7 +553,9 @@
 				6B7B87F5226B5A3700E9D35E /* LifeCycleInterface.swift in Sources */,
 				6B9EEE8C227A40B0002DFD1C /* SerializableDict.swift in Sources */,
 				6B7B87FA226B60E500E9D35E /* BaseUIView_Gesutre_EXT.swift in Sources */,
+				6B9EEE95227F8442002DFD1C /* BaseRecycleView.swift in Sources */,
 				6B7B87E3226AD80700E9D35E /* Rect.swift in Sources */,
+				6B9EEE98227F8752002DFD1C /* BaseRowViewDelegate.swift in Sources */,
 				6B7B87E5226AD8C600E9D35E /* UIHelper.swift in Sources */,
 				6B7B87F8226B60C300E9D35E /* BaseUIView_Animation_EXT.swift in Sources */,
 				6BB0BFE5226BB0DE00DFBC3E /* DeviceHelper_EXT.swift in Sources */,

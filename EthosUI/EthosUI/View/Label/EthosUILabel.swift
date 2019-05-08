@@ -14,10 +14,10 @@ import UIKit
 public class EthosUILabel: BaseUIView {
     
     // MARK: Constants & Types
-    public typealias LabelDelegate = EthosUILabelDelegate
+    public typealias Delegate = EthosUILabelDelegate
     
     // MARK: - Singleton & Delegate
-    open weak var labelDelegate: LabelDelegate?
+    open weak var delegate: Delegate?
     
     // MARK: - UI Components
     private let labelView = UILabel(frame: CGRect.zero)
@@ -62,21 +62,21 @@ public class EthosUILabel: BaseUIView {
         return retSize.addPadding(padding: padding)
     }
     
-}
-
-// MARK: - Link
-public extension EthosUILabel {
+    // MARK: - Link Handling
+    override public var shouldRespondToTouch: Bool {
+        return true
+    }
     
-    override func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
+    override public func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
         return canRespondToTap && !willConsumeLocationTap(point)
     }
     
-    func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
+    public func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
         canRespondToTap = false
         tapCooldown?.set(value: true)
         
         if let url = didTapOnLink(point) {
-            let didIntercept = self.labelDelegate?.interceptUrl?(url) ?? false
+            let didIntercept = self.delegate?.interceptUrl?(url) ?? false
             if !didIntercept {
                 EventHelper.APP_OPEN_URL.emit(userInfo: ["url": url])
             }
@@ -85,7 +85,7 @@ public extension EthosUILabel {
         return false
     }
     
-    func didTapOnLink(_ point: CGPoint?) -> String? {
+    public func didTapOnLink(_ point: CGPoint?) -> String? {
         guard var location = point, self.labelView.frame.contains(location) else {
             return nil
         }
@@ -116,5 +116,6 @@ public extension EthosUILabel {
             .first
         
     }
+    
     
 }

@@ -114,27 +114,14 @@ public class EthosUIMediaView: BaseUIView {
         self.imageView.image = self.defaultImage
     }
     
-}
-
-extension EthosUIMediaView {
-    
+    // MARK: - Fade Effect
     public enum FadeInEffect {
         case none
         case web
         case webFirstTime
     }
     
-    // MARK: Constants & Types
-    fileprivate static let FADE_EFFECT_HANDLE = VariableHandle<FadeInEffect>("fade_in_effect", .webFirstTime)
-    
-    fileprivate var fadeEffectHandle: VariableHandle<FadeInEffect> {
-        return self.state.getHandle(handle: EthosUIMediaView.FADE_EFFECT_HANDLE)
-    }
-    
-    public var fadeEffect: FadeInEffect {
-        get { return self.fadeEffectHandle.val }
-        set { self.fadeEffectHandle.val = newValue }
-    }
+    public var fadeEffect = FadeInEffect.webFirstTime
     
     fileprivate var descriptorSource: MediaDescriptor.Source {
         return self.activeDescriptor?.source ?? .Asset
@@ -164,5 +151,6 @@ extension EthosUIMediaView {
                           animations: { self.imageView.image = image },
                           completion: nil)
     }
+    
     
 }

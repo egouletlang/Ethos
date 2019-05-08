@@ -10,7 +10,7 @@ import Foundation
 import EthosUtil
 import EthosText
 
-public class BaseUIViewController: UIViewController, LifeCycleInterface {
+public class BaseUIViewController: UIViewController, LifeCycleInterface, ReusableComponentInterface {
     
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -24,8 +24,6 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface {
     deinit {
         (self as LifeCycleInterface).destroy?()
     }
-    
-    var state = ComponentState()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -42,72 +40,22 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface {
         }
     }
     
-    // MARK: - LifeCycleInterface Methods
-    public func initialize() {
-        
-    }
+    // MARK: - State variables
+    fileprivate var size = CGSize.zero
     
-    public func createLayout() {
-        configure()
-        createNavigationTitle()
-        createDismissButton()
-        createKeyboard()
-    }
+    fileprivate var topLayout: CGFloat = 0
     
-    public func frameUpdate() {
-        
-    }
-    
-    public func cleanUp() {
-        self.view.subviews.forEach() { ($0 as? LifeCycleInterface)?.cleanUp?() }
-    }
-    
-    public func destroy() {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-}
-
-
-// MARK: - Size
-public extension BaseUIViewController {
-    
-    fileprivate static let SIZE_HANDLE = VariableHandle<CGSize>("size", CGSize.zero)
-    
-    fileprivate static let TOP_LAYOUT_HANDLE = VariableHandle<CGFloat>("top_layout", 0)
-    
-    fileprivate var sizeHandle: VariableHandle<CGSize> {
-        return self.state.getHandle(handle: BaseUIViewController.SIZE_HANDLE)
-    }
-    
-    fileprivate var topLayoutHandle: VariableHandle<CGFloat> {
-        return self.state.getHandle(handle: BaseUIViewController.TOP_LAYOUT_HANDLE)
-    }
-    
-    fileprivate var size: CGSize {
-        get { return self.sizeHandle.val }
-        set { self.sizeHandle.val = newValue }
-    }
-    
-    fileprivate var topLayout: CGFloat {
-        get { return self.topLayoutHandle.val }
-        set { self.topLayoutHandle.val = newValue }
-    }
-    
-    var effectiveTopLayoutGuide: CGFloat {
+    public var effectiveTopLayoutGuide: CGFloat {
         guard self.navigationController != nil else { return 0 }
         return UIHelper.statusBarHeight + UIHelper.navigationBarHeight
     }
     
-    var effectiveBottomLayoutGuide: CGFloat {
+    public var effectiveBottomLayoutGuide: CGFloat {
         return self.view.frame.height - keyboardHeight
     }
-}
-
-// MARK: - Configuration
-public extension BaseUIViewController {
     
-    var isVisible: Bool {
+    // MARK: - UI
+    public var isVisible: Bool {
         var ret = self.view.window != nil && self.isViewLoaded
         
         #if MAIN
@@ -117,11 +65,11 @@ public extension BaseUIViewController {
         return ret
     }
     
-    var defaultBackgroundColor: UIColor {
+    public var defaultBackgroundColor: UIColor {
         return UIColor.clear
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
     
@@ -129,7 +77,8 @@ public extension BaseUIViewController {
         return self.view.subviews.compactMap() { $0 as? UITableView }
     }
     
-    @discardableResult fileprivate func resignNested(view: UIView) -> Bool {
+    @discardableResult
+    fileprivate func resignNested(view: UIView) -> Bool {
         for v in self.view.subviews {
             if v.resignFirstResponder() || resignNested(view: v) {
                 return true
@@ -138,32 +87,28 @@ public extension BaseUIViewController {
         return false
     }
     
-    fileprivate func configure() {
+    fileprivate func createUI() {
         self.view.backgroundColor = self.defaultBackgroundColor
     }
     
-}
-
-// MARK: - Navigation Interface
-public extension BaseUIViewController {
-    
-    var navigationTitle: String? {
+    // MARK: - Navigation Interface
+    public var navigationTitle: String? {
         return nil
     }
     
-    var navigationFont: UIFont {
+    public var navigationFont: UIFont {
         return EthosTextConfig.shared.regularFont.withSize(navigationFontSize)
     }
     
-    var navigationFontSize: CGFloat {
+    public var navigationFontSize: CGFloat {
         return EthosTextConfig.shared.fontSize + 1
     }
     
-    var navigationTint: UIColor? {
+    public var navigationTint: UIColor? {
         return UIColor.white
     }
     
-    func setNavigationItem(navigationItem: BaseNavigationBarItem, left: Bool) {
+    public func setNavigationItem(navigationItem: BaseNavigationBarItem, left: Bool) {
         if left {
             self.navigationItem.leftBarButtonItem = navigationItem.button
         } else {
@@ -171,7 +116,7 @@ public extension BaseUIViewController {
         }
     }
     
-    func removeNavigationItem(left: Bool) {
+    public func removeNavigationItem(left: Bool) {
         if left {
             self.navigationItem.leftBarButtonItem?.image = nil
         } else {
@@ -179,59 +124,45 @@ public extension BaseUIViewController {
         }
     }
     
-    func buildNavigationItemDescriptor(text: String, selector: Selector,
-                                       target: AnyObject? = nil) -> BaseNavigationBarItem {
+    public func buildNavigationItemDescriptor(text: String, selector: Selector,
+                                              target: AnyObject? = nil) -> BaseNavigationBarItem {
         return TextNavigationBarItem(target: target ?? self, selector: selector)
-                    .with(label: text)
-                    .with(font: self.navigationFont)
-                    .with(tint: self.navigationTint)
+            .with(label: text)
+            .with(font: self.navigationFont)
+            .with(tint: self.navigationTint)
     }
     
-    func buildNavigationItemDescriptor(url: String, selector: Selector,
+    public func buildNavigationItemDescriptor(url: String, selector: Selector,
                                        target: AnyObject? = nil) -> BaseNavigationBarItem {
         return ImageNavigationBarItem(target: target ?? self, selector: selector)
-                    .with(imageUri: url)
-                    .with(tint: self.navigationTint)
+            .with(imageUri: url)
+            .with(tint: self.navigationTint)
     }
     
-    func buildNavigationItemDescriptor(img: UIImage, selector: Selector,
+    public func buildNavigationItemDescriptor(img: UIImage, selector: Selector,
                                        target: AnyObject? = nil) -> BaseNavigationBarItem {
         return ImageNavigationBarItem(target: target ?? self, selector: selector)
-                    .with(image: img)
-                    .with(tint: self.navigationTint)
+            .with(image: img)
+            .with(tint: self.navigationTint)
     }
     
-    fileprivate func createNavigationTitle() {
+    fileprivate func createNavigation() {
         self.navigationItem.title = self.navigationTitle
         
         var attr = [NSAttributedString.Key: Any]()
         attr.set(NSAttributedString.Key.font, navigationFont.withSize(navigationFontSize), allowNil: false)
         self.navigationController?.navigationBar.titleTextAttributes = attr
+        
     }
-}
-
-// MARK: - Touch Interface
-public extension BaseUIViewController {
     
-    func addTap(_ view: UIView, selector: Selector) {
-        let tapGesture = UITapGestureRecognizer(target: self, action: selector)
-        tapGesture.numberOfTapsRequired = 1
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(tapGesture)
-    }
-
-}
-
-// MARK: - Dismiss Interface
-public extension BaseUIViewController {
-    
-    enum DismissType {
+    // MARK: - Dismiss
+    public enum DismissType {
         case none
         case text
         case image
     }
     
-    var dismissType: DismissType {
+    public var dismissType: DismissType {
         if dismissImageUri != nil || dismissImage != nil {
             return .image
         } else if dismissTitle != nil {
@@ -241,29 +172,28 @@ public extension BaseUIViewController {
         return .none
     }
     
-    // Text dismiss parameters
-    var dismissTitle: String? {
+    public var dismissTitle: String? {
         return nil
     }
     
-    var dismissImageUri: String? {
+    public var dismissImageUri: String? {
         return nil
     }
     
-    var dismissImage: UIImage? {
+    public var dismissImage: UIImage? {
         return nil
     }
     
-    var dismissTint: UIColor? {
+    public var dismissTint: UIColor? {
         return UIColor.white
     }
     
-    fileprivate func createDismissButton() {
+    fileprivate func createDismiss() {
         switch (dismissType) {
         case .image:
             if let url = self.dismissImageUri {
                 let desc = buildNavigationItemDescriptor(url: url,
-                                                        selector: #selector(BaseUIViewController.selector_dismiss))
+                                                         selector: #selector(BaseUIViewController.selector_dismiss))
                 self.setNavigationItem(navigationItem: desc, left: true)
             } else if let img = self.dismissImage {
                 let desc = buildNavigationItemDescriptor(img: img,
@@ -281,45 +211,30 @@ public extension BaseUIViewController {
         }
     }
     
-    // MARK: - Selector
     @objc func selector_dismiss() {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
-}
-
-// MARK: - Keyboard Interface
-public extension BaseUIViewController {
-    
-    fileprivate static let KEYBOARD_HEIGHT_HANDLE = VariableHandle<CGFloat>("keyboard_height", 0)
-    
-    fileprivate static let TEMP_DISABLE_KEYBOARD_HANDLE = VariableHandle<Bool>("temp_disable_keyboard", false)
-    
-    fileprivate var keyboardHeightHandle: VariableHandle<CGFloat> {
-        return self.state.getHandle(handle: BaseUIViewController.KEYBOARD_HEIGHT_HANDLE)
+    // MARK: - Touch Interface
+    public func addTap(_ view: UIView, selector: Selector) {
+        let tapGesture = UITapGestureRecognizer(target: self, action: selector)
+        tapGesture.numberOfTapsRequired = 1
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tapGesture)
     }
     
-    fileprivate var tempDisableKeyboardHandle: VariableHandle<Bool> {
-        return self.state.getHandle(handle: BaseUIViewController.TEMP_DISABLE_KEYBOARD_HANDLE)
-    }
-
-    var addKeyboardEvents: Bool {
+    // MARK: - Keyboard
+    public var addKeyboardEvents: Bool {
         return false
     }
     
-    var addTapToDismissKeyboard: Bool {
+    public var addTapToDismissKeyboard: Bool {
         return true
     }
     
-    var keyboardHeight: CGFloat {
-        get { return keyboardHeightHandle.val }
-        set { keyboardHeightHandle.val = newValue }
-    }
+    var keyboardHeight: CGFloat = 0
     
-    var temporarilyIgnoreKeyboardChanges: Bool {
-        get { return tempDisableKeyboardHandle.val }
-        set { tempDisableKeyboardHandle.val = newValue}
-    }
+    public var temporarilyIgnoreKeyboardChanges = false
     
     fileprivate func createKeyboard() {
         guard addKeyboardEvents else { return }
@@ -339,7 +254,6 @@ public extension BaseUIViewController {
         }
     }
     
-    // MARK: - Selector
     @objc func selector_dismissKeyboard() {
         self.resignNested(view: self.view)
     }
@@ -376,32 +290,34 @@ public extension BaseUIViewController {
         }
     }
     
-}
-
-// MARK: - ReusableComponentInterface
-extension BaseUIViewController: ReusableComponentInterface {
-    
-    fileprivate static let HAS_APPEARED_HANDLE = VariableHandle<Bool>("has_appeared", false)
-    
-    fileprivate static let HAS_DISAPPEARED_HANDLE = VariableHandle<Bool>("has_disappeared", false)
-    
-    fileprivate var hasAppearedHandle: VariableHandle<Bool> {
-        return self.state.getHandle(handle: BaseUIViewController.HAS_APPEARED_HANDLE)
+    // MARK: - LifeCycleInterface Methods
+    public func initialize() {
+        
     }
     
-    fileprivate var hasDisappearedHandle: VariableHandle<Bool> {
-        return self.state.getHandle(handle: BaseUIViewController.HAS_DISAPPEARED_HANDLE)
+    public func createLayout() {
+        createUI()
+        createNavigation()
+        createDismiss()
+        createKeyboard()
     }
     
-    fileprivate var hasAppeared: Bool {
-        get { return hasAppearedHandle.val }
-        set { hasAppearedHandle.val = newValue }
+    public func frameUpdate() {
+        
     }
     
-    fileprivate var hasDisappeared: Bool {
-        get { return hasDisappearedHandle.val }
-        set { hasDisappearedHandle.val = newValue }
+    public func cleanUp() {
+        self.view.subviews.forEach() { ($0 as? LifeCycleInterface)?.cleanUp?() }
     }
+    
+    public func destroy() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - ReusableComponentInterface Methods
+    fileprivate var hasAppeared = false
+    
+    fileprivate var hasDisappeared = false
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -425,21 +341,12 @@ extension BaseUIViewController: ReusableComponentInterface {
         self.hasDisappeared = true
     }
     
-    public func willAppear(first: Bool) {
-        
-    }
+    public func willAppear(first: Bool) {}
     
-    public func didAppear(first: Bool) {
-        
-    }
+    public func didAppear(first: Bool) {}
     
-    public func willDisappear(first: Bool) {
+    public func willDisappear(first: Bool) {}
     
-    }
-    
-    public func didDisappear(first: Bool) {
-        
-    }
+    public func didDisappear(first: Bool) {}
     
 }
-
