@@ -35,8 +35,8 @@ public class EthosUILabel: BaseUIView {
     
     // MARK: - Lifecycle Methods
     public func initialize() {
-        self.tapCooldown = Delayed<Bool>(delay: 0.3)
-                                .with() { [weak self] in self?.canRespondToTap = $0 ?? true }
+        self.shouldRespondToTouch = true
+        self.tapCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToTap = $0 ?? true }
     }
     
     public override func createLayout() {
@@ -63,10 +63,6 @@ public class EthosUILabel: BaseUIView {
     }
     
     // MARK: - Link Handling
-    override public var shouldRespondToTouch: Bool {
-        return true
-    }
-    
     override public func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
         return canRespondToTap && !willConsumeLocationTap(point)
     }
@@ -93,7 +89,6 @@ public class EthosUILabel: BaseUIView {
         guard let desc = self.labelDescriptor, let attr = desc.attr, desc.links.count > 0 else {
             return nil
         }
-        
         
         let textStorage = NSTextStorage(attributedString: attr)
         let layoutManager = NSLayoutManager()

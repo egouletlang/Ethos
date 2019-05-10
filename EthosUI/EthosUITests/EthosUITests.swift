@@ -20,15 +20,7 @@ class EthosUITests: XCTestCase {
     }
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let rect = Rect<CALayer>(CALayer(), CALayer(), CALayer(), CALayer())
-        rect.left.isHidden = true
         
-        let rect2 = Rect<CGFloat>(def: 0)
-        rect2.left = 10
-        
-        print("here")
     }
 
     func testPerformanceExample() {

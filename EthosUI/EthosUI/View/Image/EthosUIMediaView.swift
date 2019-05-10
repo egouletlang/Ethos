@@ -15,10 +15,17 @@ public class EthosUIMediaView: BaseUIView {
     // MARK: - Constants & Types
     public typealias ImageCallback = (UIImage?) -> Void
     
-    // MARK: - UI Components
-    private let imageView = UIImageView(frame: CGRect.zero)
+    public enum FadeInEffect {
+        case none
+        case web
+        case webFirstTime
+    }
     
-    // MARK: - UI Variables
+    // MARK: - Config
+    public var fadeEffect = FadeInEffect.webFirstTime
+    
+    public var defaultImage: UIImage?
+    
     override public var contentMode: UIView.ContentMode {
         get {
             return imageView.contentMode
@@ -28,10 +35,15 @@ public class EthosUIMediaView: BaseUIView {
         }
     }
     
-    // MARK: - State variables
-    private var activeDescriptor: MediaDescriptor?
+    // MARK: - UI Components
+    private let imageView = UIImageView(frame: CGRect.zero)
     
-    public var defaultImage: UIImage?
+    // MARK: - State variables
+    fileprivate var activeDescriptor: MediaDescriptor?
+    
+    fileprivate var descriptorSource: MediaDescriptor.Source {
+        return self.activeDescriptor?.source ?? .Asset
+    }
     
     public var image: UIImage? {
         return self.imageView.image
@@ -50,6 +62,7 @@ public class EthosUIMediaView: BaseUIView {
         self.imageView.frame = self.bounds.insetBy(padding: padding)
     }
     
+    // MARK: - ReusableComponentInterface Methods
     open override func prepareForReuse() {
         super.prepareForReuse()
         self.clear(setDefault: true)
@@ -112,19 +125,6 @@ public class EthosUIMediaView: BaseUIView {
     open func clear(setDefault: Bool = true) {
         self.activeDescriptor = nil
         self.imageView.image = self.defaultImage
-    }
-    
-    // MARK: - Fade Effect
-    public enum FadeInEffect {
-        case none
-        case web
-        case webFirstTime
-    }
-    
-    public var fadeEffect = FadeInEffect.webFirstTime
-    
-    fileprivate var descriptorSource: MediaDescriptor.Source {
-        return self.activeDescriptor?.source ?? .Asset
     }
     
     // MARK: - Interface

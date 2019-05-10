@@ -1,15 +1,19 @@
 //
-//  BaseRowViewDelegate.swift
+//  BaseRecycleCellDelegate.swift
 //  EthosUI
 //
-//  Created by Etienne Goulet-Lang on 5/5/19.
+//  Created by Etienne Goulet-Lang on 5/8/19.
 //  Copyright © 2019 egouletlang. All rights reserved.
 //
 
 import Foundation
 
-public protocol BaseRecycleViewDelegate: NSObjectProtocol {
+public protocol BaseRecycleCellDelegate: NSObjectProtocol {
     func active(view: BaseRecycleView)
     func tapped(model: BaseRecycleModel, view: BaseRecycleView)
     func longPressed(model: BaseRecycleModel, view: BaseRecycleView)
+}
+
+public protocol BaseRecycleTVCellDelegate: BaseRecycleCellDelegate {
+    func getTableView() -> UITableView?
 }

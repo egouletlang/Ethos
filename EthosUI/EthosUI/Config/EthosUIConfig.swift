@@ -40,4 +40,12 @@ open class EthosUIConfig: ModuleConfig {
         return self.delegate?.getPrimaryColor?() ?? UIColor(argb: 0x1F426F)
     }
     
+    open var tableviewBackgroundColor: UIColor {
+        return UIColor(argb: 0xf8f8f8)
+    }
+    
+    open var tableviewSectionBackgroundColor: UIColor {
+        return UIColor(argb: 0xf8f8f8)
+    }
+    
 }

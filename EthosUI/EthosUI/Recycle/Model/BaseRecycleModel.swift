@@ -423,4 +423,7 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
         return copy
     }
     
+    // MARK: - Clean up
+    public func cleanUp() {}
+    
 }
