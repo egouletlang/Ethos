@@ -10,16 +10,15 @@ import Foundation
 import EthosUtil
 import EthosImage
 
-public class BaseUITableViewController: BaseUIViewController, BaseUITableView.Delegate,
-                                        BaseUITableView.CustomCellDelegate, UISearchControllerDelegate,
-                                        UISearchBarDelegate, UISearchResultsUpdating {
+open class BaseUITableViewController: BaseUIViewController, BaseUITableView.Delegate,
+                                      BaseUITableView.CustomCellDelegate, UISearchControllerDelegate,
+                                      UISearchBarDelegate, UISearchResultsUpdating {
     
     // MARK: - UI Components -
     public let tableView = BaseUITableView(frame: CGRect.zero)
     public let segmentViewBackground = BaseUIView(frame: CGRect.zero)
     public let segmentView = UISegmentedControl(frame: CGRect.zero)
     public let searchController = UISearchController(searchResultsController: nil)
-    
     
     override open func createLayout() {
         super.createLayout()
@@ -343,7 +342,8 @@ public class BaseUITableViewController: BaseUIViewController, BaseUITableView.De
         filter()
     }
     
-    @objc open func selector_segmentedControlValueChanged(_ segment: UISegmentedControl) {
+    @objc
+    open func selector_segmentedControlValueChanged(_ segment: UISegmentedControl) {
         filter()
     }
     

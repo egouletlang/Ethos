@@ -9,9 +9,9 @@
 import Foundation
 import EthosUtil
 
-public extension BaseUIView {
+extension BaseUIView {
     
-    override func setNeedsDisplay() {
+    override open func setNeedsDisplay() {
         ThreadHelper.checkMain {
             super.setNeedsDisplay()
         }

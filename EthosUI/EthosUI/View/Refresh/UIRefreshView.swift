@@ -9,7 +9,7 @@
 import Foundation
 import EthosUtil
 
-public class UIRefreshView: UIView {
+open class UIRefreshView: UIView {
     
     public typealias RefreshCompletion = () -> Void
     
@@ -163,14 +163,14 @@ public class UIRefreshView: UIView {
         }
     }
     
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         self.refreshView.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         self.refreshView.frame = refreshView.frame.offsetBy(dx: 0, dy: 0)
         self.indicatorView.center = self.refreshView.center
     }
     
-    open override func willMove(toSuperview superView: UIView!) {
+    override open func willMove(toSuperview superView: UIView!) {
         //superview NOT superView, DO NEED to call the following method
         //superview dealloc will call into this when my own dealloc run later!!
         self.removeRegister()
@@ -195,7 +195,7 @@ public class UIRefreshView: UIView {
     
     // MARK: KVO
     
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let scrollView = object as? UIScrollView else {
             return
         }

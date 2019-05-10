@@ -10,14 +10,14 @@ import Foundation
 import EthosUtil
 import EthosText
 
-public class BaseUIViewController: UIViewController, LifeCycleInterface, ReusableComponentInterface {
+open class BaseUIViewController: UIViewController, LifeCycleInterface, ReusableComponentInterface {
     
     public init() {
         super.init(nibName: nil, bundle: nil)
         (self as LifeCycleInterface).initialize?()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -25,12 +25,12 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
         (self as LifeCycleInterface).destroy?()
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.createLayout()
     }
     
-    override public func viewWillLayoutSubviews() {
+    override open func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         if self.size != view.frame.size || self.topLayout != effectiveTopLayoutGuide {
@@ -65,11 +65,11 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
         return ret
     }
     
-    public var defaultBackgroundColor: UIColor {
+    open var defaultBackgroundColor: UIColor {
         return UIColor.clear
     }
     
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
     
@@ -92,19 +92,19 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
     }
     
     // MARK: - Navigation Interface
-    public var navigationTitle: String? {
+    open var navigationTitle: String? {
         return nil
     }
     
-    public var navigationFont: UIFont {
+    open var navigationFont: UIFont {
         return EthosTextConfig.shared.regularFont.withSize(navigationFontSize)
     }
     
-    public var navigationFontSize: CGFloat {
+    open var navigationFontSize: CGFloat {
         return EthosTextConfig.shared.fontSize + 1
     }
     
-    public var navigationTint: UIColor? {
+    open var navigationTint: UIColor? {
         return UIColor.white
     }
     
@@ -162,7 +162,7 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
         case image
     }
     
-    public var dismissType: DismissType {
+    open var dismissType: DismissType {
         if dismissImageUri != nil || dismissImage != nil {
             return .image
         } else if dismissTitle != nil {
@@ -172,19 +172,19 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
         return .none
     }
     
-    public var dismissTitle: String? {
+    open var dismissTitle: String? {
         return nil
     }
     
-    public var dismissImageUri: String? {
+    open var dismissImageUri: String? {
         return nil
     }
     
-    public var dismissImage: UIImage? {
+    open var dismissImage: UIImage? {
         return nil
     }
     
-    public var dismissTint: UIColor? {
+    open var dismissTint: UIColor? {
         return UIColor.white
     }
     
@@ -224,17 +224,17 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
     }
     
     // MARK: - Keyboard
-    public var addKeyboardEvents: Bool {
+    open var addKeyboardEvents: Bool {
         return false
     }
     
-    public var addTapToDismissKeyboard: Bool {
+    open var addTapToDismissKeyboard: Bool {
         return true
     }
     
     var keyboardHeight: CGFloat = 0
     
-    public var temporarilyIgnoreKeyboardChanges = false
+    open var temporarilyIgnoreKeyboardChanges = false
     
     fileprivate func createKeyboard() {
         guard addKeyboardEvents else { return }
@@ -291,26 +291,26 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
     }
     
     // MARK: - LifeCycleInterface Methods
-    public func initialize() {
+    open func initialize() {
         
     }
     
-    public func createLayout() {
+    open func createLayout() {
         createUI()
         createNavigation()
         createDismiss()
         createKeyboard()
     }
     
-    public func frameUpdate() {
+    open func frameUpdate() {
         
     }
     
-    public func cleanUp() {
+    open func cleanUp() {
         self.view.subviews.forEach() { ($0 as? LifeCycleInterface)?.cleanUp?() }
     }
     
-    public func destroy() {
+    open func destroy() {
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -319,34 +319,34 @@ public class BaseUIViewController: UIViewController, LifeCycleInterface, Reusabl
     
     fileprivate var hasDisappeared = false
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.willAppear(first: !hasAppeared)
     }
     
-    override public func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.didAppear(first: !hasAppeared)
         self.hasAppeared = true
     }
     
-    override public func viewWillDisappear(_ animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.willDisappear(first: !hasDisappeared)
     }
     
-    override public func viewDidDisappear(_ animated: Bool) {
+    override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.didDisappear(first: !hasDisappeared)
         self.hasDisappeared = true
     }
     
-    public func willAppear(first: Bool) {}
+    open func willAppear(first: Bool) {}
     
-    public func didAppear(first: Bool) {}
+    open func didAppear(first: Bool) {}
     
-    public func willDisappear(first: Bool) {}
+    open func willDisappear(first: Bool) {}
     
-    public func didDisappear(first: Bool) {}
+    open func didDisappear(first: Bool) {}
     
 }

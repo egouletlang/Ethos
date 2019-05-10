@@ -21,7 +21,7 @@ fileprivate let DETAILS_DESCRIPTOR_HANDLE = VariableHandle<LabelDescriptor>("det
 
 fileprivate let DETAILS_MARGINS_HANDLE = VariableHandle<Rect<CGFloat>>("details_margins", Rect<CGFloat>(def: 0))
 
-public class LabelRecycleModel: BaseRecycleModel {
+open class LabelRecycleModel: BaseRecycleModel {
     
     // MARK: - Constants & Types -
     public static let DEFAULT_IOS_ROW_HEIGHT: CGFloat = 50
@@ -34,11 +34,15 @@ public class LabelRecycleModel: BaseRecycleModel {
     }
     
     // MARK: - Identifier -
-    override public var id: String {
+    override open var id: String {
         return RecycleModels.label.rawValue
     }
     
-    open class func isLabelRowModel(id: String) -> Bool {
+    override open var newInstance: BaseRecycleModel {
+        return LabelRecycleModel()
+    }
+    
+    class func isLabelRowModel(id: String) -> Bool {
         return id == RecycleModels.label.rawValue
     }
     
@@ -68,7 +72,7 @@ public class LabelRecycleModel: BaseRecycleModel {
         set { self.getHandle(handle: DETAILS_DESCRIPTOR_HANDLE).val = newValue }
     }
     
-    open var detailsMargins: Rect<CGFloat> {
+    public var detailsMargins: Rect<CGFloat> {
         get { return self.getHandle(handle: DETAILS_MARGINS_HANDLE).val }
         set { self.getHandle(handle: DETAILS_MARGINS_HANDLE).val = newValue }
     }
@@ -157,7 +161,7 @@ public class LabelRecycleModel: BaseRecycleModel {
     }
     
     
-    public override func encode(with aCoder: NSCoder) {
+    override open func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
         
         self.getHandle(handle: TITLE_DESCRIPTOR_HANDLE).encode(with: aCoder)
@@ -179,11 +183,6 @@ public class LabelRecycleModel: BaseRecycleModel {
         self.getHandle(handle: DETAILS_DESCRIPTOR_HANDLE).decode(coder: aDecoder)
         self.getHandle(handle: DETAILS_MARGINS_HANDLE).decode(coder: aDecoder)
         
-    }
-    
-    // MARK: - NSCopying Methods -
-    public override var newInstance: BaseRecycleModel {
-        return LabelRecycleModel()
     }
     
 }

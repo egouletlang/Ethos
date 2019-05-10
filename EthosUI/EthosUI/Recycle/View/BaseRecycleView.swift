@@ -10,7 +10,7 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-public class BaseRecycleView: BaseUIView {
+open class BaseRecycleView: BaseUIView {
 
     public typealias Delegate = BaseRecycleViewDelegate
 
@@ -29,7 +29,7 @@ public class BaseRecycleView: BaseUIView {
     }
 
     // MARK: - Lifecycle
-    override public func createLayout() {
+    override open func createLayout() {
         super.createLayout()
         
         self.backgroundColor = UIColor.clear
@@ -40,12 +40,12 @@ public class BaseRecycleView: BaseUIView {
         createGestures()
     }
 
-    override public func frameUpdate() {
+    override open func frameUpdate() {
         super.frameUpdate()
         self.contentView.frame = CGRect(origin: self.offset, size: self.availableSize)
     }
 
-    public override var borderPadding: Rect<Rect<CGFloat>> {
+    override public var borderPadding: Rect<Rect<CGFloat>> {
         guard let m = self.model else { return super.borderPadding }
         return Rect<Rect<CGFloat>>(m.borders.left.padding, m.borders.top.padding, m.borders.right.padding, m.borders.bottom.padding)
     }
@@ -53,7 +53,7 @@ public class BaseRecycleView: BaseUIView {
     // MARK: - Model
     public weak var model: BaseRecycleModel?
 
-    public func setData(model: BaseRecycleModel) {
+    open func setData(model: BaseRecycleModel) {
         self.model = model
 
         self.backgroundColor = model.backgroundColor
@@ -112,18 +112,20 @@ public class BaseRecycleView: BaseUIView {
         }
         
         if addLongPress {
-            self.addLongPress(self, selector: "selector_containerLongPressed")
+            self.addLongPress(self, selector: #selector(BaseRecycleView.selector_containerLongPressed))
         }
     }
     
-    @objc open func selector_containerTapped(_ sender: UITapGestureRecognizer) {
+    @objc
+    open func selector_containerTapped(_ sender: UITapGestureRecognizer) {
         self.delegate?.active(view: self)
         if let m = self.model, m.clickResponse != nil {
             self.delegate?.tapped(model: m, view: self)
         }
     }
 
-    @objc open func selector_containerLongPressed() {
+    @objc
+    open func selector_containerLongPressed() {
         self.delegate?.active(view: self)
         if let m = self.model, m.longClickResponse != nil {
             self.delegate?.longPressed(model: m, view: self)
@@ -131,7 +133,7 @@ public class BaseRecycleView: BaseUIView {
     }
 
     // MARK: - Size
-    public func sizeThatFits(model: BaseRecycleModel, forWidth w: CGFloat) -> CGSize {
+    open func sizeThatFits(model: BaseRecycleModel, forWidth w: CGFloat) -> CGSize {
         return CGSize(width: w, height: model.getContainerHeight())
     }
 

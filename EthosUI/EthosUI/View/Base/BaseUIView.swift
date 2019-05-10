@@ -9,14 +9,14 @@
 import Foundation
 import EthosUtil
 
-public class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, FirstResponderInterface {
+open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, FirstResponderInterface {
     
     // MARK: - Constants & Types
     public static let DEFAULT_BORDER_VISIBILITY = false
     
     public static let DEFAULT_BORDER_COLOR = EthosUIConfig.shared.borderColor
     
-    public class Config {
+    open class Config {
         public init() {}
     }
     
@@ -58,7 +58,7 @@ public class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface,
     public var config: Config?
     
     // MARK: - UI Components
-    override public var frame: CGRect {
+    override open var frame: CGRect {
         didSet {
             if self.size.width != self.frame.size.width {
                 (self as LifeCycleInterface).frameWidthUpdate?()
@@ -108,7 +108,7 @@ public class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface,
     }
     
     // MARK: - Touch
-    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, with: event)
         
         if !shouldRespondToTouch(point, with: event) && view == self {
@@ -118,17 +118,17 @@ public class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface,
         return view
     }
     
-    public func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
+    open func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
         return shouldRespondToTouch
     }
     
     // MARK: - LifeCycleInterface Methods
-    public func createLayout() {
+    open func createLayout() {
         self.borders = BaseUIView.createDefaultBorders()
         self.resetBorders(needsDisplay: false)
     }
     
-    public func frameUpdate() {
+    open func frameUpdate() {
         let horizontalBorderSize = CGSize(width: self.frame.width, height: UIHelper.onePixel)
         let verticalBorderSize = CGSize(width: UIHelper.onePixel, height: self.frame.height)
         
@@ -142,69 +142,69 @@ public class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface,
                                       size: horizontalBorderSize).insetBy(padding: borderPadding.bottom)
     }
     
-    public func cleanUp() {
+    open func cleanUp() {
         self.subviews.forEach() { ($0 as? BaseUIView)?.cleanUp() }
     }
     
-    public func destroy() {
+    open func destroy() {
         NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - ReusableComponentInterface Methods
-    public func prepareForReuse() {
+    open func prepareForReuse() {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.prepareForReuse?() }
     }
     
-    public func willAppear(first: Bool) {
+    open func willAppear(first: Bool) {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.willAppear?(first: first) }
     }
     
-    public func onScreen(first: Bool) {
+    open func onScreen(first: Bool) {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.onScreen?(first: first) }
     }
     
-    public func didAppear(first: Bool) {
+    open func didAppear(first: Bool) {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.didAppear?(first: first) }
     }
     
-    public func willDisappear(first: Bool) {
+    open func willDisappear(first: Bool) {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.willDisappear?(first: first) }
     }
     
-    public func offScreen(first: Bool) {
+    open func offScreen(first: Bool) {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.offScreen?(first: first) }
     }
     
-    public func didDisappear(first: Bool) {
+    open func didDisappear(first: Bool) {
         self.subviews.forEach() { ($0 as? ReusableComponentInterface)?.didDisappear?(first: first) }
     }
     
     // MARK: - First Responder & FirstResponderInterface Methods
-    public func allowFirstResponderResign() {
+    open func allowFirstResponderResign() {
         self.subviews.forEach() { ($0 as? BaseUIView)?.allowFirstResponderResign() }
     }
     
-    public func preventFirstResponderResign() {
+    open func preventFirstResponderResign() {
         self.subviews.forEach() { ($0 as? BaseUIView)?.preventFirstResponderResign() }
     }
     
-    public override var canBecomeFirstResponder: Bool {
+    open override var canBecomeFirstResponder: Bool {
         return self.subviews.reduce(false) { $0 || $1.canBecomeFirstResponder }
     }
     
-    public override var canResignFirstResponder: Bool {
+    open override var canResignFirstResponder: Bool {
         return self.getFirstResponder()?.canResignFirstResponder ?? false
     }
     
-    public override var isFirstResponder: Bool {
+    open override var isFirstResponder: Bool {
         return self.getFirstResponder() != nil
     }
     
-    public func getFirstResponder() -> UIView? {
+    open func getFirstResponder() -> UIView? {
         return self.subviews.first() { $0.isFirstResponder }
     }
     
-    public override func resignFirstResponder() -> Bool {
+    open override func resignFirstResponder() -> Bool {
         return self.getFirstResponder()?.resignFirstResponder() ?? false
     }
     

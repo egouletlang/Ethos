@@ -59,7 +59,7 @@ fileprivate let CLICK_RESPONSE_HANDLE = VariableHandle<Any?>("click_response", n
 fileprivate let LONG_CLICK_RESPONSE_HANDLE = VariableHandle<Any?>("long_click_response", nil)
 
 
-public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
+open class BaseRecycleModel: NSObject, NSCoding, NSCopying {
     
     // MARK: - Constants & Types
     public static let ANY_SCOPE = ".*"
@@ -96,25 +96,29 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
         return self
     }
     
-    @discardableResult func with(shadowOffset: CGSize? = nil, shadowRadius: CGFloat? = nil,
-                                 shadowOpacity: Float? = nil) -> BaseRecycleModel {
+    @discardableResult
+    public func with(shadowOffset: CGSize? = nil, shadowRadius: CGFloat? = nil,
+                     shadowOpacity: Float? = nil) -> BaseRecycleModel {
         self.shadowOffset = shadowOffset ?? SHADOW_OFFSET_HANDLE.def
         self.shadowRadius = shadowRadius ?? SHADOW_RADIUS_HANDLE.def
         self.shadowOpacity = shadowOpacity ?? SHADOW_OPACITY_HANDLE.def
         return self
     }
     
-    @discardableResult public func with(cornerRadius: CGFloat?) -> BaseRecycleModel {
+    @discardableResult
+    public func with(cornerRadius: CGFloat?) -> BaseRecycleModel {
         self.cornerRadius = cornerRadius ?? CORNER_RADIUS_HANDLE.def
         return self
     }
     
-    @discardableResult public func withDefaultShadow() -> BaseRecycleModel {
+    @discardableResult
+    public func withDefaultShadow() -> BaseRecycleModel {
         return self.with(shadowOffset: CGSize(width: 1, height: 3), shadowRadius: 3.0, shadowOpacity: 0.2)
     }
     
-    @discardableResult public func withBorder(left: Bool? = nil, top: Bool? = nil, right: Bool? = nil,
-                                              bottom: Bool? = nil) -> BaseRecycleModel {
+    @discardableResult
+    public func withBorder(left: Bool? = nil, top: Bool? = nil, right: Bool? = nil,
+                           bottom: Bool? = nil) -> BaseRecycleModel {
         self.borders.left.show = left ?? LEFT_BORDER_HANDLE.def
         self.borders.top.show = top ?? TOP_BORDER_HANDLE.def
         self.borders.right.show = right ?? RIGHT_BORDER_HANDLE.def
@@ -122,14 +126,16 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
         return self
     }
 
-    @discardableResult public func withBorder(color: UIColor?) -> BaseRecycleModel {
+    @discardableResult
+    public func withBorder(color: UIColor?) -> BaseRecycleModel {
         self.borderColor = color ?? BORDER_COLOR_HANDLE.def
         return self
     }
     
-    @discardableResult public func withBorder(paddingLeft: Rect<CGFloat>? = nil, paddingTop: Rect<CGFloat>? = nil,
-                                              paddingRight: Rect<CGFloat>? = nil,
-                                              paddingBottom: Rect<CGFloat>? = nil) -> BaseRecycleModel {
+    @discardableResult
+    public func withBorder(paddingLeft: Rect<CGFloat>? = nil, paddingTop: Rect<CGFloat>? = nil,
+                           paddingRight: Rect<CGFloat>? = nil,
+                           paddingBottom: Rect<CGFloat>? = nil) -> BaseRecycleModel {
         self.borders.left.padding = paddingLeft ?? LEFT_BORDER_PADDING_HANDLE.def
         self.borders.top.padding = paddingTop ?? TOP_BORDER_PADDING_HANDLE.def
         self.borders.right.padding = paddingRight ?? RIGHT_BORDER_PADDING_HANDLE.def
@@ -137,12 +143,14 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
         return self
     }
     
-    @discardableResult public func withDefaultBottomBorder() -> BaseRecycleModel {
+    @discardableResult
+    public func withDefaultBottomBorder() -> BaseRecycleModel {
         return self.withBorder(bottom: true).withBorder(paddingBottom: nil)
     }
     
-    @discardableResult public func withPadding(left: CGFloat? = nil, top: CGFloat? = nil, right: CGFloat? = nil,
-                                               bottom: CGFloat? = nil) -> BaseRecycleModel {
+    @discardableResult
+    public func withPadding(left: CGFloat? = nil, top: CGFloat? = nil, right: CGFloat? = nil,
+                            bottom: CGFloat? = nil) -> BaseRecycleModel {
         self.padding.left = left ?? PADDING_HANDLE.def.left
         self.padding.top = top ?? PADDING_HANDLE.def.top
         self.padding.right = right ?? PADDING_HANDLE.def.right
@@ -150,85 +158,99 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
         return self
     }
 
-    @discardableResult public func with(size: CGSize) -> BaseRecycleModel {
+    @discardableResult
+    public func with(size: CGSize) -> BaseRecycleModel {
         self.size = size
         self.shouldMeasureWidth = false
         self.shouldMeasureHeight = false
         return self
     }
     
-    @discardableResult public func with(height: CGFloat) -> BaseRecycleModel {
+    @discardableResult
+    public func with(height: CGFloat) -> BaseRecycleModel {
         self.size.height = height
         self.shouldMeasureHeight = false
         return self
     }
     
-    @discardableResult public func with(minHeight: CGFloat) -> BaseRecycleModel {
+    @discardableResult
+    public func with(minHeight: CGFloat) -> BaseRecycleModel {
         self.minHeight = height
         return self
     }
     
-    @discardableResult public func with(width: CGFloat) -> BaseRecycleModel {
+    @discardableResult
+    public func with(width: CGFloat) -> BaseRecycleModel {
         self.size.width = width
         self.shouldMeasureWidth = false
         return self
     }
     
-    @discardableResult public func resetSize() -> BaseRecycleModel {
+    @discardableResult
+    public func resetSize() -> BaseRecycleModel {
         self.size = CGSize.zero
         self.shouldMeasureWidth = true
         self.shouldMeasureHeight = true
         return self
     }
 
-    @discardableResult public func with(tag: String?) -> BaseRecycleModel {
+    @discardableResult
+    public func with(tag: String?) -> BaseRecycleModel {
         self.tag = tag ?? TAG_HANDLE.def
         return self
     }
     
-    @discardableResult public func with(scope: String?) -> BaseRecycleModel {
+    @discardableResult
+    public func with(scope: String?) -> BaseRecycleModel {
         self.scope = scope ?? SCOPE_HANDLE.def
         return self
     }
     
-    @discardableResult public func with(searchable: String?) -> BaseRecycleModel {
+    @discardableResult
+    public func with(searchable: String?) -> BaseRecycleModel {
         self.searchable = searchable ?? SEARCHABLE_HANDLE.def
         return self
     }
     
-    @discardableResult public func anyScope() -> BaseRecycleModel {
+    @discardableResult
+    public func anyScope() -> BaseRecycleModel {
         return self.with(scope: BaseRecycleModel.ANY_SCOPE)
     }
     
-    @discardableResult public func noScope() -> BaseRecycleModel {
+    @discardableResult
+    public func noScope() -> BaseRecycleModel {
         return self.with(scope: BaseRecycleModel.NO_SCOPE)
     }
     
-    @discardableResult public func alwaysVisible() -> BaseRecycleModel {
+    @discardableResult
+    public func alwaysVisible() -> BaseRecycleModel {
         return self.with(searchable: BaseRecycleModel.ANY_QUERY)
     }
     
-    @discardableResult public func neverVisible() -> BaseRecycleModel {
+    @discardableResult
+    public func neverVisible() -> BaseRecycleModel {
         return self.with(searchable: BaseRecycleModel.NO_QUERY)
     }
 
-    @discardableResult public func with(click: Any?) -> BaseRecycleModel {
+    @discardableResult
+    public func with(click: Any?) -> BaseRecycleModel {
         self.clickResponse = click ?? CLICK_RESPONSE_HANDLE.def
         return self
     }
     
-    @discardableResult public func with(longClick: Any?) -> BaseRecycleModel {
+    @discardableResult
+    public func with(longClick: Any?) -> BaseRecycleModel {
         self.longClickResponse = longClick ?? LONG_CLICK_RESPONSE_HANDLE.def
         return self
     }
 
     
     // MARK: - Variables
-    public var id: String {
+    open var id: String {
         return RecycleModels.base.rawValue
     }
     
-    public var newInstance: BaseRecycleModel {
+    open var newInstance: BaseRecycleModel {
         return BaseRecycleModel()
     }
     
@@ -361,7 +383,7 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
     }
     
     // MARK: - NSCoding Functions
-    public func encode(with aCoder: NSCoder) {
+    open func encode(with aCoder: NSCoder) {
         self.getHandle(handle: BACKGROUND_COLOR_HANDLE).encode(with: aCoder)
         self.getHandle(handle: CONTENT_COLOR_HANDLE).encode(with: aCoder)
         self.getHandle(handle: SHADOW_OFFSET_HANDLE).encode(with: aCoder)
@@ -417,7 +439,7 @@ public class BaseRecycleModel: NSObject, NSCoding, NSCopying {
     }
     
     // MARK: - Copy
-    public func copy(with zone: NSZone? = nil) -> Any {
+    open func copy(with zone: NSZone? = nil) -> Any {
         let copy = self.newInstance
         copy.state = self.state.clone()
         return copy

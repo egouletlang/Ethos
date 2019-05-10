@@ -10,8 +10,8 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-public class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleView.Delegate,
-                                CustomRecycleCellDelegate {
+open class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleView.Delegate,
+                              CustomRecycleCellDelegate {
     
     public typealias Delegate = BaseRecycleTVCellDelegate
     
@@ -29,7 +29,7 @@ public class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycle
     }
     
     // MARK: - UI Components
-    public var cell: BaseRecycleView {
+    open var cell: BaseRecycleView {
         return BaseRecycleView(frame: CGRect.zero)
     }
     
@@ -39,60 +39,60 @@ public class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycle
     }
     
     // MARK: - LifeCycleInterface Methods
-    public func createLayout() {
+    open func createLayout() {
         self.backgroundColor = UIColor.clear
         self.contentView.addSubview(cell)
         cell.delegate = self
     }
     
-    public func frameUpdate() {
+    open func frameUpdate() {
         cell.frameUpdate()
     }
     
     // MARK: - ReusableComponentInterface Methods
-    open override func prepareForReuse() {
+    override open func prepareForReuse() {
         super.prepareForReuse()
         cell.prepareForReuse()
     }
     
     // MARK: - Size
-    public func getHeight(model: BaseRecycleModel) -> CGFloat {
+    open func getHeight(model: BaseRecycleModel) -> CGFloat {
         let h = model.getContainerHeight()
         // The minimum height is 2, otherwise the tableview crashes
         return (h > 2) ? h : 2
     }
     
-    public func sizeThatFits(model: BaseRecycleModel, forWidth w: CGFloat) -> CGSize {
+    open func sizeThatFits(model: BaseRecycleModel, forWidth w: CGFloat) -> CGSize {
         let avaialbleWidth = w - model.padding.left - model.padding.right
         return CGSize(width: w, height: cell.sizeThatFits(model: model, forWidth: avaialbleWidth).height)
     }
     
     // MARK: - Model
-    public func setData(model: BaseRecycleModel, forWidth width: CGFloat) {
+    open func setData(model: BaseRecycleModel, forWidth width: CGFloat) {
         cell.setData(model: model)
         cell.frame.size = CGSize(width: width, height: self.getHeight(model: model))
     }
     
     // MARK: - Delegates
-    open weak var delegate: Delegate?
+    public weak var delegate: Delegate?
     
-    open weak var customRecycleCellDelegate: CustomRecycleCellDelegate?
+    public weak var customRecycleCellDelegate: CustomRecycleCellDelegate?
     
     // MARK: - BaseRowView.Delegate Methods
-    public func active(view: BaseRecycleView) {
+    open func active(view: BaseRecycleView) {
         self.delegate?.active(view: view)
     }
     
-    public func tapped(model: BaseRecycleModel, view: BaseRecycleView) {
+    open func tapped(model: BaseRecycleModel, view: BaseRecycleView) {
         self.delegate?.tapped(model: model, view: view)
     }
     
-    public func longPressed(model: BaseRecycleModel, view: BaseRecycleView) {
+    open func longPressed(model: BaseRecycleModel, view: BaseRecycleView) {
         self.delegate?.longPressed(model: model, view: view)
     }
     
     // MARK: - CustomRecycleCellDelegate Methods
-    public func getCellsToRegister() -> [(AnyClass?, String)] {
+    open func getCellsToRegister() -> [(AnyClass?, String)] {
         return self.customRecycleCellDelegate?.getCellsToRegister() ?? []
     }
 }

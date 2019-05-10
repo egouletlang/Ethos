@@ -10,7 +10,7 @@ import Foundation
 import EthosUtil
 import EthosImage
 
-public class EthosUIMediaView: BaseUIView {
+open class EthosUIMediaView: BaseUIView {
     
     // MARK: - Constants & Types
     public typealias ImageCallback = (UIImage?) -> Void
@@ -26,7 +26,7 @@ public class EthosUIMediaView: BaseUIView {
     
     public var defaultImage: UIImage?
     
-    override public var contentMode: UIView.ContentMode {
+    override open var contentMode: UIView.ContentMode {
         get {
             return imageView.contentMode
         }
@@ -63,7 +63,7 @@ public class EthosUIMediaView: BaseUIView {
     }
     
     // MARK: - ReusableComponentInterface Methods
-    open override func prepareForReuse() {
+    override open func prepareForReuse() {
         super.prepareForReuse()
         self.clear(setDefault: true)
     }

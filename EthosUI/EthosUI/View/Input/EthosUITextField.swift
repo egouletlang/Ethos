@@ -8,19 +8,19 @@
 
 import Foundation
 
-public class EthosUITextField: BaseUIView {
+open class EthosUITextField: BaseUIView {
     
     // MARK: - UI Components
     private let textField = UITextField(frame: CGRect.zero)
     
     // MARK: - LifeCycleInterface Methods
-    public override func createLayout() {
+    open override func createLayout() {
         super.createLayout()
         self.addSubview(textField)
         self.padding = Rect<CGFloat>(8, 2, 8, 2)
     }
     
-    public override func frameUpdate() {
+    open override func frameUpdate() {
         super.frameUpdate()
         self.textField.frame = self.bounds.insetBy(padding: padding)
     }

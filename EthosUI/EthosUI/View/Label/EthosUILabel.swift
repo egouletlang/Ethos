@@ -11,18 +11,18 @@ import EthosUtil
 import EthosText
 import UIKit
 
-public class EthosUILabel: BaseUIView {
+open class EthosUILabel: BaseUIView {
     
     // MARK: Constants & Types
     public typealias Delegate = EthosUILabelDelegate
     
     // MARK: - Singleton & Delegate
-    open weak var delegate: Delegate?
+    public weak var delegate: Delegate?
     
     // MARK: - UI Components
     private let labelView = UILabel(frame: CGRect.zero)
     
-    open var labelDescriptor: LabelDescriptor? {
+    public var labelDescriptor: LabelDescriptor? {
         didSet {
             self.labelView.attributedText = self.labelDescriptor?.attr
         }
@@ -34,18 +34,18 @@ public class EthosUILabel: BaseUIView {
     fileprivate var tapCooldown: Delayed<Bool>?
     
     // MARK: - Lifecycle Methods
-    public func initialize() {
+    open func initialize() {
         self.shouldRespondToTouch = true
         self.tapCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToTap = $0 ?? true }
     }
     
-    public override func createLayout() {
+    override open func createLayout() {
         super.createLayout()
         self.addSubview(labelView)
         labelView.numberOfLines = 0
     }
     
-    public override func frameUpdate() {
+    override open func frameUpdate() {
         super.frameUpdate()
         self.labelView.frame = self.bounds.insetBy(padding: padding)
     }
@@ -63,11 +63,11 @@ public class EthosUILabel: BaseUIView {
     }
     
     // MARK: - Link Handling
-    override public func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
         return canRespondToTap && !willConsumeLocationTap(point)
     }
     
-    public func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
+    private func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
         canRespondToTap = false
         tapCooldown?.set(value: true)
         
@@ -81,7 +81,7 @@ public class EthosUILabel: BaseUIView {
         return false
     }
     
-    public func didTapOnLink(_ point: CGPoint?) -> String? {
+    private func didTapOnLink(_ point: CGPoint?) -> String? {
         guard var location = point, self.labelView.frame.contains(location) else {
             return nil
         }

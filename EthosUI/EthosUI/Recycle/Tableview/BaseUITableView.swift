@@ -10,7 +10,7 @@ import Foundation
 import EthosUtil
 import EthosText
 
-public class BaseUITableView: UITableView, LifeCycleInterface,
+open class BaseUITableView: UITableView, LifeCycleInterface,
                             UIGestureRecognizerDelegate,
                             BaseRecycleTVCell.Delegate, BaseRecycleTVCell.CustomCellDelegate {
     
@@ -37,7 +37,7 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
         self.initialize()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -49,7 +49,7 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
     // MARK: - UI
     fileprivate var size = CGSize.zero
     
-    override public var frame: CGRect {
+    override open var frame: CGRect {
         didSet {
             if self.size.width != self.frame.size.width {
                 (self as LifeCycleInterface).frameWidthUpdate?()
@@ -101,7 +101,7 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
     }
     
     // MARK: - LifeCycleInterface
-    public func initialize() {
+    open func initialize() {
         dataSource = self
         delegate = self
         self.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -109,9 +109,9 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
         self.backgroundColor = UIColor.clear
     }
     
-    public func createLayout() {}
+    open func createLayout() {}
     
-    public func frameWidthUpdate() {
+    open func frameWidthUpdate() {
         for m in self.filteredModelsFlattened {
             if m.shouldMeasureHeight {
                 let cell = BaseRecycleTVCell.build(id: m.id, width: self.bounds.width, forMeasurement: true)
@@ -137,11 +137,11 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
         self.reloadData()
     }
     
-    public func frameHeightUpdate() {}
+    open func frameHeightUpdate() {}
     
-    public func frameUpdate() {}
+    open func frameUpdate() {}
     
-    public func destroy() {
+    open func destroy() {
         for model in self.allModelsFlattened {
             model.cleanUp()
         }
@@ -453,25 +453,14 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
     }
     
     // MARK: - Search -
-    /**
-     Current search text
-     */
     private var currSearch: String?
     
-    /**
-     Current search scope
-     */
     private var currScope: String?
     
     private func equivalent(_ t1: String?,_ t2: String?) -> Bool {
         return ((t1 ?? "") == (t2 ?? ""))
     }
     
-    /**
-     Filter the models in the allModels list with a given scope and query
-     - parameter scope: tableview scope
-     - parameter text: tableview query
-     */
     open func filter(scope: String?, text: String?, ignoreIfSameQuery: Bool = false) {
         if ignoreIfSameQuery && self.equivalent(self.currScope, scope) && self.equivalent(self.currSearch, text) {
             return
@@ -548,17 +537,18 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
     /**
      Handles BaseUITableViewDelegate events
      */
-    open weak var baseUITableViewDelegate: BaseUITableView.Delegate?
+    public weak var baseUITableViewDelegate: BaseUITableView.Delegate?
     
     /**
      Handles CustomTVCellDelegate events
      */
-    open weak var customTVCellDelegate: BaseUITableView.CustomCellDelegate?
+    public weak var customTVCellDelegate: BaseUITableView.CustomCellDelegate?
     
     
     // MARK: - UITableViewDataSource Methods -
     
-    @objc public func selector_headerTapped(_ gestureRecognizer: UIGestureRecognizer) {
+    @objc
+    public func selector_headerTapped(_ gestureRecognizer: UIGestureRecognizer) {
         guard let tag = gestureRecognizer.view?.tag else { return }
         
         if collapsedSections.contains(tag) {
@@ -571,42 +561,36 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
     }
     
     // MARK: - CustomTVCellDelegate Methods -
-    public func getCellsToRegister() -> [(AnyClass?, String)] {
+    open func getCellsToRegister() -> [(AnyClass?, String)] {
         return self.customTVCellDelegate?.getCellsToRegister() ?? []
     }
     
-    public func getOrBuildCell(tableView: UITableView, model: BaseRecycleModel, width: CGFloat, forMeasurement: Bool) -> BaseRecycleTVCell? {
+    open func getOrBuildCell(tableView: UITableView, model: BaseRecycleModel, width: CGFloat, forMeasurement: Bool) -> BaseRecycleTVCell? {
         return self.customTVCellDelegate?.getOrBuildCell(tableView: tableView, model: model, width: width, forMeasurement: forMeasurement)
     }
     
     // MARK: - BaseTVCellDelegate -
-    public func active(view: BaseRecycleView) {}
+    open func active(view: BaseRecycleView) {}
     
-    public func getTableView() -> UITableView? {
+    open func getTableView() -> UITableView? {
         return self
     }
     
-    public func tapped(model: BaseRecycleModel, view: BaseRecycleView) {
+    open func tapped(model: BaseRecycleModel, view: BaseRecycleView) {
         self.baseUITableViewDelegate?.tapped(model: model, view: view, tableview: self)
     }
     
-    public func longPressed(model: BaseRecycleModel, view: BaseRecycleView) {
+    open func longPressed(model: BaseRecycleModel, view: BaseRecycleView) {
         self.baseUITableViewDelegate?.longPressed(model: model, view: view, tableview: self)
     }
     
     // MARK: - ScrollView Delegate -
-    /**
-     This variable determines whether the tableview should allow concurrent touch recognition
-     */
-    open var allowConcurrentTouchGestureRecognition = false
     
-    /**
-     This variable determines whether the tableview should allow concurrent gesture recognition
-     in general
-     */
-    open var allowMultipleGestureRecognition = true
+    public var allowConcurrentTouchGestureRecognition = false
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+    public var allowMultipleGestureRecognition = true
+    
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if let _ = otherGestureRecognizer as? UITapGestureRecognizer {
             return allowConcurrentTouchGestureRecognition
@@ -614,7 +598,7 @@ public class BaseUITableView: UITableView, LifeCycleInterface,
         return allowMultipleGestureRecognition
     }
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.baseUITableViewDelegate?.newScrollOffset?(offset: scrollView.contentOffset.y, tableview: self)
         
         if let refreshView = self.refreshViewWithTag(UIRefreshView.Constants.pullTag) {
@@ -684,7 +668,6 @@ extension BaseUITableView: UITableViewDelegate {
         // Add space around the title to make it more clickable
         return (self.showSectionIndex && self.sectionTitles.count > 1) ? self.sectionTitles.compactMap() {"   \($0)"} : nil
     }
-    
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let genericTableView = tableView as? BaseUITableView {
