@@ -15,20 +15,40 @@ public enum RecycleModels: String {
     case label = "LabelRecycleModel"
 }
 
-fileprivate let baseRowView = BaseRecycleView(frame: CGRect.zero)
+fileprivate let recycleViews: [RecycleModels: BaseRecycleView] = {
+    return [
+        .label: LabelRecycleView(frame: CGRect.zero)
+    ]
+}()
+
+fileprivate let baseRecycleView = BaseRecycleView(frame: CGRect.zero)
 
 public extension BaseRecycleView {
     
     class func build(id: String, forMeasurement: Bool) -> BaseRecycleView {
+        let modelId = RecycleModels(rawValue: id) ?? .base
+        
         if forMeasurement {
-            return baseRowView
+            return recycleViews.get(modelId) ?? baseRecycleView
         }
-        return BaseRecycleView(frame: CGRect.zero)
+        
+        switch(modelId) {
+        case .label:
+            return LabelRecycleView(frame: CGRect.zero)
+        default:
+            return BaseRecycleView(frame: CGRect.zero)
+        }
+        
     }
 }
 
+fileprivate let recycleTVCells: [RecycleModels: BaseRecycleTVCell] = {
+    return [
+        .label: LabelRecycleTVCell(modelIdentifier: .label)
+    ]
+}()
 
-fileprivate let baseRecycleTVCell = BaseRecycleTVCell(reuseIdentifier: RecycleModels.base.rawValue)
+fileprivate let baseRecycleTVCell = BaseRecycleTVCell(modelIdentifier: .base)
 
 public extension BaseRecycleTVCell {
     
@@ -37,9 +57,18 @@ public extension BaseRecycleTVCell {
     }
     
     class func build(id: String, width: CGFloat, forMeasurement: Bool) -> BaseRecycleTVCell {
+        let modelId = RecycleModels(rawValue: id) ?? .base
+        
         if forMeasurement {
-            return baseRecycleTVCell
+            return recycleTVCells.get(modelId) ?? baseRecycleTVCell
         }
-        return BaseRecycleTVCell(reuseIdentifier: RecycleModels.base.rawValue)
+        
+        switch(modelId) {
+        case .label:
+            return LabelRecycleTVCell(modelIdentifier: .label)
+        default:
+            return BaseRecycleTVCell(modelIdentifier: .base)
+        }
+        
     }
 }

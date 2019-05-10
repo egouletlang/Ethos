@@ -22,6 +22,8 @@
 		6B1139962284BFCB000CA37B /* BaseUIView_Anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1139952284BFCB000CA37B /* BaseUIView_Anim.swift */; };
 		6B1139982284C0A1000CA37B /* BaseUIView_Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1139972284C0A1000CA37B /* BaseUIView_Gesture.swift */; };
 		6B11399B2284D839000CA37B /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B11399A2284D839000CA37B /* BaseUITableViewController.swift */; };
+		6B1139DB2285FE60000CA37B /* LabelRecycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1139DA2285FE60000CA37B /* LabelRecycleView.swift */; };
+		6B1139DD2286381E000CA37B /* LabelRecycleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1139DC2286381E000CA37B /* LabelRecycleTVCell.swift */; };
 		6B7B87C7226AA73100E9D35E /* EthosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7B87BD226AA73100E9D35E /* EthosUI.framework */; };
 		6B7B87CC226AA73100E9D35E /* EthosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87CB226AA73100E9D35E /* EthosUITests.swift */; };
 		6B7B87CE226AA73100E9D35E /* EthosUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7B87C0226AA73100E9D35E /* EthosUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,6 +83,8 @@
 		6B1139952284BFCB000CA37B /* BaseUIView_Anim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView_Anim.swift; sourceTree = "<group>"; };
 		6B1139972284C0A1000CA37B /* BaseUIView_Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView_Gesture.swift; sourceTree = "<group>"; };
 		6B11399A2284D839000CA37B /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
+		6B1139DA2285FE60000CA37B /* LabelRecycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRecycleView.swift; sourceTree = "<group>"; };
+		6B1139DC2286381E000CA37B /* LabelRecycleTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRecycleTVCell.swift; sourceTree = "<group>"; };
 		6B7B87BD226AA73100E9D35E /* EthosUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EthosUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B7B87C0226AA73100E9D35E /* EthosUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthosUI.h; sourceTree = "<group>"; };
 		6B7B87C1226AA73100E9D35E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				6B11397A22836921000CA37B /* BaseRecycleTVCell.swift */,
+				6B1139DC2286381E000CA37B /* LabelRecycleTVCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				6B9EEE94227F8442002DFD1C /* BaseRecycleView.swift */,
+				6B1139DA2285FE60000CA37B /* LabelRecycleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -601,6 +607,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B7B87F3226B58CC00E9D35E /* ReusableComponentInterface.swift in Sources */,
+				6B1139DB2285FE60000CA37B /* LabelRecycleView.swift in Sources */,
 				6B7B8801226B712E00E9D35E /* CGRect_EXT.swift in Sources */,
 				6B7B8809226B841500E9D35E /* CGSize_EXT.swift in Sources */,
 				6B9EEE822278D419002DFD1C /* BaseRecycleModel.swift in Sources */,
@@ -639,6 +646,7 @@
 				6B7B8805226B78D200E9D35E /* NSLayoutManager_EXT.swift in Sources */,
 				6BB0BFF5226CD75000DFBC3E /* BaseUIViewController.swift in Sources */,
 				6BB0BFEB226C010900DFBC3E /* ImageNavigationBarItem.swift in Sources */,
+				6B1139DD2286381E000CA37B /* LabelRecycleTVCell.swift in Sources */,
 				6B7B8803226B74A100E9D35E /* EthosUILabelDelegate.swift in Sources */,
 				6B1139942284BF63000CA37B /* BaseUIView_UI.swift in Sources */,
 			);

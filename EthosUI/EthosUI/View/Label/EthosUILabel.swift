@@ -67,7 +67,7 @@ open class EthosUILabel: BaseUIView {
         return canRespondToTap && !willConsumeLocationTap(point)
     }
     
-    private func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
+    func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
         canRespondToTap = false
         tapCooldown?.set(value: true)
         

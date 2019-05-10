@@ -10,6 +10,11 @@ import Foundation
 import EthosUI
 
 class TestUIViewController: BaseUITableViewController {
+ 
+    override func createLayout() {
+        super.createLayout()
+        self.view.backgroundColor = UIColor.red
+    }
     
 }
 

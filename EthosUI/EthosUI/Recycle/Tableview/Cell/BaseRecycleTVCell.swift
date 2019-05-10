@@ -18,6 +18,10 @@ open class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleVi
     public typealias CustomCellDelegate = CustomTVCellDelegate
     
     // MARK: - Constructor
+    convenience init(modelIdentifier: RecycleModels) {
+        self.init(reuseIdentifier: modelIdentifier.rawValue)
+    }
+    
     public init(reuseIdentifier: String) {
         super.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = UITableViewCell.SelectionStyle.none
