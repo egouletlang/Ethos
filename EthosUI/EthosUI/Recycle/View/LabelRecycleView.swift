@@ -9,12 +9,15 @@
 import Foundation
 import CoreGraphics
 import UIKit
+import EthosText
 
 open class LabelRecycleView: BaseRecycleView {
     
     //MARK: - UI -
     open var titleLabel = EthosUILabel(frame: CGRect.zero)
-    open var subTitleLabel = EthosUILabel(frame: CGRect.zero)
+    
+    open var subtitleLabel = EthosUILabel(frame: CGRect.zero)
+    
     open var detailsLabel = EthosUILabel(frame: CGRect.zero)
     
     // MARK: - Lifecycle -
@@ -26,9 +29,9 @@ open class LabelRecycleView: BaseRecycleView {
         self.addTap(titleLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
         self.contentView.addSubview(titleLabel)
         
-        subTitleLabel.createLayout()
-        self.addTap(subTitleLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
-        self.contentView.addSubview(subTitleLabel)
+        subtitleLabel.createLayout()
+        self.addTap(subtitleLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
+        self.contentView.addSubview(subtitleLabel)
         
         detailsLabel.createLayout()
         self.addTap(detailsLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
@@ -47,7 +50,7 @@ open class LabelRecycleView: BaseRecycleView {
         let subTitleMargins = (self.model as? LabelRecycleModel)?.subtitleMargins ?? Rect<CGFloat>(0, 0, 0, 0)
         
         let availableSubTitleWidth = (self.rightEdge() - self.leftEdge()) - subTitleMargins.left - subTitleMargins.right
-        let subTitleSize = subTitleLabel.sizeThatFits(CGSize(width: availableSubTitleWidth,
+        let subTitleSize = subtitleLabel.sizeThatFits(CGSize(width: availableSubTitleWidth,
                                                              height: CGFloat.greatestFiniteMagnitude))
         
         let detailsMargins = (self.model as? LabelRecycleModel)?.detailsMargins ?? Rect<CGFloat>(0, 0, 0, 0)
@@ -58,12 +61,12 @@ open class LabelRecycleView: BaseRecycleView {
         
         // Sizes are set
         titleLabel.frame.size = CGSize(width: availableTitleWidth, height: titleSize.height)
-        subTitleLabel.frame.size = CGSize(width: availableSubTitleWidth, height: subTitleSize.height)
+        subtitleLabel.frame.size = CGSize(width: availableSubTitleWidth, height: subTitleSize.height)
         detailsLabel.frame.size = CGSize(width: availableDetailsWidth, height: detailsSize.height)
         
         // Center Horizontally in parent
         titleLabel.frame.origin.x = self.leftEdge() + titleMargins.left
-        subTitleLabel.frame.origin.x = self.leftEdge() + subTitleMargins.left
+        subtitleLabel.frame.origin.x = self.leftEdge() + subTitleMargins.left
         detailsLabel.frame.origin.x = self.leftEdge() + detailsMargins.left
         
         let totalHeight = titleSize.height + titleMargins.bottom +
@@ -72,15 +75,15 @@ open class LabelRecycleView: BaseRecycleView {
         
         // Center Vertically in parent
         titleLabel.frame.origin.y = (self.contentView.frame.height - totalHeight) / 2
-        subTitleLabel.frame.origin.y = titleLabel.frame.maxY + titleMargins.bottom + subTitleMargins.top
-        detailsLabel.frame.origin.y = subTitleLabel.frame.maxY + subTitleMargins.bottom + detailsMargins.top
+        subtitleLabel.frame.origin.y = titleLabel.frame.maxY + titleMargins.bottom + subTitleMargins.top
+        detailsLabel.frame.origin.y = subtitleLabel.frame.maxY + subTitleMargins.bottom + detailsMargins.top
     }
     
     override open func setData(model: BaseRecycleModel) {
         super.setData(model: model)
         if let m = model as? LabelRecycleModel {
             titleLabel.labelDescriptor = m.title
-            subTitleLabel.labelDescriptor = m.subtitle
+            subtitleLabel.labelDescriptor = m.subtitle
             detailsLabel.labelDescriptor = m.details
         }
     }
@@ -92,7 +95,7 @@ open class LabelRecycleView: BaseRecycleView {
     
     override open func selector_containerTapped(_ sender: UITapGestureRecognizer) {
         if  self.titleLabel.willConsumeLocationTap(sender.location(in: titleLabel)) ||
-            self.subTitleLabel.willConsumeLocationTap(sender.location(in: subTitleLabel)) ||
+            self.subtitleLabel.willConsumeLocationTap(sender.location(in: subtitleLabel)) ||
             self.detailsLabel.willConsumeLocationTap(sender.location(in: detailsLabel)) {
             return
         }
@@ -114,58 +117,42 @@ open class LabelRecycleView: BaseRecycleView {
         return self.contentView.frame.width
     }
     
+    private func adjustHeight(label: EthosUILabel, descriptor: LabelDescriptor, size: inout CGSize) {
+        if descriptor.numberOfLines > 0 {
+            label.labelDescriptor = descriptor.clone().removeNewLines()
+            let singleLineHeight = label.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
+                                                             height: CGFloat.greatestFiniteMagnitude)).height
+            let estimatedHeight = singleLineHeight * CGFloat(descriptor.numberOfLines)
+            size.height = size.height > estimatedHeight ? estimatedHeight : size.height
+        }
+    }
+    
     // MARK: - Sizing -
     open override func sizeThatFits(model: BaseRecycleModel, forWidth w: CGFloat) -> CGSize {
+        guard let m = model as? LabelRecycleModel else { return super.sizeThatFits(model: model, forWidth: w) }
         
-        if let m = model as? LabelRecycleModel {
-            titleLabel.labelDescriptor = m.title
-            subTitleLabel.labelDescriptor = m.subtitle
-            detailsLabel.labelDescriptor = m.details
-        }
+        titleLabel.labelDescriptor = m.title
+        subtitleLabel.labelDescriptor = m.subtitle
+        detailsLabel.labelDescriptor = m.details
         
-        
-        let titleMargins = (model as? LabelRecycleModel)?.titleMargins ?? Rect<CGFloat>(0, 0, 0, 0)
-        let availableTitleWidth = w - titleMargins.left - titleMargins.right
+        let availableTitleWidth = w - m.titleMargins.left - m.titleMargins.right
         var titleSize = titleLabel.sizeThatFits(CGSize(width: availableTitleWidth, height: CGFloat.greatestFiniteMagnitude))
         
-        let subTitleMargins = (model as? LabelRecycleModel)?.subtitleMargins ?? Rect<CGFloat>(0, 0, 0, 0)
-        let availableSubTitleWidth = w - subTitleMargins.left - subTitleMargins.right
-        var subTitleSize = subTitleLabel.sizeThatFits(CGSize(width: availableSubTitleWidth, height: CGFloat.greatestFiniteMagnitude))
+        let availableSubtitleWidth = w - m.subtitleMargins.left - m.subtitleMargins.right
+        var subtitleSize = subtitleLabel.sizeThatFits(CGSize(width: availableSubtitleWidth, height: CGFloat.greatestFiniteMagnitude))
         
-        let detailsMargins = (model as? LabelRecycleModel)?.detailsMargins ?? Rect<CGFloat>(0, 0, 0, 0)
-        let availableDetailsWidth = w - detailsMargins.left - detailsMargins.right
+        let availableDetailsWidth = w - m.detailsMargins.left - m.detailsMargins.right
         var detailsSize = detailsLabel.sizeThatFits(CGSize(width: availableDetailsWidth, height: CGFloat.greatestFiniteMagnitude))
         
-        if let m = model as? LabelRecycleModel {
-//            if m.titleNumberOfLines > 0 {
-//                titleLabel.labelDescriptor = m.title.clone().removeNewLines()
-//                let titleLineHeight = titleLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
-//                                                                     height: CGFloat.greatestFiniteMagnitude)).height + 4 // not sure why the frame height is not correctly calculated. i emperically measured this value... need to figure out how to calculate it
-//                let estTitleLineHeight = titleLineHeight * CGFloat(m.titleNumberOfLines)
-//                titleSize.height = titleSize.height > estTitleLineHeight ? estTitleLineHeight : titleSize.height
-//            }
-//
-//            if m.subTitleNumberOfLines > 0 {
-//                subTitleLabel.labelDescriptor = m.subTitle.clone().removeNewLines()
-//                let subTitleLineHeight = subTitleLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
-//                                                                           height: CGFloat.greatestFiniteMagnitude)).height + 4
-//                let estSubtitleLineHeight = subTitleLineHeight * CGFloat(m.subTitleNumberOfLines)
-//                subTitleSize.height = subTitleSize.height > estSubtitleLineHeight ? estSubtitleLineHeight : subTitleSize.height
-//            }
-//
-//            if m.detailsNumberOfLines > 0 {
-//                detailsLabel.labelDescriptor = m.details.clone().removeNewLines()
-//                let detailsLineHeight = detailsLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
-//                                                                         height: CGFloat.greatestFiniteMagnitude)).height + 4
-//                let estDetailLineHeight = detailsLineHeight * CGFloat(m.detailsNumberOfLines)
-//                detailsSize.height = detailsSize.height > estDetailLineHeight ? estDetailLineHeight : detailsSize.height
-//            }
-        }
+        self.adjustHeight(label: titleLabel, descriptor: m.title, size: &titleSize)
+        self.adjustHeight(label: subtitleLabel, descriptor: m.subtitle, size: &subtitleSize)
+        self.adjustHeight(label: detailsLabel, descriptor: m.details, size: &detailsSize)
         
-        var reqWidth: CGFloat = max(titleSize.width, max(subTitleSize.width, detailsSize.width))
-        var reqHeight = (titleMargins.top + titleSize.height + titleMargins.bottom) +
-            (subTitleMargins.top + subTitleSize.height + subTitleMargins.bottom) +
-            (detailsMargins.top + detailsSize.height + detailsMargins.bottom)
+        var reqWidth: CGFloat = max(titleSize.width, max(subtitleSize.width, detailsSize.width))
+        
+        var reqHeight = (m.titleMargins.top + titleSize.height + m.titleMargins.bottom) +
+                        (m.subtitleMargins.top + subtitleSize.height + m.subtitleMargins.bottom) +
+                        (m.detailsMargins.top + detailsSize.height + m.detailsMargins.bottom)
         
         if model.width > 0 {
             reqWidth = reqWidth > model.height ? reqWidth : model.width
@@ -184,9 +171,8 @@ open class LabelRecycleView: BaseRecycleView {
     public override func labelDelegateDidSet() {
         super.labelDelegateDidSet()
         titleLabel.delegate = self.labelDelegate
-        subTitleLabel.delegate = self.labelDelegate
+        subtitleLabel.delegate = self.labelDelegate
         detailsLabel.delegate = self.labelDelegate
-
     }
     
 }

@@ -25,6 +25,7 @@ open class EthosUILabel: BaseUIView {
     public var labelDescriptor: LabelDescriptor? {
         didSet {
             self.labelView.attributedText = self.labelDescriptor?.attr
+            self.labelView.numberOfLines = self.labelDescriptor?.numberOfLines ?? 0
         }
     }
     
