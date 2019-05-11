@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let root = TestUIViewController()
-        root.view.backgroundColor = UIColor.red
         window?.addSubview(root.view)
         window?.rootViewController = root
         window?.makeKeyAndVisible()

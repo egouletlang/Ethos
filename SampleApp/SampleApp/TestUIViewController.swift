@@ -11,9 +11,15 @@ import EthosUI
 
 class TestUIViewController: BaseUITableViewController {
  
-    override func createLayout() {
-        super.createLayout()
-        self.view.backgroundColor = UIColor.red
+    override func createModels() -> [BaseRecycleModel] {
+        return [
+            LabelRecycleModel()
+                .with(title: "hello world".b)
+                .with(subtitle: "test")
+                .with(details: "more")
+                .with(color: UIColor.red)
+                .with(minHeight: 100),
+        ]
     }
     
 }
