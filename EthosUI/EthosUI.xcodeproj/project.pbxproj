@@ -25,6 +25,7 @@
 		6B1139DB2285FE60000CA37B /* LabelRecycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1139DA2285FE60000CA37B /* LabelRecycleView.swift */; };
 		6B1139DD2286381E000CA37B /* LabelRecycleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1139DC2286381E000CA37B /* LabelRecycleTVCell.swift */; };
 		6B1139DF22872919000CA37B /* LabelDescriptor_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1139DE22872919000CA37B /* LabelDescriptor_EXT.swift */; };
+		6B1139E62287859F000CA37B /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1139E52287859F000CA37B /* down_arrow.png */; };
 		6B7B87C7226AA73100E9D35E /* EthosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7B87BD226AA73100E9D35E /* EthosUI.framework */; };
 		6B7B87CC226AA73100E9D35E /* EthosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B87CB226AA73100E9D35E /* EthosUITests.swift */; };
 		6B7B87CE226AA73100E9D35E /* EthosUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7B87C0226AA73100E9D35E /* EthosUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +88,7 @@
 		6B1139DA2285FE60000CA37B /* LabelRecycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRecycleView.swift; sourceTree = "<group>"; };
 		6B1139DC2286381E000CA37B /* LabelRecycleTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRecycleTVCell.swift; sourceTree = "<group>"; };
 		6B1139DE22872919000CA37B /* LabelDescriptor_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDescriptor_EXT.swift; sourceTree = "<group>"; };
+		6B1139E52287859F000CA37B /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = "<group>"; };
 		6B7B87BD226AA73100E9D35E /* EthosUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EthosUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B7B87C0226AA73100E9D35E /* EthosUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthosUI.h; sourceTree = "<group>"; };
 		6B7B87C1226AA73100E9D35E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -183,6 +185,14 @@
 			path = Table;
 			sourceTree = "<group>";
 		};
+		6B1139E42287856E000CA37B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6B1139E52287859F000CA37B /* down_arrow.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		6B7B87B3226AA73100E9D35E = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +224,7 @@
 				6B7B87F6226B60A700E9D35E /* Extension */,
 				6BB0BFDA226B9E8200DFBC3E /* Interface */,
 				6B9EEE7F2278D3BC002DFD1C /* Recycle */,
+				6B1139E42287856E000CA37B /* Resources */,
 				6B7B87E1226AD7FC00E9D35E /* Type */,
 				6B7B87EC226B570400E9D35E /* View */,
 			);
@@ -513,6 +524,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B1139E62287859F000CA37B /* down_arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

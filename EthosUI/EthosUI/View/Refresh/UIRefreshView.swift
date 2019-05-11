@@ -23,7 +23,7 @@ open class UIRefreshView: UIView {
         
         static let height: CGFloat = 80
         
-        static let imageName: String = "pulltorefresharrow.png"
+        static let imageName: String = "down_arrow.png"
         
         static let animationDuration: Double = 0.2
         

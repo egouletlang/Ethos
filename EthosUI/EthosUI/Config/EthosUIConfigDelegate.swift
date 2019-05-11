@@ -18,5 +18,7 @@ import EthosUtil
     @objc optional func getPrimaryColor() -> UIColor
     
     
+    @objc optional func getRefreshImage() -> UIImage?
+    @objc optional func getRefreshImageTint() -> UIColor? 
     
 }

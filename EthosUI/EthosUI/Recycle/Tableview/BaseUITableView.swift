@@ -11,6 +11,7 @@ import EthosUtil
 import EthosText
 
 open class BaseUITableView: UITableView, LifeCycleInterface,
+                            EthosUILabel.Delegate,
                             UIGestureRecognizerDelegate,
                             BaseRecycleTVCell.Delegate, BaseRecycleTVCell.CustomCellDelegate {
     

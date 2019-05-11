@@ -8,8 +8,10 @@
 
 import Foundation
 import EthosUtil
+import EthosImage
 
 open class EthosUIConfig: ModuleConfig {
+    
     // MARK: - Constants & Types
     public typealias Delegate = EthosUIConfigDelegate
     
@@ -30,8 +32,20 @@ open class EthosUIConfig: ModuleConfig {
         return "Resources.bundle"
     }
     
-    // MARK: - Injectable Configuration
+    public static var Refresh: UIImage? {
+        return EthosUIConfig.shared.get(key: "refresh_image", def: EthosUIConfig.shared.getRefreshImage())
+    }
     
+    open func getRefreshImage() -> UIImage? {
+        let image = self.delegate?.getRefreshImage?() ?? self.getImageFromBundle(resource: "down_arrow.png")
+        return ImageHelper.addColorMask(img: image, color: getRefreshImageTint())
+    }
+    
+    open func getRefreshImageTint() -> UIColor? {
+        return self.delegate?.getRefreshImageTint?()
+    }
+    
+    // MARK: - Injectable Configuration
     open var borderColor: UIColor {
         return self.delegate?.getBorderColor?() ?? UIColor(argb: 0x7B868C)
     }
