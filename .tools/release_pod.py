@@ -132,10 +132,11 @@ for pod in pods:
 #   420  git push
 #   421  pod repo push EthosUtilSpec EthosUtil.podspec 
 
-target = pods[0].split('.')[0] if len(pods) == 1 else '.'
+target_pod_dir = pods[0].split('.')[0] if len(pods) == 1 else '.'
+target_pod_file = pods[0] if len(pods) == 1 else ''
 
-run_command('git add %s' % target)
-run_command(parts=['git', 'commit', '-m', '"%s"' % message, target])
+run_command('git add %s %s' % (target_pod_dir, target_pod_file))
+run_command(parts=['git', 'commit', '-m', '"%s"' % message, target_pod_dir, target_pod_file])
 run_command('git tag %s' % version)
 run_command('git push')
 run_command('git push --tags')
