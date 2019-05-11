@@ -40,7 +40,7 @@ fileprivate let BOTTOM_BORDER_HANDLE = VariableHandle<Bool>("left_border", false
 
 fileprivate let BORDER_COLOR_HANDLE = VariableHandle<UIColor>("border_color", UIColor(argb: 0x7B868C))
 
-fileprivate let PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("padding", Rect<CGFloat>(def: 0))
+fileprivate let PADDING_HANDLE = VariableHandle<Rect<CGFloat>>("padding", Rect<CGFloat>(def: 10))
 
 fileprivate let SIZE_HANDLE = VariableHandle<CGSize>("size", CGSize.zero)
 
