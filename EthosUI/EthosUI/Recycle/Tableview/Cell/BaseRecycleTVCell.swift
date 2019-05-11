@@ -25,7 +25,6 @@ open class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleVi
     public init(reuseIdentifier: String) {
         super.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = UITableViewCell.SelectionStyle.none
-        self.createLayout()
     }
     
     required public init?(coder aDecoder: NSCoder) {

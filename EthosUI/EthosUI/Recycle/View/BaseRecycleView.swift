@@ -35,6 +35,7 @@ open class BaseRecycleView: BaseUIView {
         
         self.backgroundColor = UIColor.clear
         
+        self.addSubview(contentView)
         contentView.createLayout()
         contentView.clipsToBounds = true
         contentView.shouldRespondToTouch = false
