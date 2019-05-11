@@ -50,11 +50,13 @@ open class EthosUIMediaView: BaseUIView {
     }
     
     // MARK: - LifeCycleInterface Methods
-    override open func createLayout() {
+    @discardableResult
+    override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
         self.addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
         self.clipsToBounds = true
+        return self
     }
     
     override open func frameUpdate() {

@@ -109,7 +109,8 @@ open class BaseUITableView: UITableView, LifeCycleInterface,
         self.backgroundColor = UIColor.clear
     }
     
-    open func createLayout() {}
+    @discardableResult
+    open func createLayout() -> LifeCycleInterface { return self }
     
     open func frameWidthUpdate() {
         for m in self.filteredModelsFlattened {

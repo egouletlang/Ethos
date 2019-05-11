@@ -40,10 +40,12 @@ open class EthosUILabel: BaseUIView {
         self.tapCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToTap = $0 ?? true }
     }
     
-    override open func createLayout() {
+    @discardableResult
+    override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
         self.addSubview(labelView)
         labelView.numberOfLines = 0
+        return self
     }
     
     override open func frameUpdate() {

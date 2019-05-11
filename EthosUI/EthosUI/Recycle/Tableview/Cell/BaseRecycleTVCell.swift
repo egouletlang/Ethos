@@ -45,10 +45,15 @@ open class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleVi
     }
     
     // MARK: - LifeCycleInterface Methods
-    open func createLayout() {
+    @discardableResult
+    open func createLayout() -> LifeCycleInterface {
         self.backgroundColor = UIColor.clear
+        
+        content.createLayout()
         self.contentView.addSubview(content)
         content.delegate = self
+        
+        return self
     }
     
     open func frameUpdate() {

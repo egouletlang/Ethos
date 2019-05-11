@@ -17,11 +17,11 @@ public enum RecycleModels: String {
 
 fileprivate let recycleViews: [RecycleModels: BaseRecycleView] = {
     return [
-        .label: LabelRecycleView(frame: CGRect.zero)
+        .label: LabelRecycleView(frame: CGRect.zero).createLayout() as! BaseRecycleView
     ]
 }()
 
-fileprivate let baseRecycleView = BaseRecycleView(frame: CGRect.zero)
+fileprivate let baseRecycleView = BaseRecycleView(frame: CGRect.zero).createLayout() as! BaseRecycleView
 
 public extension BaseRecycleView {
     
@@ -34,9 +34,9 @@ public extension BaseRecycleView {
         
         switch(modelId) {
         case .label:
-            return LabelRecycleView(frame: CGRect.zero)
+            return LabelRecycleView(frame: CGRect.zero).createLayout() as! BaseRecycleView
         default:
-            return BaseRecycleView(frame: CGRect.zero)
+            return BaseRecycleView(frame: CGRect.zero).createLayout() as! BaseRecycleView
         }
         
     }
@@ -44,11 +44,11 @@ public extension BaseRecycleView {
 
 fileprivate let recycleTVCells: [RecycleModels: BaseRecycleTVCell] = {
     return [
-        .label: LabelRecycleTVCell(modelIdentifier: .label)
+        .label: LabelRecycleTVCell(modelIdentifier: .label).createLayout() as! BaseRecycleTVCell
     ]
 }()
 
-fileprivate let baseRecycleTVCell = BaseRecycleTVCell(modelIdentifier: .base)
+fileprivate let baseRecycleTVCell = BaseRecycleTVCell(modelIdentifier: .base).createLayout() as! BaseRecycleTVCell
 
 public extension BaseRecycleTVCell {
     
@@ -65,9 +65,9 @@ public extension BaseRecycleTVCell {
         
         switch(modelId) {
         case .label:
-            return LabelRecycleTVCell(modelIdentifier: .label)
+            return LabelRecycleTVCell(modelIdentifier: .label).createLayout() as! BaseRecycleTVCell
         default:
-            return BaseRecycleTVCell(modelIdentifier: .base)
+            return BaseRecycleTVCell(modelIdentifier: .base).createLayout() as! BaseRecycleTVCell
         }
         
     }

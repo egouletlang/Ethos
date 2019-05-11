@@ -21,7 +21,8 @@ open class LabelRecycleView: BaseRecycleView {
     open var detailsLabel = EthosUILabel(frame: CGRect.zero)
     
     // MARK: - Lifecycle -
-    override open func createLayout() {
+    @discardableResult
+    override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
         self.addTap(self, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
         
@@ -36,6 +37,7 @@ open class LabelRecycleView: BaseRecycleView {
         detailsLabel.createLayout()
         self.addTap(detailsLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
         self.contentView.addSubview(detailsLabel)
+        return self
     }
     
     override open func frameUpdate() {

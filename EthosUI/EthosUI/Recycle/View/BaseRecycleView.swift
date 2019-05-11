@@ -29,15 +29,18 @@ open class BaseRecycleView: BaseUIView {
     }
 
     // MARK: - Lifecycle
-    override open func createLayout() {
+    @discardableResult
+    override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
         
         self.backgroundColor = UIColor.clear
-
+        
+        contentView.createLayout()
         contentView.clipsToBounds = true
         contentView.shouldRespondToTouch = false
 
         createGestures()
+        return self
     }
 
     override open func frameUpdate() {

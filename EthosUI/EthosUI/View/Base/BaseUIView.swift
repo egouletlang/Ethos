@@ -123,9 +123,11 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
     }
     
     // MARK: - LifeCycleInterface Methods
-    open func createLayout() {
+    @discardableResult
+    open func createLayout() -> LifeCycleInterface {
         self.borders = BaseUIView.createDefaultBorders()
         self.resetBorders(needsDisplay: false)
+        return self
     }
     
     open func frameUpdate() {

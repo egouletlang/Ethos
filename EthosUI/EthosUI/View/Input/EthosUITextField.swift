@@ -14,10 +14,12 @@ open class EthosUITextField: BaseUIView {
     private let textField = UITextField(frame: CGRect.zero)
     
     // MARK: - LifeCycleInterface Methods
-    open override func createLayout() {
+    @discardableResult
+    override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
         self.addSubview(textField)
         self.padding = Rect<CGFloat>(8, 2, 8, 2)
+        return self
     }
     
     open override func frameUpdate() {

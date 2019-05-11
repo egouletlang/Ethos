@@ -295,11 +295,13 @@ open class BaseUIViewController: UIViewController, LifeCycleInterface, ReusableC
         
     }
     
-    open func createLayout() {
+    @discardableResult
+    open func createLayout() -> LifeCycleInterface {
         createUI()
         createNavigation()
         createDismiss()
         createKeyboard()
+        return self
     }
     
     open func frameUpdate() {

@@ -20,7 +20,8 @@ open class BaseUITableViewController: BaseUIViewController, BaseUITableView.Dele
     public let segmentView = UISegmentedControl(frame: CGRect.zero)
     public let searchController = UISearchController(searchResultsController: nil)
     
-    override open func createLayout() {
+    @discardableResult
+    override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
 
         if #available(iOS 11.0, *) {
@@ -97,6 +98,7 @@ open class BaseUITableViewController: BaseUIViewController, BaseUITableView.Dele
             filter()
         }
         
+        return self
     }
     
     override open func frameUpdate() {

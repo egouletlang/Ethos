@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EthosUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,10 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let root = TestUIViewController()
-        window?.addSubview(root.view)
-        window?.rootViewController = root
-        window?.makeKeyAndVisible()
+        let view = BaseUIView(frame: CGRect.zero)
+        view.createLayout()
+        
+//        let root = TestUIViewController()
+//        window?.addSubview(root.view)
+//        window?.rootViewController = root
+//        window?.makeKeyAndVisible()
         return true
     }
 

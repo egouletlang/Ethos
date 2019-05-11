@@ -12,7 +12,7 @@ import Foundation
 public protocol LifeCycleInterface {
     // Initialize
     @objc optional func initialize()
-    func createLayout()
+    @discardableResult func createLayout() -> LifeCycleInterface
     
     // Updates
     func frameUpdate()

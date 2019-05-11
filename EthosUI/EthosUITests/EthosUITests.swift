@@ -20,7 +20,7 @@ class EthosUITests: XCTestCase {
     }
 
     func testExample() {
-        
+        let view = BaseUIView(frame: CGRect.zero)
     }
 
     func testPerformanceExample() {
