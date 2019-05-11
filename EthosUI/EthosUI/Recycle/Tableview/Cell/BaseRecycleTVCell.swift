@@ -33,6 +33,8 @@ open class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleVi
     }
     
     // MARK: - UI Components
+    private lazy var content: BaseRecycleView = { self.cell }()
+    
     open var cell: BaseRecycleView {
         return BaseRecycleView(frame: CGRect.zero)
     }
@@ -45,18 +47,18 @@ open class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleVi
     // MARK: - LifeCycleInterface Methods
     open func createLayout() {
         self.backgroundColor = UIColor.clear
-        self.contentView.addSubview(cell)
-        cell.delegate = self
+        self.contentView.addSubview(content)
+        content.delegate = self
     }
     
     open func frameUpdate() {
-        cell.frameUpdate()
+        content.frameUpdate()
     }
     
     // MARK: - ReusableComponentInterface Methods
     override open func prepareForReuse() {
         super.prepareForReuse()
-        cell.prepareForReuse()
+        content.prepareForReuse()
     }
     
     // MARK: - Size
@@ -73,8 +75,8 @@ open class BaseRecycleTVCell: UITableViewCell, LifeCycleInterface, BaseRecycleVi
     
     // MARK: - Model
     open func setData(model: BaseRecycleModel, forWidth width: CGFloat) {
-        cell.setData(model: model)
-        cell.frame.size = CGSize(width: width, height: self.getHeight(model: model))
+        content.setData(model: model)
+        content.frame.size = CGSize(width: width, height: self.getHeight(model: model))
     }
     
     // MARK: - Delegates

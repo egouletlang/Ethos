@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   spec.name         = "EthosUI"
-  spec.version      = "0.1.13"
+  spec.version      = "0.1.14"
   spec.summary      = "A collection of useful building blocks to help rapidly develop iOS apps using Swift"
   spec.description  = <<-DESC
   A collection of useful building blocks to help rapidly develop iOS apps using Swift and more
@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source       = { :git => "https://github.com/egouletlang/Ethos.git", :tag => "v0.5.45" }
+  spec.source       = { :git => "https://github.com/egouletlang/Ethos.git", :tag => "v0.5.46" }
   spec.source_files = 'EthosUI/EthosUI/**/*.{h,m,swift}'
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
