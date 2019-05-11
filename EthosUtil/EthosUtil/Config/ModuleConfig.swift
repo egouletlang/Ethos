@@ -42,6 +42,12 @@ open class ModuleConfig {
      */
     private var fileSystemHelper: FileSystemHelper?
     
+    private var cache = [String: Any]()
+    
+    public func get<T>(key: String, def: T?) -> T? {
+        return self.cache.get(key) { return def } as? T
+    }
+    
     // MARK: - Helper Methods
     /**
      This method gets an image from the module bundle
