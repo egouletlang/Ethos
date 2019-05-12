@@ -120,10 +120,14 @@ open class BaseRecycleView: BaseUIView {
         }
     }
     
+    open func isNil(_ value: Any?) -> Bool {
+        return value is NSNull || value == nil
+    }
+    
     @objc
     open func selector_containerTapped(_ sender: UITapGestureRecognizer) {
         self.delegate?.active(view: self)
-        if let m = self.model, m.clickResponse != nil {
+        if let m = self.model, !self.isNil(m.clickResponse) {
             self.delegate?.tapped(model: m, view: self)
         }
     }
@@ -131,7 +135,7 @@ open class BaseRecycleView: BaseUIView {
     @objc
     open func selector_containerLongPressed() {
         self.delegate?.active(view: self)
-        if let m = self.model, m.longClickResponse != nil {
+        if let m = self.model, !self.isNil(m.longClickResponse) {
             self.delegate?.longPressed(model: m, view: self)
         }
     }
