@@ -76,6 +76,8 @@ open class BaseRecycleView: BaseUIView {
         borders.bottom.isHidden = !model.borders.bottom.show
 
         borders.forEach() { $0.backgroundColor = model.borderColor.cgColor }
+        
+        self.setNeedsDisplay()
     }
 
     // MARK: - Delegate

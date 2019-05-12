@@ -149,8 +149,8 @@ open class LabelRecycleModel: BaseRecycleModel {
     @discardableResult
     override public func withDefaultBottomBorder() -> BaseRecycleModel {
         let minMargin = min(min(self.titleMargins.left, self.subtitleMargins.left), self.detailsMargins.left)
-        self.borders.bottom.show = true
-        self.borders.bottom.padding = Rect<CGFloat>(self.padding.left + minMargin, 0, 0, 0)
+        self.withBorder(bottom: true)
+        self.withBorder(paddingBottom: Rect<CGFloat>(self.padding.left + minMargin, 0, 0, 0))
         return self
     }
     

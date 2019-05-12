@@ -10,9 +10,9 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-fileprivate let BACKGROUND_COLOR_HANDLE = VariableHandle<UIColor?>("background_color", nil)
+fileprivate let BACKGROUND_COLOR_HANDLE = VariableHandle<UIColor?>("background_color", UIColor.white)
 
-fileprivate let CONTENT_COLOR_HANDLE = VariableHandle<UIColor?>("content_color", nil)
+fileprivate let CONTENT_COLOR_HANDLE = VariableHandle<UIColor?>("content_color", UIColor.white)
 
 fileprivate let SHADOW_OFFSET_HANDLE = VariableHandle<CGSize>("shadow_offset", CGSize.zero)
 

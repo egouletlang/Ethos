@@ -23,7 +23,7 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
     // MARK: - Class Methods
     fileprivate class func createDefaultBorderLayer() -> CALayer {
         let layer = CALayer()
-        layer.isHidden = BaseUIView.DEFAULT_BORDER_VISIBILITY
+        layer.isHidden = !BaseUIView.DEFAULT_BORDER_VISIBILITY
         layer.backgroundColor = BaseUIView.DEFAULT_BORDER_COLOR.cgColor
         return layer
     }
@@ -137,6 +137,7 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
     @discardableResult
     open func createLayout() -> LifeCycleInterface {
         self.borders = BaseUIView.createDefaultBorders()
+        self.borders.forEach() { self.layer.addSublayer($0) }
         self.resetBorders(needsDisplay: false)
         return self
     }
