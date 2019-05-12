@@ -65,26 +65,14 @@ open class EthosUILabel: BaseUIView {
         return retSize.addPadding(padding: padding)
     }
     
-    // MARK: - Link Handling
-    override open func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
-        return canRespondToTap && !willConsumeLocationTap(point)
-    }
-    
-    func willConsumeLocationTap(_ point: CGPoint?) -> Bool {
-        canRespondToTap = false
-        tapCooldown?.set(value: true)
-        
-        if let url = didTapOnLink(point) {
-            let didIntercept = self.delegate?.interceptUrl?(url) ?? false
-            if !didIntercept {
-                EventHelper.APP_OPEN_URL.emit(userInfo: ["url": url])
-            }
-            return true
+    func handleLink(url: String) {
+        let didIntercept = self.delegate?.interceptUrl?(url) ?? false
+        if !didIntercept {
+            EventHelper.APP_OPEN_URL.emit(userInfo: ["url": url])
         }
-        return false
     }
     
-    private func didTapOnLink(_ point: CGPoint?) -> String? {
+    func didTapOnLink(_ point: CGPoint?) -> String? {
         guard var location = point, self.labelView.frame.contains(location) else {
             return nil
         }

@@ -24,18 +24,14 @@ open class LabelRecycleView: BaseRecycleView {
     @discardableResult
     override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
-        self.addTap(self, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
         
         titleLabel.createLayout()
-        self.addTap(titleLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
         self.contentView.addSubview(titleLabel)
         
         subtitleLabel.createLayout()
-        self.addTap(subtitleLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
         self.contentView.addSubview(subtitleLabel)
         
         detailsLabel.createLayout()
-        self.addTap(detailsLabel, selector: #selector(BaseRecycleView.selector_containerTapped(_:)))
         self.contentView.addSubview(detailsLabel)
         return self
     }
@@ -91,17 +87,29 @@ open class LabelRecycleView: BaseRecycleView {
     }
     
     // MARK: - Gestures -
-    open override var addTap: Bool {
-        return false
-    }
-    
-    override open func selector_containerTapped(_ sender: UITapGestureRecognizer) {
-        if  self.titleLabel.willConsumeLocationTap(sender.location(in: titleLabel)) ||
-            self.subtitleLabel.willConsumeLocationTap(sender.location(in: subtitleLabel)) ||
-            self.detailsLabel.willConsumeLocationTap(sender.location(in: detailsLabel)) {
-            return
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let converted = self.convert(point, to: self.contentView)
+        
+        let titleLocation = self.convert(point, to: self.titleLabel)
+        if self.titleLabel.frame.contains(converted), let url = self.titleLabel.didTapOnLink(titleLocation) {
+            self.titleLabel.handleLink(url: url)
+            return nil
         }
-        super.selector_containerTapped(sender)
+        
+        let subtitleLocation = self.convert(point, to: self.subtitleLabel)
+        if self.subtitleLabel.frame.contains(converted), let url = self.subtitleLabel.didTapOnLink(subtitleLocation) {
+            self.subtitleLabel.handleLink(url: url)
+            return nil
+        }
+        
+        let detailsLocation = self.convert(point, to: self.detailsLabel)
+        if self.detailsLabel.frame.contains(converted), let url = self.detailsLabel.didTapOnLink(detailsLocation) {
+            self.detailsLabel.handleLink(url: url)
+            return nil
+        }
+        
+        return super.hitTest(point, with: event)
+        
     }
     
     // MARK: - Layout Helper -
@@ -153,8 +161,8 @@ open class LabelRecycleView: BaseRecycleView {
         var reqWidth: CGFloat = max(titleSize.width, max(subtitleSize.width, detailsSize.width))
         
         var reqHeight = (m.titleMargins.top + titleSize.height + m.titleMargins.bottom) +
-                        (m.subtitleMargins.top + subtitleSize.height + m.subtitleMargins.bottom) +
-                        (m.detailsMargins.top + detailsSize.height + m.detailsMargins.bottom)
+            (m.subtitleMargins.top + subtitleSize.height + m.subtitleMargins.bottom) +
+            (m.detailsMargins.top + detailsSize.height + m.detailsMargins.bottom)
         
         if model.width > 0 {
             reqWidth = reqWidth > model.height ? reqWidth : model.width
@@ -169,7 +177,7 @@ open class LabelRecycleView: BaseRecycleView {
         return CGSize(width: reqWidth, height: reqHeight)
         
     }
-
+    
     public override func labelDelegateDidSet() {
         super.labelDelegateDidSet()
         titleLabel.delegate = self.labelDelegate

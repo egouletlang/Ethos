@@ -38,7 +38,7 @@ open class BaseRecycleView: BaseUIView {
         self.addSubview(contentView)
         contentView.createLayout()
         contentView.clipsToBounds = true
-        contentView.shouldRespondToTouch = false
+        contentView.shouldRespondToTouch = true
 
         createGestures()
         return self
