@@ -75,6 +75,10 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
         }
     }
     
+    fileprivate var tapCooldown: Delayed<Bool>?
+    
+    fileprivate var canRespondToTap = true
+    
     fileprivate var size = CGSize.zero
     
     public var padding = Rect<CGFloat>(def: 0)
@@ -119,10 +123,15 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
     }
     
     open func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
-        return shouldRespondToTouch
+        return canRespondToTap && shouldRespondToTouch
     }
     
     // MARK: - LifeCycleInterface Methods
+    open func initialize() {
+        self.shouldRespondToTouch = true
+        self.tapCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToTap = $0 ?? true }
+    }
+    
     @discardableResult
     open func createLayout() -> LifeCycleInterface {
         self.borders = BaseUIView.createDefaultBorders()

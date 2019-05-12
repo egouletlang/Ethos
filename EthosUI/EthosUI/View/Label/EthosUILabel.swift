@@ -29,17 +29,6 @@ open class EthosUILabel: BaseUIView {
         }
     }
     
-    // MARK: - State variables
-    fileprivate var canRespondToTap = true
-    
-    fileprivate var tapCooldown: Delayed<Bool>?
-    
-    // MARK: - Lifecycle Methods
-    open func initialize() {
-        self.shouldRespondToTouch = true
-        self.tapCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToTap = $0 ?? true }
-    }
-    
     @discardableResult
     override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
