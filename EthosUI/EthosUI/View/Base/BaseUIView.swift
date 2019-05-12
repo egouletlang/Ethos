@@ -75,9 +75,9 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
         }
     }
     
-    fileprivate var tapCooldown: Delayed<Bool>?
+    fileprivate var tapCooldown: Delayed<Int>?
     
-    fileprivate var canRespondToTap = true
+    fileprivate var recentTaps = 0
     
     fileprivate var size = CGSize.zero
     
@@ -115,22 +115,23 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, with: event)
         
+        self.recentTaps += 1
+        self.tapCooldown?.set(value: 0)
+        
         if !shouldRespondToTouch(point, with: event) && view == self {
             return nil
         }
         
-        self.canRespondToTap = false
-        self.tapCooldown?.set(value: true)
         return view
     }
     
     open func shouldRespondToTouch(_ point: CGPoint, with event: UIEvent?) -> Bool {
-        return canRespondToTap && shouldRespondToTouch
+        return self.recentTaps <= 2 && shouldRespondToTouch
     }
     
     // MARK: - LifeCycleInterface Methods
     open func initialize() {
-        self.tapCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToTap = $0 ?? true }
+        self.tapCooldown = Delayed<Int>(delay: 0.3).with() { [weak self] in self?.recentTaps = $0 ?? 0 }
     }
     
     @discardableResult
