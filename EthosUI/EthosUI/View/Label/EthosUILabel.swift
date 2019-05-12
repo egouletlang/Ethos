@@ -29,6 +29,14 @@ open class EthosUILabel: BaseUIView {
         }
     }
     
+    fileprivate var linkCooldown: Delayed<Bool>?
+    
+    fileprivate var canRespondToLink = true
+    
+    override open func initialize() {
+        self.linkCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToLink = $0 ?? true }
+    }
+    
     @discardableResult
     override open func createLayout() -> LifeCycleInterface {
         super.createLayout()
@@ -55,6 +63,10 @@ open class EthosUILabel: BaseUIView {
     }
     
     func handleLink(url: String) {
+        guard self.canRespondToLink else { return }
+        
+        self.canRespondToLink = false
+        self.linkCooldown?.set(value: true)
         let didIntercept = self.delegate?.interceptUrl?(url) ?? false
         if !didIntercept {
             EventHelper.APP_OPEN_URL.emit(userInfo: ["url": url])

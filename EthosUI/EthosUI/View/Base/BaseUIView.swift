@@ -119,6 +119,8 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
             return nil
         }
         
+        self.canRespondToTap = false
+        self.tapCooldown?.set(value: true)
         return view
     }
     
@@ -128,7 +130,6 @@ open class BaseUIView: UIView, LifeCycleInterface, ReusableComponentInterface, F
     
     // MARK: - LifeCycleInterface Methods
     open func initialize() {
-        self.shouldRespondToTouch = true
         self.tapCooldown = Delayed<Bool>(delay: 0.3).with() { [weak self] in self?.canRespondToTap = $0 ?? true }
     }
     
