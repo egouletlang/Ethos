@@ -90,10 +90,10 @@ class GetFileResource: UniqueOperation {
         self.deactivate(result: mediaResource)
     }
     
-    private func defaultHandler(resourceName: String, type: String) -> EthosUtil.FileHandle? {
+    private func defaultHandler(resourceName: String, type: String) -> FileSystemReference? {
 
         // Check the main bundle first
-        if let fh = FileSystemHelper.shared.getBundleFileHandle(resourceName: resourceName, type: type) {
+        if let fh = FileSystemHelper.shared.getBundleFileSystemReference(resourceName: resourceName, type: type) {
             return fh
         }
 
@@ -101,13 +101,13 @@ class GetFileResource: UniqueOperation {
         for bundle in ImageHelper.shared.getAvailablesBundles() {
             let fileSystemHelper = FileSystemHelper()
             fileSystemHelper.bundle = bundle
-            if let fh = fileSystemHelper.getBundleFileHandle(resourceName: resourceName, type: type) {
+            if let fh = fileSystemHelper.getBundleFileSystemReference(resourceName: resourceName, type: type) {
                 return fh
             }
         }
 
         // Check the file system
-        if let fh = FileSystemHelper.shared.getFileSystemFileHandle(resourceName: resourceName, type: type),
+        if let fh = FileSystemHelper.shared.getFileSystemFileSystemReference(resourceName: resourceName, type: type),
             fh.fileExists {
             return fh
         }
