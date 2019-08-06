@@ -24,7 +24,7 @@ open class Promise<T> {
         - task: The task that will fulfill the promise
      */
     public init(task: @escaping (Promise<T>) -> Void) {
-        ThreadHelper.app(BACKGROUND_THREAD_NAME) { task(self) }
+        ThreadHelper.checkApp(BACKGROUND_THREAD_NAME) { task(self) }
     }
     
     // MARK: - State Variables

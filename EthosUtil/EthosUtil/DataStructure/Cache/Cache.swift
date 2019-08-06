@@ -235,8 +235,8 @@ open class Cache<T: Comparable & Hashable, K> {
         guard let name = self.cacheName, !self.cache.isEmpty else {
             return
         }
-        
-        let fileHandle = FileSystemHelper.shared.getFileSystemFileHandle(resourceName: name, type: "cache")
+      
+        let fileHandle = FileSystemHelper.shared.getFileSystemFileSystemReference(resourceName: name, type: "cache")
         
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: self.cache, requiringSecureCoding: false)
@@ -254,7 +254,7 @@ open class Cache<T: Comparable & Hashable, K> {
         do {
             guard let name = self.cacheName else { return }
             
-            let fileHandle = FileSystemHelper.shared.getFileSystemFileHandle(resourceName: name, type: "cache")
+            let fileHandle = FileSystemHelper.shared.getFileSystemFileSystemReference(resourceName: name, type: "cache")
             guard let data = fileHandle?.getData() else {
                 return
             }
@@ -276,7 +276,7 @@ open class Cache<T: Comparable & Hashable, K> {
             
             self.setCache(cache: [:])
             
-            let fileHandle = FileSystemHelper.shared.getFileSystemFileHandle(resourceName: name, type: "cache")
+            let fileHandle = FileSystemHelper.shared.getFileSystemFileSystemReference(resourceName: name, type: "cache")
             try fileHandle?.delete()
         } catch {
             LogHelper.shared.log(msg: error.localizedDescription, tag: .Error)

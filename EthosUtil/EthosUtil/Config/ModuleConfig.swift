@@ -54,7 +54,7 @@ open class ModuleConfig {
      */
     open func getImageFromBundle(resource: String) -> UIImage? {
         guard let (resourceName, type) = resource.getFileParts() else { return nil }
-        let fh = fileSystemHelper?.getBundleFileHandle(resourceName: resourceName, type: type)
+        let fh = fileSystemHelper?.getBundleFileSystemReference(resourceName: resourceName, type: type)
         return fh?.getImage()
     }
  

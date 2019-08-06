@@ -12,7 +12,7 @@
 		6B9ADBCF2266294900BEF3DC /* EthosUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B9ADBC12266294900BEF3DC /* EthosUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B9ADBDB2266299E00BEF3DC /* CacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBDA2266299E00BEF3DC /* CacheEntry.swift */; };
 		6B9ADBDD22662AA800BEF3DC /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBDC22662AA800BEF3DC /* Cache.swift */; };
-		6B9ADBE022662B2000BEF3DC /* FileHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBDF22662B2000BEF3DC /* FileHandle.swift */; };
+		6B9ADBE022662B2000BEF3DC /* FileSystemReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBDF22662B2000BEF3DC /* FileSystemReference.swift */; };
 		6B9ADBE222662C1800BEF3DC /* FileSystemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBE122662C1800BEF3DC /* FileSystemHelper.swift */; };
 		6B9ADBE5226630A900BEF3DC /* String_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBE4226630A900BEF3DC /* String_EXT.swift */; };
 		6B9ADBE72266340800BEF3DC /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADBE62266340800BEF3DC /* DeviceHelper.swift */; };
@@ -39,7 +39,7 @@
 		6B9ADC1622666A1500BEF3DC /* Formatter_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */; };
 		6B9ADC1922666C8A00BEF3DC /* ModuleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1822666C8A00BEF3DC /* ModuleState.swift */; };
 		6B9ADC1B226672C900BEF3DC /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1A226672C900BEF3DC /* Promise.swift */; };
-		6B9ADC1D226677A100BEF3DC /* Delayed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1C226677A100BEF3DC /* Delayed.swift */; };
+		6B9ADC1D226677A100BEF3DC /* ValueBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1C226677A100BEF3DC /* ValueBuffer.swift */; };
 		6B9ADC1F22667C0800BEF3DC /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC1E22667C0800BEF3DC /* TaskManager.swift */; };
 		6B9ADC2222667F7700BEF3DC /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC2122667F7700BEF3DC /* AsynchronousOperation.swift */; };
 		6B9ADC2422667FDD00BEF3DC /* AsynchronousOperationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC2322667FDD00BEF3DC /* AsynchronousOperationDelegate.swift */; };
@@ -49,6 +49,9 @@
 		6B9ADC2C226682C000BEF3DC /* EventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC2B226682C000BEF3DC /* EventHelper.swift */; };
 		6B9ADC2E2266887A00BEF3DC /* EventHelper_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC2D2266887A00BEF3DC /* EventHelper_EXT.swift */; };
 		6B9ADC31226688F900BEF3DC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9ADC30226688F900BEF3DC /* Event.swift */; };
+		6BC7498322F95F9E00073276 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC7498222F95F9E00073276 /* BaseCoordinator.swift */; };
+		6BC7498522F95FAB00073276 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC7498422F95FAB00073276 /* AppCoordinator.swift */; };
+		6BC7498722F95FBD00073276 /* UICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC7498622F95FBD00073276 /* UICoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +73,7 @@
 		6B9ADBCE2266294900BEF3DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B9ADBDA2266299E00BEF3DC /* CacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheEntry.swift; sourceTree = "<group>"; };
 		6B9ADBDC22662AA800BEF3DC /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		6B9ADBDF22662B2000BEF3DC /* FileHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandle.swift; sourceTree = "<group>"; };
+		6B9ADBDF22662B2000BEF3DC /* FileSystemReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemReference.swift; sourceTree = "<group>"; };
 		6B9ADBE122662C1800BEF3DC /* FileSystemHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemHelper.swift; sourceTree = "<group>"; };
 		6B9ADBE4226630A900BEF3DC /* String_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_EXT.swift; sourceTree = "<group>"; };
 		6B9ADBE62266340800BEF3DC /* DeviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
@@ -97,7 +100,7 @@
 		6B9ADC1522666A1500BEF3DC /* Formatter_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter_EXT.swift; sourceTree = "<group>"; };
 		6B9ADC1822666C8A00BEF3DC /* ModuleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleState.swift; sourceTree = "<group>"; };
 		6B9ADC1A226672C900BEF3DC /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
-		6B9ADC1C226677A100BEF3DC /* Delayed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delayed.swift; sourceTree = "<group>"; };
+		6B9ADC1C226677A100BEF3DC /* ValueBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueBuffer.swift; sourceTree = "<group>"; };
 		6B9ADC1E22667C0800BEF3DC /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		6B9ADC2122667F7700BEF3DC /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		6B9ADC2322667FDD00BEF3DC /* AsynchronousOperationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperationDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +110,9 @@
 		6B9ADC2B226682C000BEF3DC /* EventHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHelper.swift; sourceTree = "<group>"; };
 		6B9ADC2D2266887A00BEF3DC /* EventHelper_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHelper_EXT.swift; sourceTree = "<group>"; };
 		6B9ADC30226688F900BEF3DC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		6BC7498222F95F9E00073276 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		6BC7498422F95FAB00073276 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		6BC7498622F95FBD00073276 /* UICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,7 @@
 		6B9ADBC02266294900BEF3DC /* EthosUtil */ = {
 			isa = PBXGroup;
 			children = (
+				6BC7498122F95F9100073276 /* Coordinator */,
 				6B9ADBC12266294900BEF3DC /* EthosUtil.h */,
 				6B9ADBC22266294900BEF3DC /* Info.plist */,
 				6B9ADC11226669C600BEF3DC /* DateHelper.swift */,
@@ -198,7 +205,7 @@
 		6B9ADBDE22662B1200BEF3DC /* FileSystem */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADBDF22662B2000BEF3DC /* FileHandle.swift */,
+				6B9ADBDF22662B2000BEF3DC /* FileSystemReference.swift */,
 				6B9ADBE122662C1800BEF3DC /* FileSystemHelper.swift */,
 			);
 			path = FileSystem;
@@ -224,7 +231,7 @@
 		6B9ADBEA2266366C00BEF3DC /* Thread */ = {
 			isa = PBXGroup;
 			children = (
-				6B9ADC1C226677A100BEF3DC /* Delayed.swift */,
+				6B9ADC1C226677A100BEF3DC /* ValueBuffer.swift */,
 				6B9ADBEB2266368300BEF3DC /* Lock.swift */,
 				6B9ADC1A226672C900BEF3DC /* Promise.swift */,
 				6B9ADC1E22667C0800BEF3DC /* TaskManager.swift */,
@@ -289,6 +296,16 @@
 				6B9ADC2B226682C000BEF3DC /* EventHelper.swift */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		6BC7498122F95F9100073276 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6BC7498222F95F9E00073276 /* BaseCoordinator.swift */,
+				6BC7498422F95FAB00073276 /* AppCoordinator.swift */,
+				6BC7498622F95FBD00073276 /* UICoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,11 +432,14 @@
 				6B9ADC0122665BFB00BEF3DC /* CGColor_EXT.swift in Sources */,
 				6B9ADBEF2266372D00BEF3DC /* LogHelper.swift in Sources */,
 				6B9ADBE72266340800BEF3DC /* DeviceHelper.swift in Sources */,
+				6BC7498522F95FAB00073276 /* AppCoordinator.swift in Sources */,
+				6BC7498322F95F9E00073276 /* BaseCoordinator.swift in Sources */,
 				6B9ADBF22266381400BEF3DC /* LogHelperDelegate.swift in Sources */,
 				6B9ADBFB226655E400BEF3DC /* LinkedList.swift in Sources */,
 				6B9ADC1622666A1500BEF3DC /* Formatter_EXT.swift in Sources */,
-				6B9ADBE022662B2000BEF3DC /* FileHandle.swift in Sources */,
+				6B9ADBE022662B2000BEF3DC /* FileSystemReference.swift in Sources */,
 				6B9ADBFF22665AD100BEF3DC /* Array_EXT.swift in Sources */,
+				6BC7498722F95FBD00073276 /* UICoordinator.swift in Sources */,
 				6B9ADC1F22667C0800BEF3DC /* TaskManager.swift in Sources */,
 				6B9ADBE5226630A900BEF3DC /* String_EXT.swift in Sources */,
 				6B9ADC2222667F7700BEF3DC /* AsynchronousOperation.swift in Sources */,
@@ -435,7 +455,7 @@
 				6B9ADC2C226682C000BEF3DC /* EventHelper.swift in Sources */,
 				6B9ADC2A2266816400BEF3DC /* UniqueOperationQueue.swift in Sources */,
 				6B9ADBF9226655C900BEF3DC /* LinkedListNode.swift in Sources */,
-				6B9ADC1D226677A100BEF3DC /* Delayed.swift in Sources */,
+				6B9ADC1D226677A100BEF3DC /* ValueBuffer.swift in Sources */,
 				6B9ADC1422666A0200BEF3DC /* Date_EXT.swift in Sources */,
 				6B9ADC0C2266674300BEF3DC /* ModuleConfigDelegate.swift in Sources */,
 				6B9ADBDB2266299E00BEF3DC /* CacheEntry.swift in Sources */,

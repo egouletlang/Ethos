@@ -59,5 +59,16 @@ public extension Array {
         
         return Array(self[startIndex ..< endIndex])
     }
-    
+
+    /**
+     Separate an array into a list of smaller arrays
+     - parameter by: The maximum allowable size for the smaller arrays
+     - returns: a list of smaller arrays
+     */
+    func batch(by chunkSize: Int) -> [[Element]] {
+      return stride(from: 0, to: self.count, by: chunkSize).map {
+        Array(self[$0 ..< Swift.min($0 + chunkSize, self.count)])
+      }
+    }
+
 }

@@ -22,6 +22,19 @@ open class TaskManager<T, V> {
     public init(values: [T], def: V? = nil) {
         self.values = values
         self.results = [V?](repeating: def, count: self.values.count)
+        self.jobId = UUID().uuidString
+    }
+  
+    /**
+     Batch the values and create a TaskManager.
+     - parameter values: The input values
+     - parameter batchSize: The maximum allowable batch size. This should be greater than 0
+     - parameter def: The default result value
+     - returns: A TaskManager instance
+     */
+    public class func batch(values: [T], batchSize: Int, def: V? = nil) -> TaskManager<[T], V> {
+        let batches = batchSize > 0 ? values.batch(by: batchSize) : [values]
+        return TaskManager<[T], V>(values: batches, def: def)
     }
     
     /**
@@ -51,6 +64,8 @@ open class TaskManager<T, V> {
     }
     
     // MARK: - State Variables
+    public let jobId: String
+
     /**
      This member stores the task arguments
      */

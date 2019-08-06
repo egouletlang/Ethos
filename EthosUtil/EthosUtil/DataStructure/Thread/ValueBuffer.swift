@@ -9,10 +9,10 @@
 import Foundation
 
 /**
- The Delayed class is designed to wrap a value, buffer a series of modifications to that value and provide a single
+ The ValueBuffer class is designed to wrap a value, buffer a series of modifications to that value and provide a single
  callback once the value has stabilized.
  */
-open class Delayed<T>: NSObject {
+open class ValueBuffer<T>: NSObject {
     
     public typealias StabilizedResultCallback = (T?) -> Void
     
@@ -25,7 +25,7 @@ open class Delayed<T>: NSObject {
      This method allows you to set a StabilizedResultCallback value
      - returns: current instace
      */
-    @discardableResult public func with(callback: @escaping StabilizedResultCallback) -> Delayed {
+    @discardableResult public func with(callback: @escaping StabilizedResultCallback) -> ValueBuffer {
         self.callback = callback
         return self
     }
@@ -63,7 +63,7 @@ open class Delayed<T>: NSObject {
             self.timer?.invalidate()
             self.value = value
             self.timer = Timer.scheduledTimer(timeInterval: self.delay, target: self,
-                                              selector: #selector(Delayed.selectorFireTimer),
+                                              selector: #selector(ValueBuffer.selectorFireTimer),
                                               userInfo: nil, repeats: false)
         }
     }
