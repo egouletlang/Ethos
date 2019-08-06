@@ -239,8 +239,13 @@ open class Cache<T: Comparable & Hashable, K> {
         let fileHandle = FileSystemHelper.shared.getFileSystemFileSystemReference(resourceName: name, type: "cache")
         
         do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: self.cache, requiringSecureCoding: false)
-            try fileHandle?.overwrite(data: data)
+            var objData: Data!
+            if #available(iOS 11.0, *) {
+              objData = try NSKeyedArchiver.archivedData(withRootObject: self.cache, requiringSecureCoding: false)
+            } else {
+              objData = NSKeyedArchiver.archivedData(withRootObject: self.cache)
+            }
+            try fileHandle?.overwrite(data: objData)
         } catch {
             LogHelper.shared.log(msg: error.localizedDescription, tag: .Error)
         }
