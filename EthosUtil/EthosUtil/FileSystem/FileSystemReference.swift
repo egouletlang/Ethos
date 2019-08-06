@@ -197,6 +197,7 @@ open class FileSystemReference {
     guard let data = getData(), let objs = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [T] else {
       return []
     }
+
     return objs
   }
   
